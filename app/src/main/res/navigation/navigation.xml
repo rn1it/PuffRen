@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/prodItemFragment"
-        android:name="com.rn1.puffren.ui.item.ProdItemFragment"
-        android:label="fragment_prod_item"
-        tools:layout="@layout/fragment_prod_item" />
+        android:id="@+id/prodFragment"
+        android:name="com.rn1.puffren.ui.product.ProdFragment"
+        android:label="fragment_prod"
+        tools:layout="@layout/fragment_prod" />
 
     <fragment
         android:id="@+id/locationFragment"
@@ -28,17 +28,11 @@
         app:destination="@id/locationFragment" />
 
     <action
-        android:id="@+id/action_global_prodItemFragment"
-        app:destination="@id/prodItemFragment" />
+        android:id="@+id/action_global_prodFragment"
+        app:destination="@id/prodFragment" />
 
     <action
         android:id="@+id/action_global_homeFragment"
         app:destination="@id/homeFragment"
         app:popUpToInclusive="true" />
-    <fragment
-        android:id="@+id/mapsFragment"
-        android:name="com.rn1.puffren.ui.location.MapsFragment"
-        android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
-    <action android:id="@+id/action_global_mapsFragment" app:destination="@id/mapsFragment"/>
 </navigation>

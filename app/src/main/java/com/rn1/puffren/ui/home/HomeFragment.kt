@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
 
         viewModel.navigateToItem.observe(viewLifecycleOwner, Observer {
             it?.let {
-                findNavController().navigate(NavigationDirections.actionGlobalProdItemFragment())
+                findNavController().navigate(NavigationDirections.actionGlobalProdFragment())
                 viewModel.doneNavigateToItem()
             }
         })

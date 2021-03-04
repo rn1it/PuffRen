@@ -1,4 +1,4 @@
 package com.rn1.puffren.data
 
-class PuffItem {
+class Product {
 }

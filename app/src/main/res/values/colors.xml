@@ -3,6 +3,6 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="menu_item_bg_color">#FBF1CC</color>
+    <color name="item_bg_color_yellow">#FBF1CC</color>
     <color name="orange_ffa626">#FFA626</color>
 </resources>
