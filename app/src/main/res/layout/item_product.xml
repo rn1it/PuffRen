@@ -19,8 +19,10 @@
             android:id="@+id/image_product_item"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"
+            android:scaleType="centerInside"
             android:src="@drawable/dark_chocolate_cream_puff"
+            android:padding="4dp"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,14 +31,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:text="巧克力泡芙"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_product_item"
-            tool:text="巧克力泡芙" />
+            tool:text="巧克力泡芙"
+            style="@style/text_style_product_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
