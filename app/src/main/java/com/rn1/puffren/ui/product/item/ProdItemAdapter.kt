@@ -18,12 +18,16 @@ class ProdItemAdapter(val viewModel: ProdItemViewModel): ListAdapter<Product, Pr
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = getItem(position)
         holder.bind(product)
+        holder.itemView.setOnClickListener {
+            viewModel.navigateToProductDetail(product)
+        }
     }
 
     class ProductViewHolder(private val binding: ItemProductBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(product: Product){
             binding.product = product
+            binding.executePendingBindings()
         }
 
         companion object{

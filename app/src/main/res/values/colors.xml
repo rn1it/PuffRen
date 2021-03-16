@@ -5,4 +5,6 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="item_bg_color_yellow">#FBF1CC</color>
     <color name="orange_ffa626">#FFA626</color>
+    <color name="gray_646464">#646464</color>
+    <color name="white">#FFFFFF</color>
 </resources>

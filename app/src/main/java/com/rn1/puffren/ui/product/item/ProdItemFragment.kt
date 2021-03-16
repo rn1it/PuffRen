@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.R
 import com.rn1.puffren.data.Product
 import com.rn1.puffren.databinding.FragmentProdItemBinding
@@ -36,7 +39,7 @@ class ProdItemFragment(prodTypeFilter: ProdTypeFilter) : Fragment() {
         recyclerView.adapter = adapter
 
         val list = mutableListOf<Product>()
-        val product = Product()
+        val product = Product("111")
         list.add(product)
         list.add(product)
         list.add(product)
@@ -45,6 +48,12 @@ class ProdItemFragment(prodTypeFilter: ProdTypeFilter) : Fragment() {
 
         adapter.submitList(list)
 
+        viewModel.product.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                findNavController().navigate(NavigationDirections.actionGlobalDetailFragment(it))
+                viewModel.navigateToProductDetailDone()
+            }
+        })
 
         return binding.root
     }

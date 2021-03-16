@@ -1,4 +1,9 @@
 package com.rn1.puffren.data
 
-class Product {
-}
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class Product(
+    val id: String
+): Parcelable
