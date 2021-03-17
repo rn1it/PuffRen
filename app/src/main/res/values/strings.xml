@@ -13,4 +13,5 @@
     <string name="account">帳號</string>
     <string name="password">密碼</string>
     <string name="login_account">登入帳號</string>
+    <string name="internet_not_connected">未連接網路</string>
 </resources>

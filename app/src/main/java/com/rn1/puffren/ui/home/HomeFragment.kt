@@ -13,6 +13,7 @@ import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.R
 import com.rn1.puffren.databinding.FragmentHomeBinding
 import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.util.Logger
 
 class HomeFragment : Fragment() {
 
@@ -44,7 +45,10 @@ class HomeFragment : Fragment() {
         })
 
         viewModel.navigateToMember.observe(viewLifecycleOwner, Observer {
-
+            it?.let {
+                findNavController().navigate(NavigationDirections.actionGlobalLoginFragment())
+                viewModel.doneNavigateToMember()
+            }
         })
 
 
