@@ -7,4 +7,10 @@
     <string name="puff_prods">商品品項</string>
     <string name="member_card">虛擬會員卡</string>
     <string name="add2cart">加入購物車</string>
+    <string name="forget_password">忘記密碼</string>
+    <string name="login">登入</string>
+    <string name="registry">註冊</string>
+    <string name="account">帳號</string>
+    <string name="password">密碼</string>
+    <string name="login_account">登入帳號</string>
 </resources>
