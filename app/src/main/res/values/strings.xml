@@ -14,4 +14,7 @@
     <string name="password">密碼</string>
     <string name="login_account">登入帳號</string>
     <string name="internet_not_connected">未連接網路</string>
+    <string name="closed_today">今日休息</string>
+    <string name="report_location">出攤位置回報</string>
+    <string name="sale_status">我的營業狀況</string>
 </resources>

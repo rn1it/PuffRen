@@ -31,7 +31,7 @@
                     android:id="@+id/image_detail_puff"
                     android:layout_width="match_parent"
                     android:layout_height="500dp"
-                    android:background="@color/item_bg_color_yellow"
+                    android:background="@color/bg_color_yellow"
                     android:src="@drawable/dark_chocolate_cream_puff"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

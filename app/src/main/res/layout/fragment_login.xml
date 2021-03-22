@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="80dp"
-        android:background="@color/item_bg_color_yellow"
+        android:background="@color/bg_color_yellow"
         tools:context=".ui.login.LoginFragment">
 
         <ImageView

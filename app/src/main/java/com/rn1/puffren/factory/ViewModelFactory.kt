@@ -6,6 +6,7 @@ import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.ui.home.HomeViewModel
 import com.rn1.puffren.ui.login.LoginFragment
 import com.rn1.puffren.ui.login.LoginViewModel
+import com.rn1.puffren.ui.report.ReportViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory constructor(
@@ -21,6 +22,9 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(LoginViewModel::class.java) ->
                     LoginViewModel(repository)
+
+                isAssignableFrom(ReportViewModel::class.java) ->
+                    ReportViewModel(repository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
