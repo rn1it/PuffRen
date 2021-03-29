@@ -45,6 +45,12 @@
         android:label="ReportFragment"
         tools:layout="@layout/fragment_report"/>
 
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.rn1.puffren.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
+
     <action
         android:id="@+id/action_global_locationFragment"
         app:destination="@id/locationFragment" />
@@ -69,5 +75,9 @@
     <action
         android:id="@+id/action_global_reportFragment"
         app:destination="@id/reportFragment"/>
+
+    <action
+        android:id="@+id/action_global_profileFragment"
+        app:destination="@id/profileFragment" />
 
 </navigation>

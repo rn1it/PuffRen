@@ -17,4 +17,10 @@
     <string name="closed_today">今日休息</string>
     <string name="report_location">出攤位置回報</string>
     <string name="sale_status">我的營業狀況</string>
+    <string name="user_nickname">使用者暱稱</string>
+    <string name="user_level">使用者會員等級</string>
+    <string name="vendor_feature">攤主功能</string>
+    <string name="sales_figures_report">營業狀況回報</string>
+    <string name="sales_history_figures_report">營業紀錄回報</string>
+    <string name="qrcode">QRCode</string>
 </resources>
