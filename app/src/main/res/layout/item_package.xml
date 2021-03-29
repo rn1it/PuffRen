@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="itemPackage"
+            type="com.rn1.puffren.data.ItemPackage" />
+        <variable
+            name="viewModel"
+            type="com.rn1.puffren.ui.product.detail.DetailViewModel" />
+        <variable
+            name="holder"
+            type="com.rn1.puffren.ui.product.detail.ItemPackageAdapter.ItemPackageViewHolder" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_package"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/text_item_package"
+            itemPackages="@{itemPackage.amount}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tool:text="單盒購買" />
+
+        <TextView
+            android:id="@+id/text_favor_you_want"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="口味任選"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_item_package" />
+
+        <TextView
+            android:id="@+id/text_origin_price"
+            price="@{itemPackage.originPrice}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tool:text="NT$200" />
+
+        <TextView
+            android:id="@+id/text_onsale_price"
+            price="@{itemPackage.onSalePrice}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_origin_price"
+            tool:text="NT$380" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

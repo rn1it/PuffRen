@@ -81,19 +81,30 @@
                     android:id="@+id/text_puff_detail_content"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
                     android:lineSpacingExtra="12sp"
                     android:text="採用高級100%棉質素材的外套。輕盈保暖高質感的針織大衣！精緻做工升級，展現高質感氛圍。"
                     android:textColor="@color/gray_646464"
                     android:textSize="15sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_detail_puff_name"
                     tools:text="採用高級100%棉質素材的外套。輕盈保暖高質感的針織大衣！精緻做工升級，展現高質感氛圍。" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_item_package"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_puff_detail_content" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -114,7 +125,7 @@
                 android:layout_margin="16dp"
                 android:background="@color/orange_ffa626"
                 android:letterSpacing="0.15"
-                android:text="@string/add2cart"
+                android:text="@string/note_select_item_first"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"

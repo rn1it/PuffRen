@@ -2,4 +2,6 @@
 <resources>
     <dimen name="size_detail_close">44dp</dimen>
     <dimen name="height_all_bottom_layout">80dp</dimen>
+
+    <dimen name="edge_selected_package">3dp</dimen>
 </resources>

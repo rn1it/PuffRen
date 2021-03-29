@@ -23,4 +23,9 @@
     <string name="sales_figures_report">營業狀況回報</string>
     <string name="sales_history_figures_report">營業紀錄回報</string>
     <string name="qrcode">QRCode</string>
+    <string name="note_select_item_first">請先選擇項目</string>
+    <string name="note_choose_favor">選擇口味</string>
+    <string name="nt_dollars_">NT$%d</string>
+    <string name="buy_one">單盒購買</string>
+    <string name="_buy_more_than_one">%d盒優惠</string>
 </resources>

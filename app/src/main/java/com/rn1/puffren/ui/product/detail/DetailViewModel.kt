@@ -3,6 +3,7 @@ package com.rn1.puffren.ui.product.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.rn1.puffren.data.ItemPackage
 import com.rn1.puffren.data.Product
 import com.rn1.puffren.data.source.PuffRenRepository
 
@@ -11,6 +12,12 @@ class DetailViewModel(
     val product: Product
 ) : ViewModel(){
 
+    private val _itemPackage = MutableLiveData<ItemPackage>()
+    val itemPackage: LiveData<ItemPackage>
+        get() = _itemPackage
+
+
+
     private val _leaveDetail = MutableLiveData<Boolean>()
 
     val leaveDetail: LiveData<Boolean>
@@ -18,6 +25,12 @@ class DetailViewModel(
 
     fun leaveDetail() {
         _leaveDetail.value = true
+    }
+
+
+
+    fun setPackage(itemPackage: ItemPackage) {
+        _itemPackage.value = itemPackage
     }
 
 }
