@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/button_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_minus_circle_outline_24" />
+
+        <ImageButton
+            android:id="@+id/button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@null"
+            app:layout_constraintBottom_toBottomOf="@+id/text_favor_amount"
+            app:layout_constraintStart_toEndOf="@+id/text_favor_amount"
+            app:layout_constraintTop_toTopOf="@+id/text_favor_amount"
+            app:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
+
+        <TextView
+            android:id="@+id/text_favor_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/button_minus"
+            app:layout_constraintStart_toEndOf="@+id/button_minus"
+            app:layout_constraintTop_toTopOf="@+id/button_minus" />
+
+        <TextView
+            android:id="@+id/text_item_favor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="巧克力"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

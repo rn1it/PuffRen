@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.findNavController
+import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.PuffRenApplication
 import com.rn1.puffren.R
 import com.rn1.puffren.data.ItemPackage
@@ -56,6 +58,12 @@ class DetailFragment : Fragment() {
         viewModel.itemPackage.observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.buttonDetailAdd.text = PuffRenApplication.instance.getString(R.string.note_choose_favor)
+            }
+        })
+
+        viewModel.show2Cart.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                findNavController().navigate(NavigationDirections.actionGlobalAdd2cartDialog())
             }
         })
 
