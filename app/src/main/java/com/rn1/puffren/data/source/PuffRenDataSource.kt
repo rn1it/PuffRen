@@ -1,9 +1,6 @@
 package com.rn1.puffren.data.source
 
-import com.rn1.puffren.data.DataResult
-import com.rn1.puffren.data.HomePageItem
-import com.rn1.puffren.data.Login
-import com.rn1.puffren.data.LoginResult
+import com.rn1.puffren.data.*
 
 interface PuffRenDataSource {
 
@@ -11,4 +8,7 @@ interface PuffRenDataSource {
 
     suspend fun login(login: Login): DataResult<LoginResult>
 
+    suspend fun getProductListByType(): DataResult<List<Product>>
+
+    suspend fun getProductDetail(id: String): DataResult<Product>
 }

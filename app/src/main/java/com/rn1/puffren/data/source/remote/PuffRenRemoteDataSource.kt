@@ -1,10 +1,7 @@
 package com.rn1.puffren.data.source.remote
 
 import com.rn1.puffren.R
-import com.rn1.puffren.data.DataResult
-import com.rn1.puffren.data.HomePageItem
-import com.rn1.puffren.data.Login
-import com.rn1.puffren.data.LoginResult
+import com.rn1.puffren.data.*
 import com.rn1.puffren.data.source.PuffRenDataSource
 import com.rn1.puffren.network.PuffrenApi
 import com.rn1.puffren.util.Logger
@@ -35,12 +32,44 @@ object PuffRenRemoteDataSource: PuffRenDataSource {
         }
 
         return try {
-            // this will run on a thread managed by Retrofit
+
             val listResult = PuffrenApi.retrofitService.login(login)
 
             listResult.error?.let {
                 return DataResult.Fail(it)
             }
+            DataResult.Success(listResult)
+
+        } catch (e: Exception) {
+            Logger.w("[${this::class.simpleName}] exception=${e.message}")
+            DataResult.Error(e)
+        }
+    }
+
+    override suspend fun getProductListByType(): DataResult<List<Product>> {
+        if (!isInternetConnected()) {
+            return DataResult.Fail(getString(R.string.internet_not_connected))
+        }
+
+        return try {
+
+            val listResult = PuffrenApi.retrofitService.getProductListByType()
+            DataResult.Success(listResult)
+
+        } catch (e: Exception) {
+            Logger.w("[${this::class.simpleName}] exception=${e.message}")
+            DataResult.Error(e)
+        }
+    }
+
+    override suspend fun getProductDetail(id: String): DataResult<Product> {
+        if (!isInternetConnected()) {
+            return DataResult.Fail(getString(R.string.internet_not_connected))
+        }
+
+        return try {
+
+            val listResult = PuffrenApi.retrofitService.getProductDetail(id)[0]
             DataResult.Success(listResult)
 
         } catch (e: Exception) {

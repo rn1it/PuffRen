@@ -4,15 +4,14 @@ import com.rn1.puffren.BuildConfig
 import com.rn1.puffren.data.HomePageItem
 import com.rn1.puffren.data.Login
 import com.rn1.puffren.data.LoginResult
+import com.rn1.puffren.data.Product
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 private const val HOST_NAME = "puffren.com.tw"
 private const val BASE_URL = "https://$HOST_NAME/"
@@ -50,7 +49,17 @@ interface PuffrenApiService{
     @POST("user/login")
     suspend fun login(@Body login: Login): LoginResult
 
+    /**
+     * Product List
+     */
+    @GET("application/products")
+    suspend fun getProductListByType(): List<Product>
 
+    /**
+     * Product Details
+     */
+    @GET("product/{productId}")
+    suspend fun getProductDetail(@Path("productId") id: String): List<Product>
 }
 
 object PuffrenApi {

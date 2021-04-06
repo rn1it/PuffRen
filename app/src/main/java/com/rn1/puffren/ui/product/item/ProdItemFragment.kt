@@ -33,20 +33,16 @@ class ProdItemFragment(prodTypeFilter: ProdTypeFilter) : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_prod_item, container, false)
         binding.lifecycleOwner = this
 
-        recyclerView = binding.recyclerProductItem
         adapter = ProdItemAdapter(viewModel)
+        recyclerView = binding.recyclerProductItem.also {
+            it.adapter = adapter
+        }
 
-        recyclerView.adapter = adapter
-
-        val list = mutableListOf<Product>()
-        val product = Product("111")
-        list.add(product)
-        list.add(product)
-        list.add(product)
-        list.add(product)
-        list.add(product)
-
-        adapter.submitList(list)
+        viewModel.productList.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
 
         viewModel.product.observe(viewLifecycleOwner, Observer {
             it?.let {

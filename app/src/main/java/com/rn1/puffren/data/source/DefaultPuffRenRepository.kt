@@ -1,9 +1,6 @@
 package com.rn1.puffren.data.source
 
-import com.rn1.puffren.data.DataResult
-import com.rn1.puffren.data.HomePageItem
-import com.rn1.puffren.data.Login
-import com.rn1.puffren.data.LoginResult
+import com.rn1.puffren.data.*
 import kotlin.math.log
 
 class DefaultPuffRenRepository(
@@ -19,5 +16,11 @@ class DefaultPuffRenRepository(
         return puffRenRemoteDataSource.login(login)
     }
 
+    override suspend fun getProductListByType(): DataResult<List<Product>> {
+        return puffRenRemoteDataSource.getProductListByType()
+    }
 
+    override suspend fun getProductDetail(id: String): DataResult<Product> {
+        return puffRenRemoteDataSource.getProductDetail(id)
+    }
 }

@@ -12,8 +12,8 @@ data class Product(
     val price: Int? = null,
     val ingredient: String? = null,
     val description: String? = null,
-    val note: String? = "新鮮草莓保存最佳賞味期限三天",
+    val note: String? = null,
     val status: Int? = 1,
     @Json(name = "path")
-    val image: String? = "https://db8vfxqdtkusy.cloudfront.net/admin/product/strawberry_puff.png"
+    val image: String? = null
 ): Parcelable

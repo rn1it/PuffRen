@@ -67,6 +67,12 @@ class DetailFragment : Fragment() {
             }
         })
 
+        viewModel.product.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                binding.product = it
+            }
+        })
+
         return binding.root
     }
 }

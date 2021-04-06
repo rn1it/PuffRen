@@ -1,4 +1,4 @@
-package com.rn1.puffren.data.source
+package com.rn1.puffren.data
 
 import com.squareup.moshi.Json
 

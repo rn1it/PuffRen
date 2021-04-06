@@ -15,10 +15,6 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
 
-    init {
-        getHomePageImages()
-    }
-
     private val _homePageItems = MutableLiveData<List<HomePageItem>>()
     val homePageItem: LiveData<List<HomePageItem>>
         get() = _homePageItems
@@ -43,7 +39,11 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
     val navigateToMember: LiveData<Boolean>
         get() = _navigateToMember
 
-    private fun getHomePageImages(){
+    init {
+        getHomePageItem()
+    }
+
+    private fun getHomePageItem(){
 
         viewModelScope.launch {
 
