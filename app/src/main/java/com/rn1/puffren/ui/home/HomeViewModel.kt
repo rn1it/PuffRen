@@ -1,12 +1,35 @@
 package com.rn1.puffren.ui.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.rn1.puffren.data.DataResult
+import com.rn1.puffren.data.HomePageItem
 import com.rn1.puffren.data.source.PuffRenRepository
+import com.rn1.puffren.network.LoadApiStatus
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
-class HomeViewModel(repository: PuffRenRepository) : ViewModel() {
+class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
+
+    init {
+        getHomePageImages()
+    }
+
+    private val _homePageItems = MutableLiveData<List<HomePageItem>>()
+    val homePageItem: LiveData<List<HomePageItem>>
+        get() = _homePageItems
+
+    private val _status = MutableLiveData<LoadApiStatus>()
+    val status: LiveData<LoadApiStatus>
+        get() = _status
+
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
 
     private val _navigateToLocation =  MutableLiveData<Boolean>()
     val navigateToLocation: LiveData<Boolean>
@@ -20,8 +43,47 @@ class HomeViewModel(repository: PuffRenRepository) : ViewModel() {
     val navigateToMember: LiveData<Boolean>
         get() = _navigateToMember
 
+    private fun getHomePageImages(){
 
-    fun navigateToLocation(){
+        viewModelScope.launch {
+
+            //TODO ?????????????????????
+//            _status.value = LoadApiStatus.LOADING
+
+            val result = repository.getHomePageItem()
+            _homePageItems.value = when(result){
+                is DataResult.Success -> {
+          //TODO ?????????????????????
+//                    _status.value = LoadApiStatus.DONE
+                    result.data
+                }
+                is DataResult.Fail -> {
+                    _error.value = result.error
+                    null
+                }
+                is DataResult.Error -> {
+                    _error.value = result.exception.toString()
+                    null
+                }
+            }
+        }
+    }
+
+    fun navigate(homePageItem: HomePageItem){
+        when(homePageItem.entry) {
+            0 -> {
+                navigateToLocation()
+            }
+            1 -> {
+                navigateToItem()
+            }
+            2 -> {
+                navigateToMember()
+            }
+        }
+    }
+
+    private fun navigateToLocation(){
         _navigateToLocation.value = true
     }
 
@@ -29,8 +91,7 @@ class HomeViewModel(repository: PuffRenRepository) : ViewModel() {
         _navigateToLocation.value = null
     }
 
-    fun navigateToItem(){
-        Log.d("aaa","navigateToItem")
+    private fun navigateToItem(){
         _navigateToItem.value = true
     }
 
@@ -38,7 +99,7 @@ class HomeViewModel(repository: PuffRenRepository) : ViewModel() {
         _navigateToItem.value = null
     }
 
-    fun navigateToMember(){
+    private fun navigateToMember(){
         _navigateToMember.value = true
     }
 

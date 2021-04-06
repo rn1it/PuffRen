@@ -13,7 +13,6 @@ import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.R
 import com.rn1.puffren.databinding.FragmentHomeBinding
 import com.rn1.puffren.ext.getVmFactory
-import com.rn1.puffren.util.Logger
 
 class HomeFragment : Fragment() {
 
@@ -28,6 +27,10 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+        val recyclerView = binding.recyclerHomePage
+        val adapter = HomePageAdapter(viewModel)
+        recyclerView.adapter = adapter
 
 
         viewModel.navigateToLocation.observe(viewLifecycleOwner, Observer {
@@ -50,6 +53,18 @@ class HomeFragment : Fragment() {
                 viewModel.doneNavigateToMember()
             }
         })
+
+        viewModel.homePageItem.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
+
+//        viewModel.status.observe(viewLifecycleOwner, Observer {
+//            it?.let {
+//
+//            }
+//        })
 
 
         return binding.root
