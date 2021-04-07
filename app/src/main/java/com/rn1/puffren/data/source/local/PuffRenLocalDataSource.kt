@@ -12,7 +12,7 @@ class PuffRenLocalDataSource: PuffRenDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getProductListByType(): DataResult<List<Product>> {
+    override suspend fun getProductListByType(type: String): DataResult<List<Product>> {
         TODO("Not yet implemented")
     }
 

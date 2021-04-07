@@ -16,6 +16,9 @@ class ProdTypeAdapter(
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return ProdTypeFilter.values()[position].value
+        return when(ProdTypeFilter.values()[position]){
+            ProdTypeFilter.VENDOR -> "餐車商品"
+            ProdTypeFilter.DELIVERY -> "宅配商品"
+        }
     }
 }

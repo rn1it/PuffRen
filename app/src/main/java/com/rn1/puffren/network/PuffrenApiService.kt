@@ -52,14 +52,14 @@ interface PuffrenApiService{
     /**
      * Product List
      */
-    @GET("application/products")
-    suspend fun getProductListByType(): List<Product>
+    @GET("application/products/{category}")
+    suspend fun getProductListByType(@Path("category") id: String): List<Product>
 
     /**
      * Product Details
      */
     @GET("product/{productId}")
-    suspend fun getProductDetail(@Path("productId") id: String): List<Product>
+    suspend fun getProductDetail(@Path("productId") id: String): Product
 }
 
 object PuffrenApi {

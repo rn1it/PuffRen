@@ -46,14 +46,14 @@ object PuffRenRemoteDataSource: PuffRenDataSource {
         }
     }
 
-    override suspend fun getProductListByType(): DataResult<List<Product>> {
+    override suspend fun getProductListByType(type: String): DataResult<List<Product>> {
         if (!isInternetConnected()) {
             return DataResult.Fail(getString(R.string.internet_not_connected))
         }
 
         return try {
 
-            val listResult = PuffrenApi.retrofitService.getProductListByType()
+            val listResult = PuffrenApi.retrofitService.getProductListByType(type)
             DataResult.Success(listResult)
 
         } catch (e: Exception) {
@@ -69,7 +69,7 @@ object PuffRenRemoteDataSource: PuffRenDataSource {
 
         return try {
 
-            val listResult = PuffrenApi.retrofitService.getProductDetail(id)[0]
+            val listResult = PuffrenApi.retrofitService.getProductDetail(id)
             DataResult.Success(listResult)
 
         } catch (e: Exception) {

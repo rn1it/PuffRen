@@ -8,7 +8,7 @@ interface PuffRenRepository {
 
     suspend fun login(login: Login): DataResult<LoginResult>
 
-    suspend fun getProductListByType(): DataResult<List<Product>>
+    suspend fun getProductListByType(type: String): DataResult<List<Product>>
 
     suspend fun getProductDetail(id: String): DataResult<Product>
 }

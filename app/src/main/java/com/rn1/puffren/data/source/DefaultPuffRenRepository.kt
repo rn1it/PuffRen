@@ -16,8 +16,8 @@ class DefaultPuffRenRepository(
         return puffRenRemoteDataSource.login(login)
     }
 
-    override suspend fun getProductListByType(): DataResult<List<Product>> {
-        return puffRenRemoteDataSource.getProductListByType()
+    override suspend fun getProductListByType(type: String): DataResult<List<Product>> {
+        return puffRenRemoteDataSource.getProductListByType(type)
     }
 
     override suspend fun getProductDetail(id: String): DataResult<Product> {
