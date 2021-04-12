@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
 
         viewModel.navigateToMember.observe(viewLifecycleOwner, Observer {
             it?.let {
-                findNavController().navigate(NavigationDirections.actionGlobalProfileFragment())
+                findNavController().navigate(NavigationDirections.actionGlobalEditMembershipFragment())
                 viewModel.doneNavigateToMember()
             }
         })

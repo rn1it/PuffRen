@@ -46,12 +46,12 @@ class ProdItemViewModel(
 
         viewModelScope.launch {
 
-//            _status.value = LoadApiStatus.LOADING
+            _status.value = LoadApiStatus.LOADING
             val result = repository.getProductListByType(prodTypeFilter.value)
 
             _productList.value = when(result){
                 is DataResult.Success -> {
-//                    _status.value = LoadApiStatus.DONE
+                    _status.value = LoadApiStatus.DONE
                     result.data
                 }
                 is DataResult.Fail -> {

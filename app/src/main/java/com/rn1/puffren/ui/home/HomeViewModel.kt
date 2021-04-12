@@ -47,14 +47,12 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
 
         viewModelScope.launch {
 
-            //TODO ?????????????????????
-//            _status.value = LoadApiStatus.LOADING
+            _status.value = LoadApiStatus.LOADING
 
             val result = repository.getHomePageItem()
             _homePageItems.value = when(result){
                 is DataResult.Success -> {
-          //TODO ?????????????????????
-//                    _status.value = LoadApiStatus.DONE
+                    _status.value = LoadApiStatus.DONE
                     result.data
                 }
                 is DataResult.Fail -> {
