@@ -51,6 +51,12 @@
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile"/>
 
+    <fragment
+        android:id="@+id/editMembershipFragment"
+        android:name="com.rn1.puffren.ui.edit.EditMembershipFragment"
+        android:label="EditMembershipFragment"
+        tools:layout="@layout/fragment_edit_membership"/>
+
     <dialog
         android:id="@+id/add2cartDialog"
         android:name="com.rn1.puffren.ui.add2cart.Add2cartDialog"
@@ -89,5 +95,9 @@
     <action
         android:id="@+id/action_global_add2cartDialog"
         app:destination="@id/add2cartDialog" />
+
+    <action
+        android:id="@+id/action_global_editMembershipFragment"
+        app:destination="@id/editMembershipFragment" />
 
 </navigation>
