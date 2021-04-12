@@ -1,14 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.registry.RegistryFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/bg_color_yellow"
+        android:padding="76dp"
+        tools:context=".ui.login.LoginFragment">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/image_login_puff"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:background="@drawable/logo"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_title_registry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/registry_account"
+            android:textColor="#331900"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_login_puff" />
+
+        <TextView
+            android:id="@+id/text_title_set_email"
+            style="@style/text_style_login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/email_account"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_title_registry" />
+
+        <TextView
+            android:id="@+id/text_title_set_nickname"
+            style="@style/text_style_login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/account_nickname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_title_set_email" />
+
+        <TextView
+            android:id="@+id/text_title_set_password"
+            style="@style/text_style_login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/set_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_title_set_nickname" />
+
+        <TextView
+            android:id="@+id/text_title_check_password"
+            style="@style/text_style_login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/check_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_title_set_password" />
+
+        <TextView
+            android:id="@+id/text_title_invite_code"
+            style="@style/text_style_login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/invite_code"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_title_check_password" />
+
+        <EditText
+            android:id="@+id/edit_set_email"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/round_corner_layout"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:paddingHorizontal="8dp"
+            android:text=""
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/text_title_set_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_title_set_email"
+            app:layout_constraintTop_toTopOf="@+id/text_title_set_email" />
+
+        <EditText
+            android:id="@+id/edit_nickname"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/round_corner_layout"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:paddingHorizontal="8dp"
+            android:text=""
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/text_title_set_nickname"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_title_set_nickname"
+            app:layout_constraintTop_toTopOf="@+id/text_title_set_nickname" />
+
+        <EditText
+            android:id="@+id/edit_set_password"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/round_corner_layout"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:paddingHorizontal="8dp"
+            android:text=""
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/text_title_set_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_title_set_password"
+            app:layout_constraintTop_toTopOf="@+id/text_title_set_password" />
+
+        <EditText
+            android:id="@+id/edit_check_password"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/round_corner_layout"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:paddingHorizontal="8dp"
+            android:text=""
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/text_title_check_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_title_check_password"
+            app:layout_constraintTop_toTopOf="@+id/text_title_check_password" />
+
+        <EditText
+            android:id="@+id/edit_invite_code"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/round_corner_layout"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:paddingHorizontal="8dp"
+            android:text=""
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/text_title_invite_code"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/text_title_invite_code"
+            app:layout_constraintTop_toTopOf="@+id/text_title_invite_code" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="我同意「我愛泡芙人」"
+            app:layout_constraintBottom_toTopOf="@+id/button_login"
+            app:layout_constraintEnd_toStartOf="@+id/personal_information"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/personal_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="個資使用條款"
+            android:textSize="12sp"
+            android:textColor="#1e90ff"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBox"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/checkBox"
+            app:layout_constraintTop_toTopOf="@+id/checkBox" />
+
+        <Button
+            android:id="@+id/button_login"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/round_corner_layout"
+            android:backgroundTint="@color/orange_ffa626"
+            android:text="@string/registry_confirm"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
