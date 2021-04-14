@@ -45,4 +45,5 @@
     <string name="search_order">訂單查詢</string>
     <string name="member_info_edit">會員資料修改</string>
     <string name="member_activity">會員專屬活動</string>
+    <string name="lvl1_member">白金泡芙</string>
 </resources>

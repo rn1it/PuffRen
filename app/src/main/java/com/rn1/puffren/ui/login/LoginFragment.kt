@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.rn1.puffren.NavigationDirections
+import com.rn1.puffren.MainViewModel
 import com.rn1.puffren.databinding.FragmentLoginBinding
 import com.rn1.puffren.ext.getVmFactory
 
@@ -26,17 +27,16 @@ class LoginFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
+        val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         viewModel.user.observe(viewLifecycleOwner, Observer {
             it?.let {
-                findNavController().navigate(NavigationDirections.actionGlobalProfileFragment(it))
+                mainViewModel.setupUser(it)
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToProfileFragment(it))
+                viewModel.navigateToProfileDone()
             }
         })
 
-
-
-
-        // Inflate the layout for this fragment
         return binding.root
     }
 }

@@ -2,6 +2,7 @@ package com.rn1.puffren.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.rn1.puffren.MainViewModel
 import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.ui.add2cart.Add2cartViewModel
 import com.rn1.puffren.ui.home.HomeViewModel
@@ -17,6 +18,8 @@ class ViewModelFactory constructor(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T =
         with(modelClass) {
             when {
+                isAssignableFrom(MainViewModel::class.java) ->
+                    MainViewModel(repository)
 
                 isAssignableFrom(HomeViewModel::class.java) ->
                     HomeViewModel(repository)

@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.rn1.puffren.MainViewModel
 import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.R
 import com.rn1.puffren.databinding.FragmentHomeBinding
 import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.util.UserManager
 
 class HomeFragment : Fragment() {
 
@@ -23,6 +26,8 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         binding.lifecycleOwner = this
@@ -47,10 +52,14 @@ class HomeFragment : Fragment() {
             }
         })
 
-        viewModel.navigateToMember.observe(viewLifecycleOwner, Observer {
+        viewModel.navigateToProfile.observe(viewLifecycleOwner, Observer {
             it?.let {
-                findNavController().navigate(NavigationDirections.actionGlobalLoginFragment())
-                viewModel.doneNavigateToMember()
+                if (UserManager.userToken == null) {
+                    findNavController().navigate(NavigationDirections.actionGlobalLoginFragment())
+                } else {
+                    findNavController().navigate(NavigationDirections.actionGlobalProfileFragment(mainViewModel.user))
+                    viewModel.navigateToProfileDone()
+                }
             }
         })
 
@@ -59,13 +68,6 @@ class HomeFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
-
-//        viewModel.status.observe(viewLifecycleOwner, Observer {
-//            it?.let {
-//
-//            }
-//        })
-
 
         return binding.root
     }

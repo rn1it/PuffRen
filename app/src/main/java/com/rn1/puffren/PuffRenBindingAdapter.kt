@@ -45,3 +45,20 @@ fun bindImage(imageView: ImageView, imgUrl: String?){
             .into(imageView)
     }
 }
+
+/**
+ * Displays member level to [TextView] by [Int]
+ */
+@BindingAdapter("level")
+fun bindLevel(textView: TextView, level: Int?) {
+    level?.let {
+        textView.text = when (it) {
+            1 -> PuffRenApplication.instance.getString(R.string.lvl1_member)
+            2 -> PuffRenApplication.instance.getString(R.string.lvl1_member)
+            3 -> PuffRenApplication.instance.getString(R.string.lvl1_member)
+            4 -> PuffRenApplication.instance.getString(R.string.lvl1_member)
+            5 -> PuffRenApplication.instance.getString(R.string.lvl1_member)
+            else -> "???"
+        }
+    }
+}

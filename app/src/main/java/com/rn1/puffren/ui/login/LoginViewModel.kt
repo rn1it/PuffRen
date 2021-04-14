@@ -10,6 +10,7 @@ import com.rn1.puffren.data.User
 import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.Logger
+import com.rn1.puffren.util.UserManager
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val repository: PuffRenRepository) : ViewModel() {
@@ -30,7 +31,6 @@ class LoginViewModel(private val repository: PuffRenRepository) : ViewModel() {
     val error: LiveData<String>
         get() = _error
 
-
     fun login(){
         if (!email.value.isNullOrEmpty() && !password.value.isNullOrEmpty()) {
             viewModelScope.launch {
@@ -42,6 +42,7 @@ class LoginViewModel(private val repository: PuffRenRepository) : ViewModel() {
                     is DataResult.Success -> {
                         val token = result.data.accessToken!!
                         Logger.d("登入成功: token= $token")
+                        UserManager.userToken = token
                         getUserByToken(token)
                     }
 
@@ -80,6 +81,10 @@ class LoginViewModel(private val repository: PuffRenRepository) : ViewModel() {
                 }
             }
         }
+    }
+
+    fun navigateToProfileDone(){
+        _user.value = null
     }
 
 }

@@ -8,7 +8,7 @@ import com.rn1.puffren.ui.profile.ProfileViewModel
 
 @Suppress("UNCHECKED_CAST")
 class UserViewModelFactory(private val puffRenRepository: PuffRenRepository,
-                           private val user: User
+                           private val user: User?
 ): ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>)=

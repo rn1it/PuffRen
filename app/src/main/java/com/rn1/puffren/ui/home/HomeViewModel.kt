@@ -8,9 +8,6 @@ import com.rn1.puffren.data.DataResult
 import com.rn1.puffren.data.HomePageItem
 import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.network.LoadApiStatus
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
@@ -35,9 +32,9 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
     val navigateToItem: LiveData<Boolean>
         get() = _navigateToItem
 
-    private val _navigateToMember =  MutableLiveData<Boolean>()
-    val navigateToMember: LiveData<Boolean>
-        get() = _navigateToMember
+    private val _navigateToProfile =  MutableLiveData<Boolean>()
+    val navigateToProfile: LiveData<Boolean>
+        get() = _navigateToProfile
 
     init {
         getHomePageItem()
@@ -76,7 +73,7 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
                 navigateToItem()
             }
             2 -> {
-                navigateToMember()
+                navigateToProfile()
             }
         }
     }
@@ -97,13 +94,11 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
         _navigateToItem.value = null
     }
 
-    private fun navigateToMember(){
-        _navigateToMember.value = true
+    private fun navigateToProfile(){
+        _navigateToProfile.value = true
     }
 
-    fun doneNavigateToMember(){
-        _navigateToMember.value = null
+    fun navigateToProfileDone(){
+        _navigateToProfile.value = null
     }
-
-
 }

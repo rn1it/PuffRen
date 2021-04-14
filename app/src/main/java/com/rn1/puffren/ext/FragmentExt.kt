@@ -16,7 +16,7 @@ fun Fragment.getVmFactory(): ViewModelFactory{
     return ViewModelFactory(repository)
 }
 
-fun Fragment.getVmFactory(user: User): UserViewModelFactory{
+fun Fragment.getVmFactory(user: User?): UserViewModelFactory{
     val repository = (requireContext().applicationContext as PuffRenApplication).puffRenRepository
     return UserViewModelFactory(repository, user)
 }
