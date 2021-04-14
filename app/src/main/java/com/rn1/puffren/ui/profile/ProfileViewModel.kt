@@ -3,9 +3,14 @@ package com.rn1.puffren.ui.profile
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.rn1.puffren.data.User
 import com.rn1.puffren.data.source.PuffRenRepository
 
-class ProfileViewModel(repository: PuffRenRepository) : ViewModel() {
+class ProfileViewModel(
+    private val repository: PuffRenRepository,
+    val user: User
+    ) : ViewModel() {
+
 
     private val _navigateToSaleReport = MutableLiveData<Boolean>()
     val navigateToSaleReport: LiveData<Boolean>

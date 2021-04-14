@@ -16,6 +16,10 @@ class DefaultPuffRenRepository(
         return puffRenRemoteDataSource.login(login)
     }
 
+    override suspend fun getLoginUser(token: String): DataResult<User> {
+        return puffRenRemoteDataSource.getLoginUser(token)
+    }
+
     override suspend fun getProductListByType(type: String): DataResult<List<Product>> {
         return puffRenRemoteDataSource.getProductListByType(type)
     }

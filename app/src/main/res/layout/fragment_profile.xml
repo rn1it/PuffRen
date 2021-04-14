@@ -7,6 +7,7 @@
         <variable
             name="viewModel"
             type="com.rn1.puffren.ui.profile.ProfileViewModel" />
+        <import type="android.view.View"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +33,8 @@
             app:layout_constraintBottom_toTopOf="@+id/text_user_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_profile"
-            app:layout_constraintTop_toTopOf="@+id/image_profile" />
+            app:layout_constraintTop_toTopOf="@+id/image_profile"
+            style="@style/text_style_profile_title"/>
 
         <TextView
             android:id="@+id/text_user_name"
@@ -42,7 +44,9 @@
             app:layout_constraintBottom_toTopOf="@+id/text_user_level_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_profile"
-            app:layout_constraintTop_toBottomOf="@+id/text_user_name_title" />
+            app:layout_constraintTop_toBottomOf="@+id/text_user_name_title"
+            style="@style/text_style_profile_title"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/text_user_level_title"
@@ -52,7 +56,8 @@
             app:layout_constraintBottom_toTopOf="@+id/text_user_level"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_profile"
-            app:layout_constraintTop_toBottomOf="@+id/text_user_name" />
+            app:layout_constraintTop_toBottomOf="@+id/text_user_name"
+            style="@style/text_style_profile_title"/>
 
         <TextView
             android:id="@+id/text_user_level"
@@ -62,7 +67,9 @@
             app:layout_constraintBottom_toBottomOf="@+id/image_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_profile"
-            app:layout_constraintTop_toBottomOf="@+id/text_user_level_title" />
+            app:layout_constraintTop_toBottomOf="@+id/text_user_level_title"
+            style="@style/text_style_profile_title"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/text_feature_title"
@@ -70,107 +77,273 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="64dp"
-            android:text="@string/vendor_feature"
+            android:text='@{viewModel.user.vendor? @string/member_feature : @string/member_feature}'
+            tools:text="泡芙人功能"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_profile" />
+            app:layout_constraintTop_toBottomOf="@+id/image_profile"
+            style="@style/text_style_profile_title"
+            android:textSize="18sp"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/profile_report"
-            android:layout_width="wrap_content"
+            android:id="@+id/vendor_feature_block"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
-            android:padding="8dp"
-            android:focusable="true"
-            android:onClick="@{() -> viewModel.navigateToSaleReport()}"
+            android:visibility="@{viewModel.user.vendor? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_feature_title">
 
-            <ImageView
-                android:id="@+id/image_profile_report"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/dark_chocolate_cream_puff"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/text_profile_report_tilte"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_report"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/sales_figures_report"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="32dp"
+                android:padding="8dp"
+                android:focusable="true"
+                android:onClick="@{() -> viewModel.navigateToSaleReport()}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_profile_report" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/profile_qrcodeile_report"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/puffren_position"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_profile_report_tilte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/sales_figures_report"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_qrcodeile_report"
+                    style="@style/text_style_profile_title"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_history_report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:focusable="true"
+                android:onClick="@{() -> viewModel.navigateToSaleReportHistory()}"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_report"
+                app:layout_constraintEnd_toStartOf="@+id/profile_qrcode"
+                app:layout_constraintStart_toEndOf="@+id/profile_report"
+                app:layout_constraintTop_toTopOf="@+id/profile_report">
+
+                <ImageView
+                    android:id="@+id/profile_qrcodeile_history_report"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/puffren_record"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_profile_history_report_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/sales_history_figures_report"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_qrcodeile_history_report"
+                    style="@style/text_style_profile_title"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_qrcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:padding="8dp"
+                android:focusable="true"
+                android:onClick="@{() -> viewModel.navigateToQRCode()}"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_history_report"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/profile_history_report">
+
+                <ImageView
+                    android:id="@+id/profile_qrcodeile_qrcode"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/puffren_qrcode"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_profile_qrcode_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/qrcode"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_qrcodeile_qrcode"
+                    style="@style/text_style_profile_title"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/profile_history_report"
-            android:layout_width="wrap_content"
+            android:id="@+id/member_feature_block"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:focusable="true"
-            android:onClick="@{() -> viewModel.navigateToSaleReportHistory()}"
-            app:layout_constraintBottom_toBottomOf="@+id/profile_report"
-            app:layout_constraintEnd_toStartOf="@+id/image_prof"
-            app:layout_constraintStart_toEndOf="@+id/profile_report"
-            app:layout_constraintTop_toTopOf="@+id/profile_report">
-
-            <ImageView
-                android:id="@+id/image_profile_history_report"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/dark_chocolate_cream_puff"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/text_profile_history_report_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/sales_history_figures_report"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_profile_history_report" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/image_prof"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:padding="8dp"
-            android:focusable="true"
-            android:onClick="@{() -> viewModel.navigateToQRCode()}"
-            app:layout_constraintBottom_toBottomOf="@+id/profile_history_report"
+            android:layout_marginTop="32dp"
+            android:visibility="@{viewModel.user.vendor? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/profile_history_report">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_feature_title">
 
-            <ImageView
-                android:id="@+id/image_profile_qrcode"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/dark_chocolate_cream_puff"
-                app:layout_constraintEnd_toEndOf="parent"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:padding="8dp"
+                android:focusable="true"
+                android:onClick="@{() -> viewModel.navigateToSaleReport()}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/text_profile_qrcode_title"
+                <ImageView
+                    android:id="@+id/image_profile_order"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/member_order"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_profile_order_tilte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/search_order"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_profile_order"
+                    style="@style/text_style_profile_title"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_member_info_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:focusable="true"
+                android:onClick="@{() -> viewModel.navigateToSaleReportHistory()}"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_order"
+                app:layout_constraintEnd_toStartOf="@+id/profile_activity"
+                app:layout_constraintStart_toEndOf="@+id/profile_order"
+                app:layout_constraintTop_toTopOf="@+id/profile_order">
+
+                <ImageView
+                    android:id="@+id/image_profile_member_info_edit"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/member_info"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_profile_member_info_edit_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/member_info_edit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_profile_member_info_edit"
+                    style="@style/text_style_profile_title"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:padding="8dp"
+                android:focusable="true"
+                android:onClick="@{() -> viewModel.navigateToQRCode()}"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_member_info_edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/profile_member_info_edit">
+
+                <ImageView
+                    android:id="@+id/image_profile_activity"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/member_vip_activity"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_profile_activity_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/member_activity"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_profile_activity"
+                    style="@style/text_style_profile_title"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_member_qrcode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/qrcode"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_profile_qrcode" />
+                android:focusable="true"
+                android:onClick="@{() -> viewModel.navigateToQRCode()}"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/profile_order"
+                app:layout_constraintStart_toStartOf="@+id/profile_order"
+                app:layout_constraintTop_toBottomOf="@+id/profile_order">
+
+                <ImageView
+                    android:id="@+id/image_member_qrcode"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/puffren_qrcode"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_profile_member_qrcode_title"
+                    style="@style/text_style_profile_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/qrcode"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_member_qrcode" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

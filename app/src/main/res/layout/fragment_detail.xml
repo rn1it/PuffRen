@@ -36,7 +36,7 @@
                     android:layout_height="500dp"
                     android:background="@color/bg_color_yellow"
                     app:imageUrl="@{product.image}"
-                    android:src="@drawable/dark_chocolate_cream_puff"
+                    tools:src="@drawable/dark_chocolate_cream_puff"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

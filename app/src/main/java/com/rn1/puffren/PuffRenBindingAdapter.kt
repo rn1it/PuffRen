@@ -36,11 +36,12 @@ fun bindImage(imageView: ImageView, imgUrl: String?){
     imgUrl?.let {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
         Glide.with(imageView.context)
+//            .asBitmap()
             .load(imgUri)
-//            .apply(
-//                RequestOptions()
-//                    .placeholder(R.drawable.image_placeholder)
-//                    .error(R.drawable.image_placeholder))
+            .apply(
+                RequestOptions()
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.placeholder))
             .into(imageView)
     }
 }

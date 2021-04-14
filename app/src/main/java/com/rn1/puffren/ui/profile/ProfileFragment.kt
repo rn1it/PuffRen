@@ -16,7 +16,7 @@ import com.rn1.puffren.ext.getVmFactory
 class ProfileFragment : Fragment() {
 
     lateinit var binding: FragmentProfileBinding
-    val viewModel by viewModels<ProfileViewModel> { getVmFactory() }
+    val viewModel by viewModels<ProfileViewModel> { getVmFactory(ProfileFragmentArgs.fromBundle(requireArguments()).user) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

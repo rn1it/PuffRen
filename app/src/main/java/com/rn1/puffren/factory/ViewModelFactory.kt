@@ -27,9 +27,6 @@ class ViewModelFactory constructor(
                 isAssignableFrom(ReportViewModel::class.java) ->
                     ReportViewModel(repository)
 
-                isAssignableFrom(ProfileViewModel::class.java) ->
-                    ProfileViewModel(repository)
-
                 isAssignableFrom(Add2cartViewModel::class.java) ->
                     Add2cartViewModel(repository)
                 else ->

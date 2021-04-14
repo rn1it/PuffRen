@@ -8,6 +8,8 @@ interface PuffRenDataSource {
 
     suspend fun login(login: Login): DataResult<LoginResult>
 
+    suspend fun getLoginUser(token: String): DataResult<User>
+
     suspend fun getProductListByType(type: String): DataResult<List<Product>>
 
     suspend fun getProductDetail(id: String): DataResult<Product>

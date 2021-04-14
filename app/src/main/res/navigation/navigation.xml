@@ -49,7 +49,11 @@
         android:id="@+id/profileFragment"
         android:name="com.rn1.puffren.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <argument
+            android:name="user"
+            app:argType="com.rn1.puffren.data.User" />
+    </fragment>
 
     <fragment
         android:id="@+id/editMembershipFragment"

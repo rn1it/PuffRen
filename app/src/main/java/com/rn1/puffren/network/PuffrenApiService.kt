@@ -1,10 +1,7 @@
 package com.rn1.puffren.network
 
 import com.rn1.puffren.BuildConfig
-import com.rn1.puffren.data.HomePageItem
-import com.rn1.puffren.data.Login
-import com.rn1.puffren.data.LoginResult
-import com.rn1.puffren.data.Product
+import com.rn1.puffren.data.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -44,10 +41,16 @@ interface PuffrenApiService{
     suspend fun getHomePageItem(): List<HomePageItem>
 
     /**
-     * user login
+     * user login and get token
      */
     @POST("user/login")
     suspend fun login(@Body login: Login): LoginResult
+
+    /**
+     * get login user by token
+     */
+    @GET("user/profile")
+    suspend fun getLoginUser(@Header("Authorization") authorization: String): User
 
     /**
      * Product List

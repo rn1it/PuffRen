@@ -46,6 +46,22 @@ object PuffRenRemoteDataSource: PuffRenDataSource {
         }
     }
 
+    override suspend fun getLoginUser(token: String): DataResult<User> {
+        if (!isInternetConnected()) {
+            return DataResult.Fail(getString(R.string.internet_not_connected))
+        }
+
+        return try {
+
+            val listResult = PuffrenApi.retrofitService.getLoginUser(token)
+            DataResult.Success(listResult)
+
+        } catch (e: Exception) {
+            Logger.w("[${this::class.simpleName}] exception=${e.message}")
+            DataResult.Error(e)
+        }
+    }
+
     override suspend fun getProductListByType(type: String): DataResult<List<Product>> {
         if (!isInternetConnected()) {
             return DataResult.Fail(getString(R.string.internet_not_connected))

@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.databinding.FragmentLoginBinding
 import com.rn1.puffren.ext.getVmFactory
 
@@ -24,7 +27,11 @@ class LoginFragment : Fragment() {
         binding.viewModel = viewModel
 
 
-
+        viewModel.user.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                findNavController().navigate(NavigationDirections.actionGlobalProfileFragment(it))
+            }
+        })
 
 
 
