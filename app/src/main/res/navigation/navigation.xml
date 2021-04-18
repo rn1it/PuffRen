@@ -41,8 +41,7 @@
         <action
             android:id="@+id/action_loginFragment_to_profileFragment"
             app:destination="@id/profileFragment"
-            app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/homeFragment"/>
     </fragment>
 
     <fragment
@@ -73,6 +72,12 @@
         android:name="com.rn1.puffren.ui.add2cart.Add2cartDialog"
         android:label="Add2cartDialog"
         tools:layout="@layout/dialog_add2cart"/>
+
+    <fragment
+        android:id="@+id/registryFragment"
+        android:name="com.rn1.puffren.ui.registry.RegistryFragment"
+        android:label="RegistryFragment"
+        tools:layout="@layout/fragment_registry"/>
 
     <action
         android:id="@+id/action_global_locationFragment"
@@ -110,5 +115,9 @@
     <action
         android:id="@+id/action_global_editMembershipFragment"
         app:destination="@id/editMembershipFragment" />
+
+    <action
+        android:id="@+id/action_global_registryFragment"
+        app:destination="@id/registryFragment" />
 
 </navigation>

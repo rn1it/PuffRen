@@ -23,6 +23,10 @@ class LoginViewModel(private val repository: PuffRenRepository) : ViewModel() {
     val user: LiveData<User>
         get() = _user
 
+    private val _navigateToRegistry = MutableLiveData<Boolean>()
+    val navigateToRegistry: LiveData<Boolean>
+        get() = _navigateToRegistry
+
     private val _status = MutableLiveData<LoadApiStatus>()
     val status: LiveData<LoadApiStatus>
         get() = _status
@@ -87,4 +91,11 @@ class LoginViewModel(private val repository: PuffRenRepository) : ViewModel() {
         _user.value = null
     }
 
+    fun navigateToRegistry(){
+        _navigateToRegistry.value = true
+    }
+
+    fun navigateToRegistryDone(){
+        _navigateToRegistry.value = null
+    }
 }

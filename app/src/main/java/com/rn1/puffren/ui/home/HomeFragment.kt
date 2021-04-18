@@ -56,6 +56,7 @@ class HomeFragment : Fragment() {
             it?.let {
                 if (UserManager.userToken == null) {
                     findNavController().navigate(NavigationDirections.actionGlobalLoginFragment())
+                    viewModel.navigateToProfileDone()
                 } else {
                     findNavController().navigate(NavigationDirections.actionGlobalProfileFragment(mainViewModel.user))
                     viewModel.navigateToProfileDone()

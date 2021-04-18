@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.rn1.puffren.MainViewModel
+import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.databinding.FragmentLoginBinding
 import com.rn1.puffren.ext.getVmFactory
 
@@ -34,6 +35,13 @@ class LoginFragment : Fragment() {
                 mainViewModel.setupUser(it)
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToProfileFragment(it))
                 viewModel.navigateToProfileDone()
+            }
+        })
+
+        viewModel.navigateToRegistry.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                findNavController().navigate(NavigationDirections.actionGlobalRegistryFragment())
+                viewModel.navigateToRegistryDone()
             }
         })
 

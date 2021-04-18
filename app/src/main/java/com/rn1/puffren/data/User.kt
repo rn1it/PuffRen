@@ -13,9 +13,15 @@ data class User(
     val userName: String? = null,
     val connection: String? = null,
     val level: Int? = null,
-    val amount_spent: Int? = null,
-    val partner_id: String? = null,
+    @Json(name = "amount_spent")
+    val amountSpent: Int? = null,
+    @Json(name = "partner_id")
+    val partnerId: String? = null,
     val score: Int? = null,
+
+    // 0:guest ; 1:partner
+    @Json(name = "is_partner")
+    val isPartner: Int? = null,
 
     // not sure for what?
     @Json(name = "fullname")
@@ -24,8 +30,8 @@ data class User(
     val address: String? = "台北市"
 ): Parcelable {
     val isVendor: Boolean
-        get() = when(level){
-            null -> true
+        get() = when(isPartner){
+            1 -> true
             else -> false
         }
 }
