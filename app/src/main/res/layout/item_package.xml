@@ -12,7 +12,7 @@
             type="com.rn1.puffren.ui.product.detail.DetailViewModel" />
         <variable
             name="holder"
-            type="com.rn1.puffren.ui.product.detail.ItemPackageAdapter.ItemPackageViewHolder" />
+            type="com.rn1.puffren.ui.product.detail.PuffPackageAdapter.ItemPackageViewHolder" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/text_item_package"
-            itemPackages="@{itemPackage.amount}"
+            itemPackages="@{itemPackage.quantity}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
 
         <TextView
             android:id="@+id/text_origin_price"
-            price="@{itemPackage.originPrice}"
+            price="@{itemPackage.originalPrice}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"

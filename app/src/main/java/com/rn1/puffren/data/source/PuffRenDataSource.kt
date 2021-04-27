@@ -1,6 +1,7 @@
 package com.rn1.puffren.data.source
 
 import com.rn1.puffren.data.*
+import retrofit2.http.Body
 
 interface PuffRenDataSource {
 
@@ -9,6 +10,8 @@ interface PuffRenDataSource {
     suspend fun login(login: Login): DataResult<LoginResult>
 
     suspend fun getLoginUser(token: String): DataResult<User>
+
+    suspend fun registry(user:User): DataResult<String>
 
     suspend fun getProductListByType(type: String): DataResult<List<Product>>
 

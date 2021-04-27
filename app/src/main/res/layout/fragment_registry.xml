@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.rn1.puffren.ui.registry.RegistryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -96,7 +98,7 @@
             android:ems="10"
             android:inputType="textEmailAddress"
             android:paddingHorizontal="8dp"
-            android:text=""
+            android:text="@={viewModel.email}"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/text_title_set_email"
             app:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +114,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:paddingHorizontal="8dp"
-            android:text=""
+            android:text="@={viewModel.nickname}"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/text_title_set_nickname"
             app:layout_constraintEnd_toEndOf="parent"
@@ -128,7 +130,7 @@
             android:ems="10"
             android:inputType="textPassword"
             android:paddingHorizontal="8dp"
-            android:text=""
+            android:text="@={viewModel.password}"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/text_title_set_password"
             app:layout_constraintEnd_toEndOf="parent"
@@ -144,7 +146,7 @@
             android:ems="10"
             android:inputType="textPassword"
             android:paddingHorizontal="8dp"
-            android:text=""
+            android:text="@={viewModel.confirmPassword}"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/text_title_check_password"
             app:layout_constraintEnd_toEndOf="parent"
@@ -160,7 +162,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:paddingHorizontal="8dp"
-            android:text=""
+            android:text="@={viewModel.connection}"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/text_title_invite_code"
             app:layout_constraintEnd_toEndOf="parent"
@@ -199,6 +201,7 @@
             android:background="@drawable/round_corner_layout"
             android:backgroundTint="@color/orange_ffa626"
             android:text="@string/registry_confirm"
+            android:onClick="@{() -> viewModel.checkRegistryInfo()}"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

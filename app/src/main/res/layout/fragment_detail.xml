@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="product"
             type="com.rn1.puffren.data.Product" />
@@ -32,14 +33,16 @@
 
                 <ImageView
                     android:id="@+id/image_detail_puff"
-                    android:layout_width="match_parent"
-                    android:layout_height="500dp"
+                    android:layout_width="0dp"
+                    android:layout_height="400dp"
                     android:background="@color/bg_color_yellow"
+                    android:padding="72dp"
+                    android:scaleType="center"
                     app:imageUrl="@{product.image}"
-                    tools:src="@drawable/dark_chocolate_cream_puff"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/dark_chocolate_cream_puff" />
 
                 <ImageButton
                     android:id="@+id/button_detail_close"
@@ -61,7 +64,6 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
                     android:ellipsize="end"
-                    android:lines="2"
                     android:text="@{product.title}"
                     tools:text="巧克力泡芙"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -90,7 +92,6 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
-                    android:lineSpacingExtra="12sp"
                     android:text="@{product.description}"
                     android:textColor="@color/gray_646464"
                     android:textSize="15sp"
@@ -99,18 +100,77 @@
                     app:layout_constraintTop_toBottomOf="@+id/text_detail_puff_name"
                     tools:text="採用高級100%棉質素材的外套。輕盈保暖高質感的針織大衣！精緻做工升級，展現高質感氛圍。" />
 
+                <TextView
+                    android:id="@+id/text_puff_detail_ingredient_title"
+                    style="@style/text_style_product_item"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/ingredient"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_puff_detail_content"
+                    tools:text="成分" />
+
+                <TextView
+                    android:id="@+id/text_puff_detail_ingredient"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{product.ingredient}"
+                    android:textColor="@color/gray_646464"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_puff_detail_ingredient_title"
+                    tools:text="採用高級100%棉質素材的外套。輕盈保暖高質感的針織大衣！精緻做工升級，展現高質感氛圍。" />
+
+                <TextView
+                    android:id="@+id/text_puff_detail_note_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/notification"
+                    style="@style/text_style_product_item"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_puff_detail_ingredient"
+                    tools:text="注意事項" />
+
+                <TextView
+                    android:id="@+id/text_puff_detail_note"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{product.note}"
+                    android:textColor="@color/gray_646464"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_puff_detail_note_title"
+                    tools:text="" />
+
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_item_package"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_puff_detail_content" />
+                    app:layout_constraintTop_toBottomOf="@+id/text_puff_detail_note" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -120,6 +180,7 @@
             android:id="@+id/const_add_to_cart"
             android:layout_width="0dp"
             android:layout_height="@dimen/height_all_bottom_layout"
+            android:visibility="@{product.delivery == 0 ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">

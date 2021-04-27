@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.NavDestination
 import androidx.navigation.fragment.findNavController
 import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.PuffRenApplication
@@ -15,7 +14,6 @@ import com.rn1.puffren.R
 import com.rn1.puffren.data.ItemPackage
 import com.rn1.puffren.databinding.FragmentDetailBinding
 import com.rn1.puffren.ext.getVmFactory
-import com.rn1.puffren.factory.ProductViewModelFactory
 
 class DetailFragment : Fragment() {
 
@@ -32,20 +30,7 @@ class DetailFragment : Fragment() {
         binding.viewModel = viewModel
 
         val recycler = binding.recyclerItemPackage
-        val adapter = ItemPackageAdapter(viewModel)
-
-        val list = mutableListOf<ItemPackage>()
-        val itemPackage1 = ItemPackage(1, 200)
-        val itemPackage2 = ItemPackage(2, 400, 380)
-        val itemPackage3 = ItemPackage(3, 600, 560)
-        val itemPackage4 = ItemPackage(4, 800, 740)
-        list.add(itemPackage1)
-        list.add(itemPackage2)
-        list.add(itemPackage3)
-        list.add(itemPackage4)
-
-        adapter.submitList(list)
-
+        val adapter = PuffPackageAdapter(viewModel)
         recycler.adapter = adapter
 
 
@@ -70,6 +55,7 @@ class DetailFragment : Fragment() {
         viewModel.product.observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.product = it
+                adapter.submitList(it.groupBuyingDetails)
             }
         })
 

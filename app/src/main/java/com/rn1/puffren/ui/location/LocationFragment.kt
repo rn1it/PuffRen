@@ -1,6 +1,9 @@
 package com.rn1.puffren.ui.location
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.rn1.puffren.R
@@ -24,6 +28,7 @@ class LocationFragment : Fragment() {
                 .position(sydney)
                 .title("AppWorks School")
                 .snippet("#12 1234")
+                .icon(BitmapDescriptorFactory.fromBitmap(generateSmallIcon(R.drawable.brown_marker)))
         )
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13f))
 
@@ -50,5 +55,12 @@ class LocationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+    }
+
+    private fun generateSmallIcon(id: Int): Bitmap {
+        val height = 100
+        val width = 100
+        val bitmap = BitmapFactory.decodeResource(this.resources, id)
+        return Bitmap.createScaledBitmap(bitmap, width, height, false)
     }
 }

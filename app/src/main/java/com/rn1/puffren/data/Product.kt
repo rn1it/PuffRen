@@ -15,5 +15,6 @@ data class Product(
     val note: String? = null,
     val status: Int? = 1,
     @Json(name = "path")
-    val image: String? = null
+    val image: String? = null,
+    val groupBuyingDetails: List<ItemPackage>? = null
 ): Parcelable

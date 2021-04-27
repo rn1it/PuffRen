@@ -8,6 +8,7 @@ import com.rn1.puffren.ui.add2cart.Add2cartViewModel
 import com.rn1.puffren.ui.home.HomeViewModel
 import com.rn1.puffren.ui.login.LoginViewModel
 import com.rn1.puffren.ui.profile.ProfileViewModel
+import com.rn1.puffren.ui.registry.RegistryViewModel
 import com.rn1.puffren.ui.report.ReportViewModel
 
 @Suppress("UNCHECKED_CAST")
@@ -26,6 +27,9 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(LoginViewModel::class.java) ->
                     LoginViewModel(repository)
+
+                isAssignableFrom(RegistryViewModel::class.java) ->
+                    RegistryViewModel(repository)
 
                 isAssignableFrom(ReportViewModel::class.java) ->
                     ReportViewModel(repository)

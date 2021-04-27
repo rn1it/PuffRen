@@ -10,9 +10,7 @@ import com.rn1.puffren.component.SelectedSquare
 import com.rn1.puffren.data.ItemPackage
 import com.rn1.puffren.databinding.ItemPackageBinding
 
-class ItemPackageAdapter(
-    val viewModel: DetailViewModel
-    ): ListAdapter<ItemPackage, ItemPackageAdapter.ItemPackageViewHolder>(ItemPackageDiffCallbackUtil) {
+class PuffPackageAdapter(val viewModel: DetailViewModel): ListAdapter<ItemPackage, PuffPackageAdapter.ItemPackageViewHolder>(ItemPackageDiffCallbackUtil) {
 
     var selectedPosition = -1
 
@@ -37,7 +35,6 @@ class ItemPackageAdapter(
 
         fun bind(itemPackage: ItemPackage, position: Int){
             binding.itemPackage = itemPackage
-
             if (position == adapterPosition) {
                 binding.layoutPackage.background = SelectedSquare()
             } else {

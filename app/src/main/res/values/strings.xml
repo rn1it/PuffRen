@@ -46,4 +46,6 @@
     <string name="member_info_edit">會員資料修改</string>
     <string name="member_activity">會員專屬活動</string>
     <string name="lvl1_member">白金泡芙</string>
+    <string name="ingredient">成分</string>
+    <string name="notification">注意事項</string>
 </resources>

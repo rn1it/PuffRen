@@ -16,6 +16,10 @@ class PuffRenLocalDataSource: PuffRenDataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun registry(user: User): DataResult<String> {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun getProductListByType(type: String): DataResult<List<Product>> {
         TODO("Not yet implemented")
     }
