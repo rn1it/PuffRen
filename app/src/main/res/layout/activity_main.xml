@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
+        <import type="com.rn1.puffren.util.CurrentFragmentType"/>
+        <variable
+            name="viewModel"
+            type="com.rn1.puffren.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,15 +21,26 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             app:contentInsetStart="0dp"
+            android:background="@color/orange_ffa626"
+            android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.DETAIL ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/image_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.HOME ? View.VISIBLE : View.GONE}"
                 android:background="@drawable/puff_ren_bar" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.currentFragmentType.value}"
+                android:gravity="center"
+                style="@style/text_style_toolbar" />
         </androidx.appcompat.widget.Toolbar>
 
         <fragment

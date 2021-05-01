@@ -63,6 +63,10 @@ class ProfileViewModel(
         get() = _error
 
     init {
+        Logger.i("------------------------------------")
+        Logger.i("[${this::class.simpleName}]${this}")
+        Logger.i("------------------------------------")
+
         if (user.value == null) {
             UserManager.userToken?.let {
                 getUserProfile(it)

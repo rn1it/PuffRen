@@ -9,6 +9,7 @@ import com.rn1.puffren.data.Product
 import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.ui.product.ProdTypeFilter
+import com.rn1.puffren.util.Logger
 import kotlinx.coroutines.launch
 
 class ProdItemViewModel(
@@ -39,6 +40,10 @@ class ProdItemViewModel(
         get() = _error
 
     init {
+        Logger.i("------------------------------------")
+        Logger.i("[${this::class.simpleName}]${this}")
+        Logger.i("------------------------------------")
+
         getProductListByType(prodTypeFilter)
     }
 

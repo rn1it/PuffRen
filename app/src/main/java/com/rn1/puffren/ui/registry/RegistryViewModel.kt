@@ -39,6 +39,12 @@ class RegistryViewModel(val repository: PuffRenRepository): ViewModel() {
     val error: LiveData<String>
         get() = _error
 
+    init {
+        Logger.i("------------------------------------")
+        Logger.i("[${this::class.simpleName}]${this}")
+        Logger.i("------------------------------------")
+    }
+
     fun registry(){
 
             viewModelScope.launch {

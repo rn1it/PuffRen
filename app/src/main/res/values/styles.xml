@@ -42,4 +42,10 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="text_style_toolbar">
+        <item name="android:textColor">#331900</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
 </resources>

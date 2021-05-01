@@ -8,6 +8,7 @@ import com.rn1.puffren.data.DataResult
 import com.rn1.puffren.data.HomePageItem
 import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.network.LoadApiStatus
+import com.rn1.puffren.util.Logger
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
@@ -37,6 +38,10 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
         get() = _navigateToProfile
 
     init {
+        Logger.i("------------------------------------")
+        Logger.i("[${this::class.simpleName}]${this}")
+        Logger.i("------------------------------------")
+
         getHomePageItem()
     }
 
