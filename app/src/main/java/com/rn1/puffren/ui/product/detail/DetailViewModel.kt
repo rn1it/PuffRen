@@ -25,9 +25,9 @@ class DetailViewModel(
     val itemPackage: LiveData<ItemPackage>
         get() = _itemPackage
 
-    private val _show2Cart = MutableLiveData<Boolean>()
-    val show2Cart: LiveData<Boolean>
-        get() = _show2Cart
+    private val _navigateToCart = MutableLiveData<Boolean>()
+    val navigateToCart: LiveData<Boolean>
+        get() = _navigateToCart
 
     private val _leaveDetail = MutableLiveData<Boolean>()
     val leaveDetail: LiveData<Boolean>
@@ -79,8 +79,12 @@ class DetailViewModel(
         _leaveDetail.value = true
     }
 
-    fun show2cart() {
-        _show2Cart.value = true
+    fun navigateToCart() {
+        _navigateToCart.value = true
+    }
+
+    fun navigateToCartDone() {
+        _navigateToCart.value = null
     }
 
     fun setPackage(itemPackage: ItemPackage) {

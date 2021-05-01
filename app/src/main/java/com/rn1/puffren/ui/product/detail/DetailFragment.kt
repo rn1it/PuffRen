@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.PuffRenApplication
 import com.rn1.puffren.R
-import com.rn1.puffren.data.ItemPackage
 import com.rn1.puffren.databinding.FragmentDetailBinding
 import com.rn1.puffren.ext.getVmFactory
 
@@ -33,7 +32,6 @@ class DetailFragment : Fragment() {
         val adapter = PuffPackageAdapter(viewModel)
         recycler.adapter = adapter
 
-
         viewModel.leaveDetail.observe(viewLifecycleOwner, Observer {
             it?.let {
                 if (it) findNavController().popBackStack()
@@ -42,13 +40,19 @@ class DetailFragment : Fragment() {
 
         viewModel.itemPackage.observe(viewLifecycleOwner, Observer {
             it?.let {
-                binding.buttonDetailAdd.text = PuffRenApplication.instance.getString(R.string.note_choose_favor)
+
+                binding.buttonDetailAdd.apply {
+                    text = PuffRenApplication.instance.getString(R.string.note_choose_favor)
+                    isEnabled = true
+                    setBackgroundColor(PuffRenApplication.instance.getColor(R.color.orange_ffa626))
+                }
             }
         })
 
-        viewModel.show2Cart.observe(viewLifecycleOwner, Observer {
+        viewModel.navigateToCart.observe(viewLifecycleOwner, Observer {
             it?.let {
-                findNavController().navigate(NavigationDirections.actionGlobalAdd2cartDialog())
+                findNavController().navigate(NavigationDirections.actionGlobalCartFragment(viewModel.product.value, viewModel.itemPackage.value))
+                viewModel.navigateToCartDone()
             }
         })
 

@@ -50,4 +50,6 @@
     <string name="notification">注意事項</string>
     <string name="where_are_puffrens">泡芙人在哪</string>
     <string name="puffrens_tomorrow">明天的泡芙人</string>
+    <string name="item_selected">選購的商品</string>
+    <string name="next_step">下一步</string>
 </resources>

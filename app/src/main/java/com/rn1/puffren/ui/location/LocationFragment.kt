@@ -40,7 +40,7 @@ class LocationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         setupTabLayout()
         initMap()
     }
@@ -65,15 +65,22 @@ class LocationFragment : Fragment() {
     }
 
     private val callback = OnMapReadyCallback { googleMap ->
-        val sydney = LatLng(25.042613022341943, 121.56475417585145)
-        googleMap.addMarker(
+
+        val school = LatLng(25.042613022341943, 121.56475417585145)
+
+        val marker = googleMap.addMarker(
             MarkerOptions()
-                .position(sydney)
+                .position(school)
                 .title("AppWorks School")
                 .snippet("#12 1234")
                 .icon(BitmapDescriptorFactory.fromBitmap(generateSmallIcon(R.drawable.brown_marker)))
-        )
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13f))
+        ).apply {
+            // isVisible = false
+            // maybe can use tag to hide and show markers
+            tag = 0
+        }
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(school, 13f))
 
         googleMap.setOnInfoWindowClickListener {
 

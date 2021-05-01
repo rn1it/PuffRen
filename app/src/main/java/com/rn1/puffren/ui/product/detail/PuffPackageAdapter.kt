@@ -1,8 +1,11 @@
 package com.rn1.puffren.ui.product.detail
 
+import android.R
 import android.annotation.SuppressLint
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +13,10 @@ import com.rn1.puffren.component.SelectedSquare
 import com.rn1.puffren.data.ItemPackage
 import com.rn1.puffren.databinding.ItemPackageBinding
 
-class PuffPackageAdapter(val viewModel: DetailViewModel): ListAdapter<ItemPackage, PuffPackageAdapter.ItemPackageViewHolder>(ItemPackageDiffCallbackUtil) {
+
+class PuffPackageAdapter(val viewModel: DetailViewModel): ListAdapter<ItemPackage, PuffPackageAdapter.ItemPackageViewHolder>(
+    ItemPackageDiffCallbackUtil
+) {
 
     var selectedPosition = -1
 
@@ -31,10 +37,15 @@ class PuffPackageAdapter(val viewModel: DetailViewModel): ListAdapter<ItemPackag
         holder.bind(itemPackage, selectedPosition)
     }
 
-    class ItemPackageViewHolder(private val binding: ItemPackageBinding): RecyclerView.ViewHolder(binding.root){
+    class ItemPackageViewHolder(private val binding: ItemPackageBinding): RecyclerView.ViewHolder(
+        binding.root
+    ){
 
         fun bind(itemPackage: ItemPackage, position: Int){
             binding.itemPackage = itemPackage
+            val someTextView = binding.textOriginPrice
+            someTextView.paintFlags = someTextView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+
             if (position == adapterPosition) {
                 binding.layoutPackage.background = SelectedSquare()
             } else {

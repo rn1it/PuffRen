@@ -1,20 +1,23 @@
-package com.rn1.puffren.ui.add2cart
+package com.rn1.puffren.ui.cart
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.rn1.puffren.databinding.DialogAdd2cartBinding
+import com.rn1.puffren.databinding.FragmentCartBinding
 import com.rn1.puffren.ext.getVmFactory
-import com.rn1.puffren.util.Logger
 
-class Add2cartDialog: BottomSheetDialogFragment() {
+class CartFragment: Fragment() {
 
-    lateinit var binding: DialogAdd2cartBinding
-    val viewModel by viewModels<Add2cartViewModel> { getVmFactory()}
-
+    lateinit var binding: FragmentCartBinding
+    val viewModel by viewModels<CartViewModel> {
+        getVmFactory(
+            CartFragmentArgs.fromBundle(requireArguments()).product,
+            CartFragmentArgs.fromBundle(requireArguments()).itemPackage
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +25,7 @@ class Add2cartDialog: BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = DialogAdd2cartBinding.inflate(inflater, container, false)
+        binding = FragmentCartBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         val s1 = "巧克力"
         val s2 = "巧克力1"
@@ -45,7 +48,4 @@ class Add2cartDialog: BottomSheetDialogFragment() {
 
         return binding.root
     }
-
-
-
 }

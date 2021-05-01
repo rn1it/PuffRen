@@ -1,4 +1,4 @@
-package com.rn1.puffren.ui.add2cart
+package com.rn1.puffren.ui.cart
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

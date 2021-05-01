@@ -67,11 +67,20 @@
         android:label="EditMembershipFragment"
         tools:layout="@layout/fragment_edit_membership"/>
 
-    <dialog
-        android:id="@+id/add2cartDialog"
-        android:name="com.rn1.puffren.ui.add2cart.Add2cartDialog"
-        android:label="Add2cartDialog"
-        tools:layout="@layout/dialog_add2cart"/>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.rn1.puffren.ui.cart.CartFragment"
+        android:label="CartFragment"
+        tools:layout="@layout/fragment_cart">
+        <argument
+            android:name="product"
+            app:argType="com.rn1.puffren.data.Product"
+            app:nullable="true" />
+        <argument
+            android:name="itemPackage"
+            app:argType="com.rn1.puffren.data.ItemPackage"
+            app:nullable="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/registryFragment"
@@ -109,8 +118,8 @@
         app:destination="@id/profileFragment" />
 
     <action
-        android:id="@+id/action_global_add2cartDialog"
-        app:destination="@id/add2cartDialog" />
+        android:id="@+id/action_global_cartFragment"
+        app:destination="@id/cartFragment" />
 
     <action
         android:id="@+id/action_global_editMembershipFragment"

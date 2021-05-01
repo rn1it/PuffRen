@@ -4,10 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rn1.puffren.MainViewModel
 import com.rn1.puffren.data.source.PuffRenRepository
-import com.rn1.puffren.ui.add2cart.Add2cartViewModel
+import com.rn1.puffren.ui.cart.CartViewModel
 import com.rn1.puffren.ui.home.HomeViewModel
 import com.rn1.puffren.ui.login.LoginViewModel
-import com.rn1.puffren.ui.profile.ProfileViewModel
 import com.rn1.puffren.ui.registry.RegistryViewModel
 import com.rn1.puffren.ui.report.ReportViewModel
 
@@ -34,8 +33,6 @@ class ViewModelFactory constructor(
                 isAssignableFrom(ReportViewModel::class.java) ->
                     ReportViewModel(repository)
 
-                isAssignableFrom(Add2cartViewModel::class.java) ->
-                    Add2cartViewModel(repository)
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
