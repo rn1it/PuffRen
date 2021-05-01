@@ -1,6 +1,5 @@
 package com.rn1.puffren.ui.location
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -10,16 +9,60 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.tabs.TabLayout
 import com.rn1.puffren.R
-
+import com.rn1.puffren.databinding.FragmentLocationBinding
+import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.util.Logger
 
 class LocationFragment : Fragment() {
+
+    lateinit var binding: FragmentLocationBinding
+    val viewModel by viewModels<LocationViewModel> { getVmFactory() }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+
+        binding = FragmentLocationBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        
+        setupTabLayout()
+        initMap()
+    }
+
+    private fun setupTabLayout(){
+
+        binding.tabLocationItem.apply {
+            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab) {
+                    Logger.d("aaaaa onTabSelected p = ${tab.position}")
+                }
+
+                override fun onTabUnselected(p0: TabLayout.Tab?) {}
+                override fun onTabReselected(p0: TabLayout.Tab?) {}
+            })
+        }
+    }
+
+    private fun initMap(){
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        mapFragment?.getMapAsync(callback)
+    }
 
     private val callback = OnMapReadyCallback { googleMap ->
         val sydney = LatLng(25.042613022341943, 121.56475417585145)
@@ -41,20 +84,6 @@ class LocationFragment : Fragment() {
             startActivity(mapIntent)
         }
 
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        return inflater.inflate(R.layout.fragment_location, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(callback)
     }
 
     private fun generateSmallIcon(id: Int): Bitmap {

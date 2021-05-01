@@ -48,4 +48,6 @@
     <string name="lvl1_member">白金泡芙</string>
     <string name="ingredient">成分</string>
     <string name="notification">注意事項</string>
+    <string name="where_are_puffrens">泡芙人在哪</string>
+    <string name="puffrens_tomorrow">明天的泡芙人</string>
 </resources>
