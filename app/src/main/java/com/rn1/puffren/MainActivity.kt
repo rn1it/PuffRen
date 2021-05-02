@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.loginFragment -> CurrentFragmentType.LOGIN
                 R.id.registryFragment -> CurrentFragmentType.REGISTRY
                 R.id.profileFragment -> CurrentFragmentType.PROFILE
+                R.id.performanceFragment -> CurrentFragmentType.PERFORMANCE
                 else -> mainViewModel.currentFragmentType.value
             }
         }

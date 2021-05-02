@@ -54,6 +54,10 @@ class ProfileViewModel(
     val navigateToMemberQRCode: LiveData<Boolean>
         get() = _navigateToMemberQRCode
 
+    private val _navigateToPerformance = MutableLiveData<Boolean>()
+    val navigateToPerformance: LiveData<Boolean>
+        get() = _navigateToPerformance
+
     private val _status = MutableLiveData<LoadApiStatus>()
     val status: LiveData<LoadApiStatus>
         get() = _status
@@ -151,5 +155,13 @@ class ProfileViewModel(
 
     fun navigateToMemberQRCodeDone(){
         _navigateToMemberQRCode.value = null
+    }
+
+    fun navigateToPerformance(){
+        _navigateToPerformance.value = true
+    }
+
+    fun navigateToPerformanceDone(){
+        _navigateToPerformance.value = null
     }
 }

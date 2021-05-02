@@ -90,6 +90,13 @@ class ProfileFragment : Fragment() {
             }
         })
 
+        viewModel.navigateToPerformance.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                findNavController().navigate(NavigationDirections.actionGlobalPerformanceFragment())
+                viewModel.navigateToPerformanceDone()
+            }
+        })
+
         viewModel.user.observe(viewLifecycleOwner, Observer {
             it?.let {
                 setProfileImage(it)
