@@ -50,7 +50,7 @@ class ProfileFragment : Fragment() {
 
         viewModel.navigateToSaleReportHistory.observe(viewLifecycleOwner, Observer {
             it?.let {
-
+                findNavController().navigate(NavigationDirections.actionGlobalHistoryFragment())
                 viewModel.navigateToSaleReportHistoryDone()
             }
         })

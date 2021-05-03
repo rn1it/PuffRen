@@ -52,4 +52,11 @@
     <string name="puffrens_tomorrow">明天的泡芙人</string>
     <string name="item_selected">選購的商品</string>
     <string name="next_step">下一步</string>
+    <string name="sunday">日</string>
+    <string name="one">一</string>
+    <string name="two">二</string>
+    <string name="three">三</string>
+    <string name="four">四</string>
+    <string name="five">五</string>
+    <string name="six">六</string>
 </resources>

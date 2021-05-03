@@ -100,6 +100,11 @@
         android:label="QRCodeFragment"
         tools:layout="@layout/fragment_q_r_code"/>
 
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.rn1.puffren.ui.history.HistoryFragment"
+        android:label="HistoryFragment" />
+
     <action
         android:id="@+id/action_global_locationFragment"
         app:destination="@id/locationFragment" />
@@ -148,5 +153,9 @@
     <action
         android:id="@+id/action_global_QRCodeFragment"
         app:destination="@id/QRCodeFragment" />
+
+    <action
+        android:id="@+id/action_global_historyFragment"
+        app:destination="@id/historyFragment" />
 
 </navigation>
