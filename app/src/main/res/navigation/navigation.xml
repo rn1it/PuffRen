@@ -94,6 +94,12 @@
         android:label="PerformanceFragment"
         tools:layout="@layout/fragment_performance"/>
 
+    <fragment
+        android:id="@+id/QRCodeFragment"
+        android:name="com.rn1.puffren.ui.qrcode.QRCodeFragment"
+        android:label="QRCodeFragment"
+        tools:layout="@layout/fragment_q_r_code"/>
+
     <action
         android:id="@+id/action_global_locationFragment"
         app:destination="@id/locationFragment" />
@@ -138,5 +144,9 @@
     <action
         android:id="@+id/action_global_performanceFragment"
         app:destination="@id/performanceFragment" />
+
+    <action
+        android:id="@+id/action_global_QRCodeFragment"
+        app:destination="@id/QRCodeFragment" />
 
 </navigation>

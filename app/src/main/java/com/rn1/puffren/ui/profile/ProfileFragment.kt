@@ -85,7 +85,7 @@ class ProfileFragment : Fragment() {
 
         viewModel.navigateToMemberQRCode.observe(viewLifecycleOwner, Observer {
             it?.let {
-
+                findNavController().navigate(NavigationDirections.actionGlobalQRCodeFragment())
                 viewModel.navigateToMemberQRCodeDone()
             }
         })

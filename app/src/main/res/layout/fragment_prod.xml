@@ -23,7 +23,7 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs_catalog"
                 android:layout_width="match_parent"
-                android:layout_height="48dp" />
+                android:layout_height="@dimen/tab_height" />
 
         </androidx.viewpager.widget.ViewPager>
 
