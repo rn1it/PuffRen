@@ -7,6 +7,7 @@ enum class CurrentFragmentType(val value: String) {
     HOME(""),
     PRODUCT("商品列表"),
     DETAIL(""),
+    CART("購物車"),
     LOCATION("攤商地圖"),
     LOGIN("登入"),
     REGISTRY("註冊"),

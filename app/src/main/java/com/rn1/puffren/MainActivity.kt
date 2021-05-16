@@ -6,6 +6,7 @@ import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
@@ -23,6 +24,13 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
         binding.viewModel = mainViewModel
+
+        mainViewModel.navigateToCart.observe(this, Observer {
+            it?.let {
+                findNavController(R.id.navHostFragment).navigate(NavigationDirections.actionGlobalCartFragment(null, null))
+                mainViewModel.navigateToCartDone()
+            }
+        })
 
         setupNavController()
         setupStatusBar()
@@ -47,6 +55,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.profileFragment -> CurrentFragmentType.PROFILE
                 R.id.performanceFragment -> CurrentFragmentType.PERFORMANCE
                 R.id.historyFragment -> CurrentFragmentType.HISTORY
+                R.id.cartFragment -> CurrentFragmentType.CART
                 else -> mainViewModel.currentFragmentType.value
             }
         }

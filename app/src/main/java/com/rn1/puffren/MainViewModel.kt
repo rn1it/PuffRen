@@ -1,5 +1,6 @@
 package com.rn1.puffren
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.rn1.puffren.data.User
@@ -13,6 +14,11 @@ class MainViewModel (private val puffRenRepository: PuffRenRepository) : ViewMod
 //    val user: LiveData<User>
 //        get() = _user
 
+
+    private val _navigateToCart = MutableLiveData<Boolean>()
+    val navigateToCart: LiveData<Boolean>
+        get() = _navigateToCart
+
     // Record current fragment to support data binding
     val currentFragmentType = MutableLiveData<CurrentFragmentType>()
 
@@ -24,5 +30,13 @@ class MainViewModel (private val puffRenRepository: PuffRenRepository) : ViewMod
 
     fun setupUser(user : User){
         this.user = user
+    }
+
+    fun navigateToCart(){
+        _navigateToCart.value = true
+    }
+
+    fun navigateToCartDone(){
+        _navigateToCart.value = null
     }
 }
