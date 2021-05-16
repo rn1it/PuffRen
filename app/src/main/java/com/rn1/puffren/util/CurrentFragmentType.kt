@@ -13,5 +13,7 @@ enum class CurrentFragmentType(val value: String) {
     REGISTRY("註冊"),
     PROFILE("會員頁面"),
     PERFORMANCE("績效考核"),
-    HISTORY("")
+    HISTORY(""),
+    EDITMEMBERSHIP("會員資料修改"),
+    EDITPASSWORD("修改密碼"),
 }

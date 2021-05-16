@@ -112,6 +112,12 @@
         android:label="CouponFragment"
         tools:layout="@layout/fragment_coupon"/>
 
+    <fragment
+        android:id="@+id/editPasswordFragment"
+        android:name="com.rn1.puffren.ui.edit.EditPasswordFragment"
+        android:label="EditPasswordFragment"
+        tools:layout="@layout/fragment_edit_password"/>
+
     <action
         android:id="@+id/action_global_locationFragment"
         app:destination="@id/locationFragment" />
@@ -164,8 +170,13 @@
     <action
         android:id="@+id/action_global_historyFragment"
         app:destination="@id/historyFragment" />
+
     <action
         android:id="@+id/action_global_couponFragment"
         app:destination="@id/couponFragment" />
+
+    <action
+        android:id="@+id/action_global_editPasswordFragment"
+        app:destination="@id/editPasswordFragment"/>
 
 </navigation>

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.rn1.puffren.ui.edit.EditMembershipViewModel" />
     </data>
 
     <ScrollView
@@ -315,6 +317,7 @@
                     android:backgroundTint="@color/orange_ffa626"
                     android:text="@string/edit_password"
                     android:textColor="@color/white"
+                    android:onClick="@{() -> viewModel.navigateToEditPassword()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/check_read_notification" />

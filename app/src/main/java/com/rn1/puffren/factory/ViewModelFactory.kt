@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.rn1.puffren.MainViewModel
 import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.ui.cart.CartViewModel
+import com.rn1.puffren.ui.edit.EditMembershipViewModel
 import com.rn1.puffren.ui.home.HomeViewModel
 import com.rn1.puffren.ui.login.LoginViewModel
 import com.rn1.puffren.ui.registry.RegistryViewModel
@@ -32,6 +33,9 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(ReportViewModel::class.java) ->
                     ReportViewModel(repository)
+
+                isAssignableFrom(EditMembershipViewModel::class.java) ->
+                    EditMembershipViewModel(repository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

@@ -7,17 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
-import com.rn1.puffren.R
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.databinding.FragmentEditMembershipBinding
+import com.rn1.puffren.ext.getVmFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
 class EditMembershipFragment : Fragment() {
 
     lateinit var binding: FragmentEditMembershipBinding
+    val viewModel by viewModels<EditMembershipViewModel> { getVmFactory() }
+
     lateinit var datePicker: DatePicker
-    val calendar = Calendar.getInstance()
-    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.TAIWAN)
+    private val calendar = Calendar.getInstance()
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.TAIWAN)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +31,8 @@ class EditMembershipFragment : Fragment() {
     ): View {
 
         binding = FragmentEditMembershipBinding.inflate(layoutInflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.birthDatePicker.setOnClickListener {
             val d = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
@@ -43,6 +51,12 @@ class EditMembershipFragment : Fragment() {
             ).show()
         }
 
+        viewModel.navigateToEditPassword.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                findNavController().navigate(NavigationDirections.actionGlobalEditPasswordFragment())
+                viewModel.navigateToEditPasswordDone()
+            }
+        })
 
         return binding.root
     }
