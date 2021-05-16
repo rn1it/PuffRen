@@ -90,6 +90,13 @@ class ProfileFragment : Fragment() {
             }
         })
 
+        viewModel.navigateToMemberCoupon.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                findNavController().navigate(NavigationDirections.actionGlobalCouponFragment())
+                viewModel.navigateToMemberCouponDone()
+            }
+        })
+
         viewModel.navigateToPerformance.observe(viewLifecycleOwner, Observer {
             it?.let {
                 findNavController().navigate(NavigationDirections.actionGlobalPerformanceFragment())

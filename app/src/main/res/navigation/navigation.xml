@@ -103,7 +103,14 @@
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.rn1.puffren.ui.history.HistoryFragment"
-        android:label="HistoryFragment" />
+        android:label="HistoryFragment"
+        tools:layout="@layout/fragment_history"/>
+
+    <fragment
+        android:id="@+id/couponFragment"
+        android:name="com.rn1.puffren.ui.coupon.CouponFragment"
+        android:label="CouponFragment"
+        tools:layout="@layout/fragment_coupon"/>
 
     <action
         android:id="@+id/action_global_locationFragment"
@@ -157,5 +164,8 @@
     <action
         android:id="@+id/action_global_historyFragment"
         app:destination="@id/historyFragment" />
+    <action
+        android:id="@+id/action_global_couponFragment"
+        app:destination="@id/couponFragment" />
 
 </navigation>

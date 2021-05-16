@@ -80,6 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="64dp"
+            android:onClick="@{() -> viewModel.switchUserType()}"
             android:text='@{viewModel.user.vendor? @string/member_feature : @string/member_feature}'
             tools:text="泡芙人功能"
             app:layout_constraintStart_toStartOf="parent"
@@ -92,10 +93,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:visibility="@{viewModel.user.vendor? View.VISIBLE : View.GONE}"
+
+            android:visibility="@{viewModel.testIsVendor? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_feature_title">
+<!--            android:visibility="@{viewModel.user.vendor? View.VISIBLE : View.GONE}"-->
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/profile_report"
@@ -205,7 +208,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:visibility="@{viewModel.user.vendor? View.GONE : View.VISIBLE}"
+            android:visibility="@{viewModel.testIsVendor? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_feature_title">
@@ -342,6 +345,40 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/image_member_qrcode" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_member_coupon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:focusable="true"
+                android:onClick="@{() -> viewModel.navigateToMemberCoupon()}"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/profile_member_info_edit"
+                app:layout_constraintStart_toStartOf="@+id/profile_member_info_edit"
+                app:layout_constraintTop_toBottomOf="@+id/profile_member_info_edit">
+
+                <ImageView
+                    android:id="@+id/image_member_coupon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/placeholder"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_profile_member_coupon_title"
+                    style="@style/text_style_profile_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/coupon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_member_coupon" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

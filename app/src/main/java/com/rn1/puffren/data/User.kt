@@ -21,7 +21,7 @@ data class User(
 
     // 0:guest ; 1:partner
     @Json(name = "is_partner")
-    val isPartner: Int? = null,
+    val isPartner: Int? = 0,
 
     // not sure for what?
     @Json(name = "fullname")

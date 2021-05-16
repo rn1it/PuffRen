@@ -54,6 +54,10 @@ class ProfileViewModel(
     val navigateToMemberQRCode: LiveData<Boolean>
         get() = _navigateToMemberQRCode
 
+    private val _navigateToMemberCoupon = MutableLiveData<Boolean>()
+    val navigateToMemberCoupon: LiveData<Boolean>
+        get() = _navigateToMemberCoupon
+
     private val _navigateToPerformance = MutableLiveData<Boolean>()
     val navigateToPerformance: LiveData<Boolean>
         get() = _navigateToPerformance
@@ -77,6 +81,23 @@ class ProfileViewModel(
             }
         }
     }
+
+    /**
+     * for test
+     */
+    val testIsVendor = MutableLiveData<Boolean>().apply {
+        value = true
+    }
+
+
+    // TODO
+    fun switchUserType(){
+        testIsVendor.value = when (testIsVendor.value) {
+            true -> false
+            else -> true
+        }
+    }
+
 
     private fun getUserProfile(token: String){
         viewModelScope.launch {
@@ -155,6 +176,14 @@ class ProfileViewModel(
 
     fun navigateToMemberQRCodeDone(){
         _navigateToMemberQRCode.value = null
+    }
+
+    fun navigateToMemberCoupon(){
+        _navigateToMemberCoupon.value = true
+    }
+
+    fun navigateToMemberCouponDone(){
+        _navigateToMemberCoupon.value = null
     }
 
     fun navigateToPerformance(){
