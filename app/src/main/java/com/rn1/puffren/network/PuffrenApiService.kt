@@ -75,6 +75,12 @@ interface PuffrenApiService{
      */
     @GET("application/reportItems")
     suspend fun getReportItems(@Header("Authorization") token: String): List<ReportItem>
+
+    /**
+     * Partner Map
+     */
+    @GET("application/partnerMap/{day}")
+    suspend fun getPartnersInfoByDay(@Path("day") day: String): List<PartnerInfo>
 }
 
 object PuffrenApi {

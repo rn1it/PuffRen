@@ -17,4 +17,6 @@ interface PuffRenRepository {
     suspend fun getProductDetail(id: String): DataResult<Product>
 
     suspend fun getReportItems(token: String): DataResult<List<ReportItem>>
+
+    suspend fun getPartnersInfoByDay(day: String): DataResult<List<PartnerInfo>>
 }

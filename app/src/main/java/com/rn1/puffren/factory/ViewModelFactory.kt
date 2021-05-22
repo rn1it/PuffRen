@@ -9,6 +9,7 @@ import com.rn1.puffren.ui.edit.EditMembershipViewModel
 import com.rn1.puffren.ui.history.HistoryViewModel
 import com.rn1.puffren.ui.history.item.ReportItemViewModel
 import com.rn1.puffren.ui.home.HomeViewModel
+import com.rn1.puffren.ui.location.LocationViewModel
 import com.rn1.puffren.ui.login.LoginViewModel
 import com.rn1.puffren.ui.registry.RegistryViewModel
 import com.rn1.puffren.ui.report.ReportViewModel
@@ -44,6 +45,9 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(ReportItemViewModel::class.java) ->
                     ReportItemViewModel(repository)
+
+                isAssignableFrom(LocationViewModel::class.java) ->
+                    LocationViewModel(repository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

@@ -1,11 +1,15 @@
 package com.rn1.puffren.util
 
 import android.content.Context
+import android.location.Geocoder
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.google.android.gms.maps.model.LatLng
 import com.rn1.puffren.PuffRenApplication
+import java.lang.Exception
+import java.util.*
 
 object Util {
 
@@ -27,5 +31,21 @@ object Util {
         val manager = PuffRenApplication.instance
             .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         manager.hideSoftInputFromWindow(view.applicationWindowToken, 0)
+    }
+
+    /**
+     * Transfer Address to Latitude and Longitude
+     */
+    fun transferToLatLng(address: String?): LatLng?{
+        val geocoder = Geocoder(PuffRenApplication.instance, Locale.TAIWAN)
+        var result: LatLng? = null
+
+        try {
+            val adder = geocoder.getFromLocationName(address,1)[0]
+            result = LatLng(adder.latitude, adder.longitude)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return result
     }
 }

@@ -34,4 +34,8 @@ class DefaultPuffRenRepository(
     override suspend fun getReportItems(token: String): DataResult<List<ReportItem>> {
         return puffRenRemoteDataSource.getReportItems(token)
     }
+
+    override suspend fun getPartnersInfoByDay(day: String): DataResult<List<PartnerInfo>> {
+        return puffRenRemoteDataSource.getPartnersInfoByDay(day)
+    }
 }

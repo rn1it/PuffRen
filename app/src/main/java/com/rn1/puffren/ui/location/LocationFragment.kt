@@ -10,14 +10,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.tabs.TabLayout
 import com.rn1.puffren.R
+import com.rn1.puffren.data.Day
 import com.rn1.puffren.databinding.FragmentLocationBinding
 import com.rn1.puffren.ext.getVmFactory
 import com.rn1.puffren.util.Logger
@@ -26,6 +29,7 @@ class LocationFragment : Fragment() {
 
     lateinit var binding: FragmentLocationBinding
     val viewModel by viewModels<LocationViewModel> { getVmFactory() }
+    private val makers: MutableList<Marker> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +55,13 @@ class LocationFragment : Fragment() {
             addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab) {
                     Logger.d("aaaaa onTabSelected p = ${tab.position}")
+
+                    removeAllMarkers()
+
+                    when(tab.position) {
+                        0 -> viewModel.getPartnersInfoByDay(Day.TODAY)
+                        else -> viewModel.getPartnersInfoByDay(Day.TOMORROW)
+                    }
                 }
 
                 override fun onTabUnselected(p0: TabLayout.Tab?) {}
@@ -67,8 +78,10 @@ class LocationFragment : Fragment() {
     private val callback = OnMapReadyCallback { googleMap ->
 
         val school = LatLng(25.042613022341943, 121.56475417585145)
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(school, 11f))
 
-        val marker = googleMap.addMarker(
+        /* for test
+        marker = googleMap.addMarker(
             MarkerOptions()
                 .position(school)
                 .title("AppWorks School")
@@ -79,8 +92,25 @@ class LocationFragment : Fragment() {
             // maybe can use tag to hide and show markers
             tag = 0
         }
+        */
 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(school, 13f))
+        viewModel.partners.observe(viewLifecycleOwner, Observer {
+            it?.let {
+
+                for (partner in it){
+                    makers.add(
+                        googleMap.addMarker(
+                            partner.latLng?.let { latLng ->
+                                MarkerOptions()
+                                    .position(latLng)
+                                    .title(partner.open_location)
+                                    .snippet("#12 1234")
+                                    .icon(BitmapDescriptorFactory.fromBitmap(generateSmallIcon(R.drawable.brown_marker)))
+                            }
+                        ))
+                }
+            }
+        })
 
         googleMap.setOnInfoWindowClickListener {
 
@@ -98,5 +128,11 @@ class LocationFragment : Fragment() {
         val width = 100
         val bitmap = BitmapFactory.decodeResource(this.resources, id)
         return Bitmap.createScaledBitmap(bitmap, width, height, false)
+    }
+
+    private fun removeAllMarkers(){
+        for(maker in makers) {
+            maker.remove()
+        }
     }
 }
