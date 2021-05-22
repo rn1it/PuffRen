@@ -3,7 +3,6 @@ package com.rn1.puffren.data
 import com.squareup.moshi.Json
 
 data class Coupon(
-
     @Json(name = "user_coupon_id")
     val id: String? = null,
     val title: String? = null,

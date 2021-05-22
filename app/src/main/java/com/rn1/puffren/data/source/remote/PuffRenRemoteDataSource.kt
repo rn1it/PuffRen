@@ -157,4 +157,20 @@ object PuffRenRemoteDataSource: PuffRenDataSource {
             DataResult.Error(e)
         }
     }
+
+    override suspend fun getPerformance(token: String): DataResult<List<Performance>> {
+        if (!isInternetConnected()) {
+            return DataResult.Fail(getString(R.string.internet_not_connected))
+        }
+
+        return try {
+
+            val listResult = PuffrenApi.retrofitService.getPerformance(token)
+            DataResult.Success(listResult)
+
+        } catch (e: Exception) {
+            Logger.w("[${this::class.simpleName}] exception=${e.message}")
+            DataResult.Error(e)
+        }
+    }
 }

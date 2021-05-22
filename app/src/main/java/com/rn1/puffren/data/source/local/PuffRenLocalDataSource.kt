@@ -39,4 +39,8 @@ class PuffRenLocalDataSource: PuffRenDataSource {
     override suspend fun getCoupon(token: String, type: String): DataResult<List<Coupon>> {
         TODO("Not yet implemented")
     }
+
+    override suspend fun getPerformance(token: String): DataResult<List<Performance>> {
+        TODO("Not yet implemented")
+    }
 }

@@ -1,5 +1,10 @@
 package com.rn1.puffren.data
 
+import com.squareup.moshi.Json
+
 data class Performance(
-    val id: String
+    val level: String? = null,
+    val score: Int? = null,
+    @Json(name = "created_at")
+    val created_at: String? = null
 )

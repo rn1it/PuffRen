@@ -12,6 +12,7 @@ import com.rn1.puffren.ui.history.item.ReportItemViewModel
 import com.rn1.puffren.ui.home.HomeViewModel
 import com.rn1.puffren.ui.location.LocationViewModel
 import com.rn1.puffren.ui.login.LoginViewModel
+import com.rn1.puffren.ui.performance.PerformanceViewModel
 import com.rn1.puffren.ui.registry.RegistryViewModel
 import com.rn1.puffren.ui.report.ReportViewModel
 
@@ -52,6 +53,9 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(CouponViewModel::class.java) ->
                     CouponViewModel(repository)
+
+                isAssignableFrom(PerformanceViewModel::class.java) ->
+                    PerformanceViewModel(repository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

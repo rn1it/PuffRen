@@ -22,4 +22,6 @@ interface PuffRenDataSource {
     suspend fun getPartnersInfoByDay(day: String): DataResult<List<PartnerInfo>>
 
     suspend fun getCoupon(token: String, type: String): DataResult<List<Coupon>>
+
+    suspend fun getPerformance(token: String): DataResult<List<Performance>>
 }

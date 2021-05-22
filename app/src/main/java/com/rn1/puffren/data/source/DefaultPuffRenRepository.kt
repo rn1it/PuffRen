@@ -42,4 +42,8 @@ class DefaultPuffRenRepository(
     override suspend fun getCoupon(token: String, type: String): DataResult<List<Coupon>> {
         return puffRenRemoteDataSource.getCoupon(token, type)
     }
+
+    override suspend fun getPerformance(token: String): DataResult<List<Performance>> {
+        return puffRenRemoteDataSource.getPerformance(token)
+    }
 }

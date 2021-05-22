@@ -41,19 +41,19 @@ interface PuffrenApiService{
     suspend fun getHomePageItem(): List<HomePageItem>
 
     /**
-     * user login and get token
+     * User Login and Get Token
      */
     @POST("user/login")
     suspend fun login(@Body login: Login): LoginResult
 
     /**
-     * get login user by token
+     * Get Login User by Token
      */
     @GET("user/profile")
     suspend fun getLoginUser(@Header("Authorization") token: String): User
 
     /**
-     *  Member Registry
+     * Member Registry
      */
     @POST("user/register?origin=2")
     suspend fun registry(@Body user:User): String
@@ -83,10 +83,16 @@ interface PuffrenApiService{
     suspend fun getPartnersInfoByDay(@Path("day") day: String): List<PartnerInfo>
 
     /**
-     * User coupon
+     * Member Coupon
      */
     @GET("user/coupon/{validFor}")
     suspend fun getCoupon(@Header("Authorization") token: String, @Path("validFor") type: String): List<Coupon>
+
+    /**
+     * Partner Performance
+     */
+    @GET("partner/performanceHistory")
+    suspend fun getPerformance(@Header("Authorization") token: String): List<Performance>
 }
 
 object PuffrenApi {

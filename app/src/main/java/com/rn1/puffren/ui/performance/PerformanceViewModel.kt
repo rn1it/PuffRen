@@ -1,25 +1,24 @@
-package com.rn1.puffren.ui.coupon
+package com.rn1.puffren.ui.performance
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rn1.puffren.data.Coupon
-import com.rn1.puffren.data.CouponType
 import com.rn1.puffren.data.DataResult
+import com.rn1.puffren.data.Performance
 import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.Logger
 import com.rn1.puffren.util.UserManager
 import kotlinx.coroutines.launch
 
-class CouponViewModel(
+class PerformanceViewModel(
     val repository: PuffRenRepository
 ): ViewModel() {
 
-    private val _coupons = MutableLiveData<List<Coupon>>()
-    val coupons: LiveData<List<Coupon>>
-        get() = _coupons
+    private val _performances = MutableLiveData<List<Performance>>()
+    val performances: LiveData<List<Performance>>
+        get() = _performances
 
     private val _status = MutableLiveData<LoadApiStatus>()
     val status: LiveData<LoadApiStatus>
@@ -41,7 +40,7 @@ class CouponViewModel(
 
         viewModelScope.launch {
 
-            _coupons.value = when(val result = repository.getCoupon(UserManager.userToken!!, CouponType.ALL.value)) {
+            _performances.value = when(val result = repository.getPerformance(UserManager.userToken!!)) {
                 is DataResult.Success -> {
                     _status.value = LoadApiStatus.DONE
                     result.data
