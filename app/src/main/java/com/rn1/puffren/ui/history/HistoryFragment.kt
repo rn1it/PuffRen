@@ -1,19 +1,20 @@
 package com.rn1.puffren.ui.history
 
 import android.app.AlertDialog
-import android.app.TimePickerDialog
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.rn1.puffren.R
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.custom.CalendarAdapter
 import com.rn1.puffren.data.Events
 import com.rn1.puffren.databinding.FragmentHistoryBinding
-import com.rn1.puffren.util.Logger
+import com.rn1.puffren.ext.getVmFactory
 import com.rn1.puffren.util.MAX_CALENDAR_DAYS
 import java.text.SimpleDateFormat
 import java.util.*
@@ -21,6 +22,7 @@ import java.util.*
 class HistoryFragment : Fragment() {
 
     lateinit var binding: FragmentHistoryBinding
+    private val viewModel by viewModels<HistoryViewModel> { getVmFactory() }
 
     private lateinit var nextButton: ImageButton
     private lateinit var previousButton: ImageButton
@@ -46,9 +48,19 @@ class HistoryFragment : Fragment() {
     ): View {
 
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
 
         initialLayout()
         setUpCalendar()
+
+        viewModel.navigateToReportItem.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                findNavController().navigate(NavigationDirections.actionGlobalReportItemFragment())
+                viewModel.navigateToReportItemDone()
+            }
+        })
 
         return binding.root
     }

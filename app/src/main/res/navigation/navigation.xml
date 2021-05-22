@@ -118,6 +118,12 @@
         android:label="EditPasswordFragment"
         tools:layout="@layout/fragment_edit_password"/>
 
+    <fragment
+        android:id="@+id/reportItemFragment"
+        android:name="com.rn1.puffren.ui.history.item.ReportItemFragment"
+        android:label="fragment_report_item"
+        tools:layout="@layout/fragment_report_item" />
+
     <action
         android:id="@+id/action_global_locationFragment"
         app:destination="@id/locationFragment" />
@@ -178,5 +184,9 @@
     <action
         android:id="@+id/action_global_editPasswordFragment"
         app:destination="@id/editPasswordFragment"/>
+
+    <action
+        android:id="@+id/action_global_reportItemFragment"
+        app:destination="@id/reportItemFragment" />
 
 </navigation>

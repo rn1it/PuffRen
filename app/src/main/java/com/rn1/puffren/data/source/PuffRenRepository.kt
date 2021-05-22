@@ -15,4 +15,6 @@ interface PuffRenRepository {
     suspend fun getProductListByType(type: String): DataResult<List<Product>>
 
     suspend fun getProductDetail(id: String): DataResult<Product>
+
+    suspend fun getReportItems(token: String): DataResult<List<ReportItem>>
 }

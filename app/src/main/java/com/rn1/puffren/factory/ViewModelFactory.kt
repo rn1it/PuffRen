@@ -6,6 +6,8 @@ import com.rn1.puffren.MainViewModel
 import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.ui.cart.CartViewModel
 import com.rn1.puffren.ui.edit.EditMembershipViewModel
+import com.rn1.puffren.ui.history.HistoryViewModel
+import com.rn1.puffren.ui.history.item.ReportItemViewModel
 import com.rn1.puffren.ui.home.HomeViewModel
 import com.rn1.puffren.ui.login.LoginViewModel
 import com.rn1.puffren.ui.registry.RegistryViewModel
@@ -36,6 +38,12 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(EditMembershipViewModel::class.java) ->
                     EditMembershipViewModel(repository)
+
+                isAssignableFrom(HistoryViewModel::class.java) ->
+                    HistoryViewModel(repository)
+
+                isAssignableFrom(ReportItemViewModel::class.java) ->
+                    ReportItemViewModel(repository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

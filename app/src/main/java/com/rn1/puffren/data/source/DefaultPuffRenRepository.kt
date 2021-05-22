@@ -1,7 +1,6 @@
 package com.rn1.puffren.data.source
 
 import com.rn1.puffren.data.*
-import kotlin.math.log
 
 class DefaultPuffRenRepository(
     private val puffRenRemoteDataSource: PuffRenDataSource,
@@ -30,5 +29,9 @@ class DefaultPuffRenRepository(
 
     override suspend fun getProductDetail(id: String): DataResult<Product> {
         return puffRenRemoteDataSource.getProductDetail(id)
+    }
+
+    override suspend fun getReportItems(token: String): DataResult<List<ReportItem>> {
+        return puffRenRemoteDataSource.getReportItems(token)
     }
 }

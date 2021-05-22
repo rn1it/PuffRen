@@ -1,28 +1,31 @@
-package com.rn1.puffren.ui.report
+package com.rn1.puffren.ui.history
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.rn1.puffren.data.source.PuffRenRepository
-import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.Logger
 
-class ReportViewModel(
+class HistoryViewModel(
     val repository: PuffRenRepository
-) : ViewModel(){
+): ViewModel() {
 
-    private val _status = MutableLiveData<LoadApiStatus>()
-    val status: LiveData<LoadApiStatus>
-        get() = _status
-
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String>
-        get() = _error
+    private val _navigateToReportItem = MutableLiveData<Boolean>()
+    val navigateToReportItem: LiveData<Boolean>
+        get() = _navigateToReportItem
 
     init {
         Logger.i("------------------------------------")
         Logger.i("[${this::class.simpleName}]${this}")
         Logger.i("------------------------------------")
+    }
+
+    fun navigateToReportItem(){
+        _navigateToReportItem.value = true
+    }
+
+    fun navigateToReportItemDone(){
+        _navigateToReportItem.value = null
     }
 
 }

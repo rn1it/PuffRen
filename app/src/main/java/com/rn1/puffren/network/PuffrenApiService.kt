@@ -50,7 +50,7 @@ interface PuffrenApiService{
      * get login user by token
      */
     @GET("user/profile")
-    suspend fun getLoginUser(@Header("Authorization") authorization: String): User
+    suspend fun getLoginUser(@Header("Authorization") token: String): User
 
     /**
      *  Member Registry
@@ -69,6 +69,12 @@ interface PuffrenApiService{
      */
     @GET("product/{productId}")
     suspend fun getProductDetail(@Path("productId") id: String): Product
+
+    /**
+     * Report Items
+     */
+    @GET("application/reportItems")
+    suspend fun getReportItems(@Header("Authorization") token: String): List<ReportItem>
 }
 
 object PuffrenApi {
