@@ -1,5 +1,6 @@
 package com.rn1.puffren.custom
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -18,12 +19,21 @@ class CalendarAdapter(
     context: Context,
     private val dates: List<Date>,
     private val currentDate: Calendar,
-    private val events: List<Events>
+    private val events: List<Events>,
+    private val selectedDate: Date?
 ) : ArrayAdapter<Date>(context, R.layout.item_day_cell) {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private val today = Calendar.getInstance(Locale.TAIWAN)
+    private var selectedCalendar= Calendar.getInstance(Locale.TAIWAN)
 
+    init {
+        selectedDate?.let {
+            selectedCalendar.time = it
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
         val monthDate = dates[position]
@@ -33,7 +43,6 @@ class CalendarAdapter(
         val displayDay = dateCalendar.get(Calendar.DATE)
         val displayMonth = dateCalendar.get(Calendar.MONTH) + 1
         val displayYear = dateCalendar.get(Calendar.YEAR)
-        val currentDay = currentDate.get(Calendar.DATE)
         val currentMonth = currentDate.get(Calendar.MONTH) + 1
         val currentYear = currentDate.get(Calendar.YEAR)
 
@@ -45,10 +54,23 @@ class CalendarAdapter(
 
         view?.let {
 
+            // mark today
             if(displayYear == today.get(Calendar.YEAR)
                 && displayMonth == (today.get(Calendar.MONTH) + 1)
                 && displayDay == today.get(Calendar.DATE)) {
-                it.text_calendar_day.setTextColor(context.resources.getColor(R.color.orange_ffa626))
+                view.text_calendar_day.setTextColor(context.resources.getColor(R.color.orange_ffa626))
+            }
+
+            // mark selected date
+            selectedDate?.let {
+                if(displayYear == selectedCalendar.get(Calendar.YEAR)
+                    && displayMonth == (selectedCalendar.get(Calendar.MONTH) + 1)
+                    && displayDay == selectedCalendar.get(Calendar.DATE)) {
+                    view.text_calendar_day.setTextColor(context.resources.getColor(R.color.bg_color_yellow))
+                    view.selected_circle.visibility = View.VISIBLE
+                    view.text_events_id.visibility = View.VISIBLE
+
+                }
             }
 
             if (displayMonth == currentMonth && displayYear == currentYear) {

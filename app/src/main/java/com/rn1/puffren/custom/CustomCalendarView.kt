@@ -32,6 +32,8 @@ class CustomCalendarView(context: Context?, attrs: AttributeSet?) : LinearLayout
     private val dates = mutableListOf<Date>()
     private val eventsList = mutableListOf<Events>()
 
+    private var selectedDate: Date? = null
+
     init {
         initialLayout()
         setUpCalendar()
@@ -167,7 +169,7 @@ class CustomCalendarView(context: Context?, attrs: AttributeSet?) : LinearLayout
             monthCalendar.add(Calendar.DAY_OF_MONTH, 1)
         }
 
-        calendarAdapter = CalendarAdapter(context, dates, calendar, eventsList)
+        calendarAdapter = CalendarAdapter(context, dates, calendar, eventsList, selectedDate)
         gridView.adapter = calendarAdapter
 
     }

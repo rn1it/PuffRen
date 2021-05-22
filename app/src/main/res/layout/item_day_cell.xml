@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:padding="8dp">
+    android:padding="4dp">
+
+    <View
+        android:id="@+id/selected_circle"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/bg_circle"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_calendar_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1"
+        android:textSize="16sp"
         android:textStyle="bold"
-        android:layout_gravity="center"
-        android:textSize="16sp"/>
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1" />
 
     <TextView
         android:id="@+id/text_events_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:textStyle="bold"
-        android:layout_gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="9sp" />
+        android:textColor="@color/black_000000"
+        android:textSize="9sp"
+        android:gravity="center"
+        tools:ignore="SmallSp"
+        android:text="note"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/text_calendar_day"
+        app:layout_constraintEnd_toEndOf="@id/text_calendar_day"
+        app:layout_constraintTop_toBottomOf="@id/text_calendar_day"
+        tools:text="note"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
