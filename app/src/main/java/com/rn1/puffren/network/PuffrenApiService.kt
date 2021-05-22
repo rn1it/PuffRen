@@ -81,6 +81,12 @@ interface PuffrenApiService{
      */
     @GET("application/partnerMap/{day}")
     suspend fun getPartnersInfoByDay(@Path("day") day: String): List<PartnerInfo>
+
+    /**
+     * User coupon
+     */
+    @GET("user/coupon/{validFor}")
+    suspend fun getCoupon(@Header("Authorization") token: String, @Path("validFor") type: String): List<Coupon>
 }
 
 object PuffrenApi {

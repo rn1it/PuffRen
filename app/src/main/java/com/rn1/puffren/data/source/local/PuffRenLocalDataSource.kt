@@ -35,4 +35,8 @@ class PuffRenLocalDataSource: PuffRenDataSource {
     override suspend fun getPartnersInfoByDay(day: String): DataResult<List<PartnerInfo>> {
         TODO("Not yet implemented")
     }
+
+    override suspend fun getCoupon(token: String, type: String): DataResult<List<Coupon>> {
+        TODO("Not yet implemented")
+    }
 }

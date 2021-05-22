@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.rn1.puffren.MainViewModel
 import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.ui.cart.CartViewModel
+import com.rn1.puffren.ui.coupon.CouponViewModel
 import com.rn1.puffren.ui.edit.EditMembershipViewModel
 import com.rn1.puffren.ui.history.HistoryViewModel
 import com.rn1.puffren.ui.history.item.ReportItemViewModel
@@ -48,6 +49,9 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(LocationViewModel::class.java) ->
                     LocationViewModel(repository)
+
+                isAssignableFrom(CouponViewModel::class.java) ->
+                    CouponViewModel(repository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
