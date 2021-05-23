@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import com.rn1.puffren.PuffRenApplication
 import com.rn1.puffren.R
 import com.rn1.puffren.data.Events
 import kotlinx.android.synthetic.main.item_day_cell.view.*
@@ -58,7 +59,7 @@ class CalendarAdapter(
             if(displayYear == today.get(Calendar.YEAR)
                 && displayMonth == (today.get(Calendar.MONTH) + 1)
                 && displayDay == today.get(Calendar.DATE)) {
-                view.text_calendar_day.setTextColor(context.resources.getColor(R.color.orange_ffa626))
+                view.text_calendar_day.setTextColor(PuffRenApplication.instance.getColor(R.color.orange_ffa626))
             }
 
             // mark selected date
@@ -66,7 +67,7 @@ class CalendarAdapter(
                 if(displayYear == selectedCalendar.get(Calendar.YEAR)
                     && displayMonth == (selectedCalendar.get(Calendar.MONTH) + 1)
                     && displayDay == selectedCalendar.get(Calendar.DATE)) {
-                    view.text_calendar_day.setTextColor(context.resources.getColor(R.color.bg_color_yellow))
+                    view.text_calendar_day.setTextColor(PuffRenApplication.instance.getColor(R.color.bg_color_yellow))
                     view.selected_circle.visibility = View.VISIBLE
                     view.text_events_id.visibility = View.VISIBLE
 
@@ -74,10 +75,12 @@ class CalendarAdapter(
             }
 
             if (displayMonth == currentMonth && displayYear == currentYear) {
-                it.setBackgroundColor(context.resources.getColor(R.color.bg_color_yellow))
+                it.setBackgroundColor(PuffRenApplication.instance.getColor(R.color.bg_color_yellow))
             } else {
-                it.setBackgroundColor(Color.parseColor("#f5f5f5"))
-                it.text_calendar_day.setTextColor(Color.parseColor("#ffffff"))
+                it.setBackgroundColor(PuffRenApplication.instance.getColor(R.color.grey_f5f5f5))
+                it.text_calendar_day.setTextColor(PuffRenApplication.instance.getColor(R.color.white))
+                // disable not current month action
+                it.visibility = View.GONE
             }
 
             val dayNumber = view.findViewById<TextView>(R.id.text_calendar_day)
