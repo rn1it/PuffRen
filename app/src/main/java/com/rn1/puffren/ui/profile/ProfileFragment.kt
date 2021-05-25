@@ -116,11 +116,11 @@ class ProfileFragment : Fragment() {
 
     private fun setProfileImage(user: User){
         when(user.level){
-            1 -> binding.imageProfile.setImageResource(R.drawable.lv1_member)
-            2 -> binding.imageProfile.setImageResource(R.drawable.lv2_member)
-            3 -> binding.imageProfile.setImageResource(R.drawable.lv3_member)
-            4 -> binding.imageProfile.setImageResource(R.drawable.lv4_member)
-            5 -> binding.imageProfile.setImageResource(R.drawable.lv5_member)
+            "1" -> binding.imageProfile.setImageResource(R.drawable.lv1_member)
+            "2" -> binding.imageProfile.setImageResource(R.drawable.lv2_member)
+            "3" -> binding.imageProfile.setImageResource(R.drawable.lv3_member)
+            "4" -> binding.imageProfile.setImageResource(R.drawable.lv4_member)
+            "5" -> binding.imageProfile.setImageResource(R.drawable.lv5_member)
             else -> binding.imageProfile.setImageResource(R.drawable.vendor)
         }
     }
