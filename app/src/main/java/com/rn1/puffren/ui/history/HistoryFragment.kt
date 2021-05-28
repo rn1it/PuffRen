@@ -11,10 +11,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.rn1.puffren.NavigationDirections
+import com.rn1.puffren.R
 import com.rn1.puffren.custom.CalendarAdapter
 import com.rn1.puffren.data.Events
 import com.rn1.puffren.databinding.FragmentHistoryBinding
 import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.util.Logger
 import com.rn1.puffren.util.MAX_CALENDAR_DAYS
 import java.text.SimpleDateFormat
 import java.util.*
@@ -41,6 +43,7 @@ class HistoryFragment : Fragment() {
     private val eventsList = mutableListOf<Events>()
 
     private var selectedDate: Date? = null
+    private var destination = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +58,10 @@ class HistoryFragment : Fragment() {
         initialLayout()
         setUpCalendar()
 
+        binding.textReport.setOnClickListener {
+            viewModel.navigate(destination)
+        }
+
         viewModel.navigateToReportItem.observe(viewLifecycleOwner, Observer {
             it?.let {
                 findNavController().navigate(NavigationDirections.actionGlobalReportItemFragment())
@@ -62,6 +69,12 @@ class HistoryFragment : Fragment() {
             }
         })
 
+        viewModel.navigateToAdvanceReport.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                findNavController().navigate(NavigationDirections.actionGlobalAdvanceReportFragment())
+                viewModel.navigateToAdvanceReportDone()
+            }
+        })
         return binding.root
     }
 
@@ -111,12 +124,19 @@ class HistoryFragment : Fragment() {
 
     private fun setupGridItemClickListener() {
 
+        val today = eventDateFormat.format(Date())
+        Logger.d("today = $today")
+
+
         gridView.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
 //                setUpCalendar()
 //                view.setBackgroundResource(R.color.orange_ffa626)
                 selectedDate = dates[position]
                 setUpCalendar()
+
+                val date = eventDateFormat.format(selectedDate!!)
+                compareDate(today, date)
 
                 /**
                 val builder = AlertDialog.Builder(context)
@@ -146,6 +166,7 @@ class HistoryFragment : Fragment() {
                 val month = monthFormat.format(dates[position])
                 val year = yearFormat.format(dates[position])
 
+                Logger.d("today = $today")
                 Logger.d("date = $date")
                 Logger.d("month = $month")
                 Logger.d("year = $year")
@@ -174,6 +195,23 @@ class HistoryFragment : Fragment() {
 
     private fun collectEventsPerMonth(month: String, year: String){
 
+    }
+
+    /**
+     * d1.compareTo(d2) < 0 ==
+     * if d1 before d2 -> d1 < d2 == true
+     */
+    private fun compareDate(d1: String, d2: String){
+        when(d1 < d2) {
+            true -> {
+                binding.textReport.text = getString(R.string.report_advance)
+                destination = 2
+            }
+            else -> {
+                binding.textReport.text = getString(R.string.report_data)
+                destination = 1
+            }
+        }
     }
 
 }

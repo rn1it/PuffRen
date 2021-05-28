@@ -124,6 +124,17 @@
         android:label="fragment_report_item"
         tools:layout="@layout/fragment_report_item" />
 
+    <fragment
+        android:id="@+id/advanceReportFragment"
+        android:name="com.rn1.puffren.ui.history.advance.AdvanceReportFragment"
+        android:label="AdvanceReportFragment"
+        tools:layout="@layout/fragment_advance_report">
+        <action
+            android:id="@+id/action_advanceReportFragment_to_historyFragment"
+            app:destination="@id/historyFragment"
+            app:popUpTo="@id/historyFragment" />
+    </fragment>
+
     <action
         android:id="@+id/action_global_locationFragment"
         app:destination="@id/locationFragment" />
@@ -188,5 +199,9 @@
     <action
         android:id="@+id/action_global_reportItemFragment"
         app:destination="@id/reportItemFragment" />
+
+    <action
+        android:id="@+id/action_global_advanceReportFragment"
+        app:destination="@id/advanceReportFragment" />
 
 </navigation>

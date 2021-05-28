@@ -93,6 +93,24 @@ interface PuffrenApiService{
      */
     @GET("partner/performanceHistory")
     suspend fun getPerformance(@Header("Authorization") token: String): List<Performance>
+
+    /**
+     * Report in Advance
+     */
+    @POST("partner/reportInAdvance")
+    suspend fun reportInAdvance(@Header("Authorization") token: String, @Body reportOpenStatus: ReportOpenStatus): ReportResult
+
+    /**
+     * Report for Today
+     */
+    @POST("partner/reportForToday")
+    suspend fun reportForToday(@Header("Authorization") token: String, @Body reportOpenStatus: ReportOpenStatus): ReportOpenStatus
+
+    /**
+     * Partner Locations
+     */
+    @GET("partner/locations")
+    suspend fun getPartnerLocations(@Header("Authorization") token: String): List<String>
 }
 
 object PuffrenApi {

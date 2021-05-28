@@ -2,6 +2,8 @@ package com.rn1.puffren.data.source
 
 import com.rn1.puffren.data.*
 import retrofit2.http.Body
+import retrofit2.http.Header
+import retrofit2.http.POST
 
 interface PuffRenDataSource {
 
@@ -24,4 +26,10 @@ interface PuffRenDataSource {
     suspend fun getCoupon(token: String, type: String): DataResult<List<Coupon>>
 
     suspend fun getPerformance(token: String): DataResult<List<Performance>>
+
+    suspend fun reportInAdvance(token: String, reportOpenStatus: ReportOpenStatus): DataResult<ReportResult>
+
+    suspend fun reportForToday(token: String, reportOpenStatus: ReportOpenStatus): DataResult<ReportOpenStatus>
+
+    suspend fun getPartnerLocations(token: String): DataResult<List<String>>
 }

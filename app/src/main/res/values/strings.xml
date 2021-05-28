@@ -1,23 +1,11 @@
 <resources>
+    <!-- APP name -->
     <string name="app_name">PuffRen</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="message">訊息</string>
-    <string name="puffren_location">泡芙人位置</string>
-    <string name="puff_prods">商品品項</string>
-    <string name="member_card">虛擬會員卡</string>
-    <string name="add2cart">加入購物車</string>
-    <string name="forget_password">忘記密碼</string>
-    <string name="login">登入</string>
-    <string name="registry">註冊</string>
-    <string name="account">帳號</string>
-    <string name="email_account">Email帳號</string>
-    <string name="password">密碼</string>
-    <string name="login_account">登入帳號</string>
+
+    <!-- note -->
     <string name="internet_not_connected">未連接網路</string>
-    <string name="closed_today">今日休息</string>
-    <string name="report_location">出攤位置回報</string>
-    <string name="sale_status">我的營業狀況</string>
+
+    <!-- profile -->
     <string name="user_nickname">使用者暱稱</string>
     <string name="user_level">使用者會員等級</string>
     <string name="vendor_feature">泡芙人功能</string>
@@ -25,11 +13,28 @@
     <string name="sales_figures_report">營業狀況回報</string>
     <string name="sales_history_figures_report">營業紀錄回報</string>
     <string name="qrcode">QRCode</string>
+
+    <!-- product & detail -->
+    <string name="puff_prods">商品品項</string>
     <string name="note_select_item_first">請先選擇項目</string>
     <string name="note_choose_favor">選擇口味</string>
     <string name="nt_dollars_">NT$%d</string>
     <string name="buy_one">單盒購買</string>
     <string name="_buy_more_than_one">%d盒優惠</string>
+    <string name="ingredient">成分</string>
+    <string name="notification">注意事項</string>
+
+    <!-- cart $ delivery -->
+    <string name="add2cart">加入購物車</string>
+
+    <!-- login & registry -->
+    <string name="forget_password">忘記密碼</string>
+    <string name="login">登入</string>
+    <string name="registry">註冊</string>
+    <string name="account">帳號</string>
+    <string name="email_account">Email帳號</string>
+    <string name="password">密碼</string>
+    <string name="login_account">登入帳號</string>
     <string name="registry_account">註冊帳號</string>
     <string name="account_nickname">帳號暱稱</string>
     <string name="invite_code">推薦碼</string>
@@ -42,16 +47,26 @@
     <string name="edit_password">修改密碼</string>
     <string name="edit_member_info_done">會員資料修改完畢</string>
     <string name="send">送出</string>
+
+    <!-- order -->
     <string name="search_order">訂單查詢</string>
+
+    <!-- member -->
+    <string name="member_card">虛擬會員卡</string>
     <string name="member_info_edit">會員資料修改</string>
     <string name="member_activity">會員專屬活動</string>
     <string name="lvl1_member">白金泡芙</string>
-    <string name="ingredient">成分</string>
-    <string name="notification">注意事項</string>
+
+    <!-- location -->
+    <string name="puffren_location">泡芙人位置</string>
     <string name="where_are_puffrens">泡芙人在哪</string>
     <string name="puffrens_tomorrow">明天的泡芙人</string>
+
+    <!-- cart -->
     <string name="item_selected">選購的商品</string>
     <string name="next_step">下一步</string>
+
+    <!-- calendar -->
     <string name="sunday">日</string>
     <string name="one">一</string>
     <string name="two">二</string>
@@ -59,6 +74,23 @@
     <string name="four">四</string>
     <string name="five">五</string>
     <string name="six">六</string>
+
+    <!-- coupon -->
     <string name="coupon">優惠券</string>
+
+    <!-- performance -->
     <string name="performance">歷史考核</string>
+
+    <!-- report -->
+    <string name="closed_today">今日休息</string>
+    <string name="report_location">出攤位置回報</string>
+    <string name="sale_status">我的營業狀況</string>
+    <string name="report_advance">預先回報</string>
+    <string name="option">選項</string>
+    <string name="date">日期</string>
+    <string name="time">時間</string>
+    <string name="location">地點</string>
+    <string name="location_input_note">請輸入或選擇開攤地點</string>
+    <string name="report_data">回報資料</string>
+
 </resources>

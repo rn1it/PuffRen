@@ -46,4 +46,22 @@ class DefaultPuffRenRepository(
     override suspend fun getPerformance(token: String): DataResult<List<Performance>> {
         return puffRenRemoteDataSource.getPerformance(token)
     }
+
+    override suspend fun reportInAdvance(
+        token: String,
+        reportOpenStatus: ReportOpenStatus
+    ): DataResult<ReportResult> {
+        return puffRenRemoteDataSource.reportInAdvance(token, reportOpenStatus)
+    }
+
+    override suspend fun reportForToday(
+        token: String,
+        reportOpenStatus: ReportOpenStatus
+    ): DataResult<ReportOpenStatus> {
+        return puffRenRemoteDataSource.reportForToday(token, reportOpenStatus)
+    }
+
+    override suspend fun getPartnerLocations(token: String): DataResult<List<String>> {
+        return puffRenRemoteDataSource.getPartnerLocations(token)
+    }
 }
