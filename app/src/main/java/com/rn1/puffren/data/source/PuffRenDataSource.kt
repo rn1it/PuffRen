@@ -34,4 +34,6 @@ interface PuffRenDataSource {
     suspend fun getPartnerLocations(token: String): DataResult<List<String>>
 
     suspend fun getSaleCalendar(token: String): DataResult<SaleCalendar>
+
+    suspend fun getReportStatus(token: String): DataResult<ReportStatus>
 }

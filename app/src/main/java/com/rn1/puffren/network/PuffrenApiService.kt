@@ -117,6 +117,12 @@ interface PuffrenApiService{
      */
     @GET("partner/calendar")
     suspend fun getSaleCalendar(@Header("Authorization") token: String): SaleCalendar
+
+    /**
+     * Calendar
+     */
+    @GET("partner/reportStatus")
+    suspend fun getReportStatus(@Header("Authorization") token: String): ReportStatus
 }
 
 object PuffrenApi {

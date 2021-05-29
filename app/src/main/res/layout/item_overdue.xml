@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="overdueInfo"
+            type="com.rn1.puffren.data.OverdueInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view_overdue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_my_report_note">
+
+        <TextView
+            android:id="@+id/text_overdue_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{overdueInfo.openDate}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2015-05-28"/>
+
+        <Button
+            android:id="@+id/button_report"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/round_corner_layout"
+            android:backgroundTint="@color/black_000000"
+            android:text="@string/report_sale_info"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_overdue_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/text_overdue_date"
+            tools:text="回報營收" />
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/grey_999999"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_overdue_date"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_overdue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_line"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

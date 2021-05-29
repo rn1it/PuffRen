@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.rn1.puffren.data.Report
+import com.rn1.puffren.data.ReportOpenStatus
 import com.rn1.puffren.databinding.ItemReportBinding
 
-class ReportAdapter: ListAdapter<Report, ReportAdapter.ReportViewHolder>(ReportDiffCallbackUtil) {
+class TodayReportAdapter: ListAdapter<ReportOpenStatus, TodayReportAdapter.ReportViewHolder>(ReportDiffCallbackUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReportViewHolder {
         return ReportViewHolder.from(parent)
@@ -21,8 +21,8 @@ class ReportAdapter: ListAdapter<Report, ReportAdapter.ReportViewHolder>(ReportD
 
     class ReportViewHolder(private val binding: ItemReportBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(report: Report){
-            binding.report = report
+        fun bind(reportOpenStatus: ReportOpenStatus){
+            binding.reportOpenStatus = reportOpenStatus
             binding.executePendingBindings()
         }
 
@@ -36,14 +36,14 @@ class ReportAdapter: ListAdapter<Report, ReportAdapter.ReportViewHolder>(ReportD
         }
     }
 
-    object ReportDiffCallbackUtil: DiffUtil.ItemCallback<Report>() {
+    object ReportDiffCallbackUtil: DiffUtil.ItemCallback<ReportOpenStatus>() {
 
-        override fun areItemsTheSame(oldItem: Report, newItem: Report): Boolean {
+        override fun areItemsTheSame(oldItem: ReportOpenStatus, newItem: ReportOpenStatus): Boolean {
             return oldItem === newItem
         }
 
         @SuppressLint("DiffUtilEquals")
-        override fun areContentsTheSame(oldItem: Report, newItem: Report): Boolean {
+        override fun areContentsTheSame(oldItem: ReportOpenStatus, newItem: ReportOpenStatus): Boolean {
             return oldItem == newItem
         }
 

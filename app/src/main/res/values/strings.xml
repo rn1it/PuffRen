@@ -96,4 +96,6 @@
     <string name="_quantity">%d 個</string>
     <string name="already_advance_report">已預先回報</string>
     <string name="open_at_">將於 %s 營業</string>
+    <string name="report_sale_info">回報營收</string>
+
 </resources>

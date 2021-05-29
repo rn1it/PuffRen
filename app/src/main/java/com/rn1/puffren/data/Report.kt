@@ -2,8 +2,24 @@ package com.rn1.puffren.data
 
 import com.squareup.moshi.Json
 
-data class Report(
-    val reportId: String
+data class OpenInfo(
+    val details: List<ReportOpenStatus>,
+    val isStillOpen: Boolean? = null,
+    @Json(name = "open_date")
+    val openDate: String? = null,
+    @Json(name="report_status")
+    val reportStatus: Int? = null
+)
+
+data class OverdueInfo(
+    val details: List<ReportOpenStatus>,
+    @Json(name = "open_date")
+    val openDate: String,
+)
+
+data class ReportStatus(
+    val today: OpenInfo,
+    val overdueRecords: List<OverdueInfo>
 )
 
 data class ReportOpenStatus(

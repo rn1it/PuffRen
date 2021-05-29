@@ -68,4 +68,8 @@ class DefaultPuffRenRepository(
     override suspend fun getSaleCalendar(token: String): DataResult<SaleCalendar> {
         return puffRenRemoteDataSource.getSaleCalendar(token)
     }
+
+    override suspend fun getReportStatus(token: String): DataResult<ReportStatus> {
+        return puffRenRemoteDataSource.getReportStatus(token)
+    }
 }
