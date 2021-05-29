@@ -1,7 +1,6 @@
 package com.rn1.puffren.data.source
 
 import com.rn1.puffren.data.*
-import retrofit2.http.Header
 
 interface PuffRenRepository {
 
@@ -30,4 +29,6 @@ interface PuffRenRepository {
     suspend fun reportForToday(token: String, reportOpenStatus: ReportOpenStatus): DataResult<ReportOpenStatus>
 
     suspend fun getPartnerLocations(token: String): DataResult<List<String>>
+
+    suspend fun getSaleCalendar(token: String): DataResult<SaleCalendar>
 }

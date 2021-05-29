@@ -11,6 +11,8 @@ import android.widget.TextView
 import com.rn1.puffren.PuffRenApplication
 import com.rn1.puffren.R
 import com.rn1.puffren.data.Events
+import com.rn1.puffren.data.SaleCalendar
+import com.rn1.puffren.ext.show
 import kotlinx.android.synthetic.main.item_day_cell.view.*
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -20,7 +22,7 @@ class CalendarAdapter(
     context: Context,
     private val dates: List<Date>,
     private val currentDate: Calendar,
-    private val events: List<Events>,
+    private val saleCalendar: SaleCalendar?,
     private val selectedDate: Date?
 ) : ArrayAdapter<Date>(context, R.layout.item_day_cell) {
 
@@ -69,8 +71,6 @@ class CalendarAdapter(
                     && displayDay == selectedCalendar.get(Calendar.DATE)) {
                     view.text_calendar_day.setTextColor(PuffRenApplication.instance.getColor(R.color.bg_color_yellow))
                     view.selected_circle.visibility = View.VISIBLE
-                    view.text_events_id.visibility = View.VISIBLE
-
                 }
             }
 
@@ -84,19 +84,44 @@ class CalendarAdapter(
             }
 
             val dayNumber = view.findViewById<TextView>(R.id.text_calendar_day)
-            val eventNumber = view.findViewById<TextView>(R.id.text_events_id)
+            val bot = view.findViewById<View>(R.id.bot)
             dayNumber.text = dayNo.toString()
 
-            val eventCalendar = Calendar.getInstance()
-            val arrayList = mutableListOf<String>()
+            val eventCalendar = Calendar.getInstance(Locale.TAIWAN)
 
-            for (event in events) {
-                eventCalendar.time = convertStringToDate(event.date!!)
-                if (dayNo == eventCalendar.get(Calendar.DAY_OF_MONTH)
-                    && displayMonth == eventCalendar.get(Calendar.MONTH) + 1
-                    && displayYear == eventCalendar.get(Calendar.YEAR)) {
-                    arrayList.add(event.event!!)
-                    eventNumber.text = "${arrayList.size} events"
+            saleCalendar?.let {
+                for (date in saleCalendar.expectToOpen) {
+                    eventCalendar.time = convertStringToDate(date.reportDate!!)
+                    if (dayNo == eventCalendar.get(Calendar.DAY_OF_MONTH)
+                        && displayMonth == eventCalendar.get(Calendar.MONTH) + 1
+                        && displayYear == eventCalendar.get(Calendar.YEAR)) {
+                        bot.apply {
+                            show()
+                            background.setTint(PuffRenApplication.instance.getColor(R.color.colorAccent))
+                        }
+                    }
+                }
+                for (date in saleCalendar.relax) {
+                    eventCalendar.time = convertStringToDate(date.reportDate!!)
+                    if (dayNo == eventCalendar.get(Calendar.DAY_OF_MONTH)
+                        && displayMonth == eventCalendar.get(Calendar.MONTH) + 1
+                        && displayYear == eventCalendar.get(Calendar.YEAR)) {
+                        bot.apply {
+                            show()
+                            background.setTint(PuffRenApplication.instance.getColor(R.color.grey_999999))
+                        }
+                    }
+                }
+                for (date in saleCalendar.reportDetails) {
+                    eventCalendar.time = convertStringToDate(date.openDate!!)
+                    if (dayNo == eventCalendar.get(Calendar.DAY_OF_MONTH)
+                        && displayMonth == eventCalendar.get(Calendar.MONTH) + 1
+                        && displayYear == eventCalendar.get(Calendar.YEAR)) {
+                        bot.apply {
+                            show()
+                            background.setTint(PuffRenApplication.instance.getColor(R.color.colorPrimaryDark))
+                        }
+                    }
                 }
             }
         }

@@ -54,4 +54,9 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="text_style_calendar_report_title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black_000000</item>
+    </style>
+
 </resources>

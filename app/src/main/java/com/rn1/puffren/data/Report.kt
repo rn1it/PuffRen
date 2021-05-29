@@ -24,6 +24,17 @@ data class ReportOpenStatus(
     val partnerId: String? = null
 )
 
+data class ReportDetail(
+    val id: String,
+    @Json(name = "open_date")
+    val openDate: String? = null,
+    @Json(name = "report_status")
+    val reportStatus: Int? = null,
+    val sales: Int? = null,
+    val weather: String? = null,
+    val details: List<ReportItem>? = null
+)
+
 data class ReportResult(
     val message: String
 )

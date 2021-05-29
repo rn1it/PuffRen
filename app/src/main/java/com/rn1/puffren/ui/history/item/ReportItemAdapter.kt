@@ -22,8 +22,7 @@ class ReportItemAdapter: ListAdapter<ReportItem, ReportItemAdapter.ReportItemVie
     class ReportItemViewHolder(private val binding: ItemReportSaleItemBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(reportItem: ReportItem){
-
-            binding.textItemName.text = reportItem.item_title
+            binding.reportItem = reportItem
             binding.executePendingBindings()
         }
 

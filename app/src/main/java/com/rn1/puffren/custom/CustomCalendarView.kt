@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.*
 import com.rn1.puffren.R
 import com.rn1.puffren.data.Events
+import com.rn1.puffren.data.SaleCalendar
 import com.rn1.puffren.util.MAX_CALENDAR_DAYS
 import java.text.SimpleDateFormat
 import java.util.*
@@ -33,6 +34,7 @@ class CustomCalendarView(context: Context?, attrs: AttributeSet?) : LinearLayout
     private val eventsList = mutableListOf<Events>()
 
     private var selectedDate: Date? = null
+    private var saleCalendar: SaleCalendar? = null
 
     init {
         initialLayout()
@@ -169,7 +171,7 @@ class CustomCalendarView(context: Context?, attrs: AttributeSet?) : LinearLayout
             monthCalendar.add(Calendar.DAY_OF_MONTH, 1)
         }
 
-        calendarAdapter = CalendarAdapter(context, dates, calendar, eventsList, selectedDate)
+        calendarAdapter = CalendarAdapter(context, dates, calendar, saleCalendar, selectedDate)
         gridView.adapter = calendarAdapter
 
     }

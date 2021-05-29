@@ -1,6 +1,5 @@
 package com.rn1.puffren.ui.history
 
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,12 +10,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.rn1.puffren.NavigationDirections
+import com.rn1.puffren.PuffRenApplication
 import com.rn1.puffren.R
 import com.rn1.puffren.custom.CalendarAdapter
-import com.rn1.puffren.data.Events
+import com.rn1.puffren.data.*
 import com.rn1.puffren.databinding.FragmentHistoryBinding
 import com.rn1.puffren.ext.getVmFactory
-import com.rn1.puffren.util.Logger
+import com.rn1.puffren.ext.hide
+import com.rn1.puffren.ext.show
+import com.rn1.puffren.ui.history.item.ReportItemAdapter
 import com.rn1.puffren.util.MAX_CALENDAR_DAYS
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,13 +32,10 @@ class HistoryFragment : Fragment() {
     private lateinit var previousButton: ImageButton
     private lateinit var currentDateText: TextView
     private lateinit var gridView: GridView
-    private lateinit var alertDialog: AlertDialog
     private lateinit var calendarAdapter: CalendarAdapter
 
     private val calendar = Calendar.getInstance(Locale.TAIWAN)
     private val dateFormat = SimpleDateFormat("MMMM yyyy", Locale.TAIWAN)
-    private val monthFormat = SimpleDateFormat("MM", Locale.TAIWAN)
-    private val yearFormat = SimpleDateFormat("yyyy", Locale.TAIWAN)
     private val eventDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.TAIWAN)
 
     private val dates = mutableListOf<Date>()
@@ -44,6 +43,9 @@ class HistoryFragment : Fragment() {
 
     private var selectedDate: Date? = null
     private var destination = 1
+
+    private var saleCalendar: SaleCalendar? = null
+    private val reportItemAdapter = ReportItemAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,13 +56,20 @@ class HistoryFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-
+        testData()
         initialLayout()
-        setUpCalendar()
+        setUpCalendar(saleCalendar)
 
         binding.textReport.setOnClickListener {
             viewModel.navigate(destination)
         }
+
+//        viewModel.saleCalendar.observe(viewLifecycleOwner, Observer {
+//            it?.let {
+//                saleCalendar = it
+//                setUpCalendar(saleCalendar)
+//            }
+//        })
 
         viewModel.navigateToReportItem.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -85,20 +94,22 @@ class HistoryFragment : Fragment() {
         currentDateText = binding.textCurrentDate
         gridView = binding.calendarDate
 
+        // last month
         previousButton.setOnClickListener {
             calendar.add(Calendar.MONTH, -1)
-            setUpCalendar()
+            setUpCalendar(saleCalendar)
         }
 
+        // next month
         nextButton.setOnClickListener {
             calendar.add(Calendar.MONTH, 1)
-            setUpCalendar()
+            setUpCalendar(saleCalendar)
         }
 
         setupGridItemClickListener()
     }
 
-    private fun setUpCalendar() {
+    private fun setUpCalendar(saleCalendar: SaleCalendar?) {
         val currentDate = dateFormat.format(calendar.time)
         currentDateText.text = currentDate
 
@@ -106,95 +117,84 @@ class HistoryFragment : Fragment() {
         val monthCalendar = calendar.clone() as Calendar
         monthCalendar.set(Calendar.DAY_OF_MONTH, 1)
 
-        // 從星期日開始算 所以要-1
+        // start day count from Sunday, so need -1
         val firstDayOfMonth = monthCalendar.get(Calendar.DAY_OF_WEEK) - 1
         monthCalendar.add(Calendar.DAY_OF_MONTH, -firstDayOfMonth)
-
-        collectEventsPerMonth(monthFormat.format(calendar.time), yearFormat.format(calendar.time))
 
         while (dates.size < MAX_CALENDAR_DAYS) {
             dates.add(monthCalendar.time)
             monthCalendar.add(Calendar.DAY_OF_MONTH, 1)
         }
 
-        calendarAdapter = CalendarAdapter(requireContext(), dates, calendar, eventsList, selectedDate)
+        calendarAdapter = CalendarAdapter(requireContext(), dates, calendar, saleCalendar, selectedDate)
         gridView.adapter = calendarAdapter
-
     }
 
     private fun setupGridItemClickListener() {
 
         val today = eventDateFormat.format(Date())
-        Logger.d("today = $today")
-
 
         gridView.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
-//                setUpCalendar()
-//                view.setBackgroundResource(R.color.orange_ffa626)
                 selectedDate = dates[position]
-                setUpCalendar()
+                setUpCalendar(saleCalendar)
 
                 val date = eventDateFormat.format(selectedDate!!)
                 compareDate(today, date)
 
-                /**
-                val builder = AlertDialog.Builder(context)
-                builder.setCancelable(true)
-                val addView = LayoutInflater.from(parent.context).inflate(R.layout.add_new_event_layout, null)
-                val eventName = addView.findViewById<EditText>(R.id.edit_type_event)
-                val eventTime = addView.findViewById<TextView>(R.id.text_event_time)
-                val setTime = addView.findViewById<ImageButton>(R.id.image_bt_set_time)
-                val addEvent = addView.findViewById<Button>(R.id.bt_add_event)
+                 saleCalendar?.let { calendar ->
+                    val expect = calendar.expectToOpen.filter { it.reportDate == date }
+                    val relax = calendar.relax.filter { it.reportDate == date }
+                    val open = calendar.reportDetails.filter { it.openDate == date }
 
-                setTime.setOnClickListener {
-                    val calendar = Calendar.getInstance()
-                    val hours = calendar.get(Calendar.HOUR_OF_DAY)
-                    val minutes = calendar.get(Calendar.MINUTE)
-                    val timePickerDialog = TimePickerDialog(addView.context, R.style.Theme_AppCompat_Dialog, TimePickerDialog.OnTimeSetListener { timePicker, hourOfDay, minute ->
-                        val c = Calendar.getInstance()
-                        c.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                        c.set(Calendar.MINUTE, minute)
-                        c.timeZone = TimeZone.getDefault()
-                        val hFormat = SimpleDateFormat("K:mm a", Locale.TAIWAN)
-                        val eTime = hFormat.format(c.time)
-                        eventTime.text = eTime
-                    }, hours, minutes, false)
+                    with(binding) {
+                        if (expect.isNotEmpty()) {
+                            viewReportDetail.hide()
+                            textReport.apply {
+                                show()
+                                text = context.getString(R.string.already_advance_report)
+                            }
+                            textReportData.apply {
+                                show()
+                                text = PuffRenApplication.instance.getString(R.string.open_at_, expect[0].expectedOpenTime)
+                            }
+                        } else if (relax.isNotEmpty()) {
+                            viewReportDetail.hide()
+                            textReport.hide()
+                            textReportData.apply {
+                                show()
+                                text = getString(R.string.closed_today)
+                            }
+                        } else if (open.isNotEmpty()) {
+                            reportDetail = open[0]
+                            recyclerReportDetail.adapter = reportItemAdapter
+                            reportItemAdapter.submitList(open[0].details)
+                            viewReportDetail.show()
+                            textReport.hide()
+                            textReportData.hide()
+                        } else {
+                            viewReportDetail.hide()
+                            textReport.show()
+                            textReportData.apply {
+                                show()
+                                text = getString(R.string.no_report_data)
+                            }
+                        }
+                    }
                 }
 
+                /**
                 val date = eventDateFormat.format( dates[position])
                 val month = monthFormat.format(dates[position])
                 val year = yearFormat.format(dates[position])
-
                 Logger.d("today = $today")
                 Logger.d("date = $date")
                 Logger.d("month = $month")
                 Logger.d("year = $year")
                 Logger.d("position = $position")
                 Logger.d("dates[position] = ${dates[position]}")
-
-
-                addEvent.setOnClickListener {
-                    saveEvent(eventName.text.toString(), eventTime.text.toString(), date, month, year)
-                    setUpCalendar()
-                    alertDialog.dismiss()
-                }
-
-                builder.setView(addView)
-                alertDialog = builder.create()
-                alertDialog.show()
                 */
             }
-    }
-
-    private fun saveEvent(event: String, time: String, date: String, month: String, year: String){
-        //TODO add event
-        eventsList.add(Events(event, time, date, month, year))
-        Toast.makeText(context, "Event Saved", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun collectEventsPerMonth(month: String, year: String){
-
     }
 
     /**
@@ -214,4 +214,11 @@ class HistoryFragment : Fragment() {
         }
     }
 
+    private fun testData() {
+        val list1 = listOf(ReportOpenStatus(reportDate = "2021-05-10", expectedOpenTime = "9:00" , openLocation = "台北市士林區中山北路六段234號"))
+        val list2 = listOf(ReportOpenStatus(reportDate = "2021-05-08"))
+        val list4 = listOf(ReportItem("0", "原殼泡芙", 20, 20), ReportItem("0", "原泡芙", 30, 30), ReportItem("0", "殼泡芙", 20, 90))
+        val list3 = listOf(ReportDetail(id = "0", openDate = "2021-05-18", details = list4))
+        saleCalendar = SaleCalendar(list1, list2, list3)
+    }
 }

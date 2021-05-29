@@ -7,6 +7,9 @@
         <variable
             name="viewModel"
             type="com.rn1.puffren.ui.history.HistoryViewModel" />
+        <variable
+            name="reportDetail"
+            type="com.rn1.puffren.data.ReportDetail" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -173,12 +176,118 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_calendar">
 
+            <ScrollView
+                android:id="@+id/view_report_detail"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="24dp">
+
+                    <TextView
+                        android:id="@+id/title_open_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="開攤日期"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        style="@style/text_style_calendar_report_title" />
+
+                    <TextView
+                        android:id="@+id/title_weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="天氣"
+                        style="@style/text_style_calendar_report_title"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/title_open_time" />
+
+                    <TextView
+                        android:id="@+id/title_sale_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="銷售額"
+                        style="@style/text_style_calendar_report_title"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/title_weather" />
+
+                    <TextView
+                        android:id="@+id/text_open_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{reportDetail.openDate}"
+                        android:textSize="16sp"
+                        tools:text="09:00"
+                        app:layout_constraintBottom_toBottomOf="@+id/title_open_time"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/title_open_time" />
+
+                    <TextView
+                        android:id="@+id/text_weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{reportDetail.weather}"
+                        android:textSize="16sp"
+                        tools:text="晴天"
+                        app:layout_constraintBottom_toBottomOf="@+id/title_weather"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/title_weather" />
+
+                    <TextView
+                        android:id="@+id/text_sale_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:price="@{reportDetail.sales}"
+                        android:textSize="16sp"
+                        tools:text="160000"
+                        app:layout_constraintBottom_toBottomOf="@+id/title_sale_amount"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/title_sale_amount" />
+
+                    <View
+                        android:id="@+id/view_line"
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/grey_999999"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/title_sale_amount" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_report_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:orientation="vertical"
+                        android:clipToPadding="false"
+                        android:overScrollMode="never"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/view_line"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
+
             <TextView
                 android:id="@+id/text_report_data"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
                 android:gravity="center"
-                android:text="尚無回報資料"
+                android:text="@string/no_report_data"
                 android:textColor="@color/black_000000"
                 app:layout_constraintBottom_toTopOf="@+id/text_report"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -189,8 +298,9 @@
 
             <TextView
                 android:id="@+id/text_report"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:text="@string/report_data"
@@ -203,15 +313,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/text_report_data" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-<!--        <com.rn1.puffren.custom.CustomCalendarView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

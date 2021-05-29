@@ -64,4 +64,8 @@ class DefaultPuffRenRepository(
     override suspend fun getPartnerLocations(token: String): DataResult<List<String>> {
         return puffRenRemoteDataSource.getPartnerLocations(token)
     }
+
+    override suspend fun getSaleCalendar(token: String): DataResult<SaleCalendar> {
+        return puffRenRemoteDataSource.getSaleCalendar(token)
+    }
 }

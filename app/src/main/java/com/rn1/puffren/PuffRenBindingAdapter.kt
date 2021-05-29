@@ -31,6 +31,14 @@ fun bindPrice(textView: TextView, price: Int?) {
     price?.let { textView.text = PuffRenApplication.instance.getString(R.string.nt_dollars_, it) }
 }
 
+/**
+ * Displays currency price to [TextView] by [Int]
+ */
+@BindingAdapter("quantity")
+fun bindQuantity(textView: TextView, quantity: Int?) {
+    quantity?.let { textView.text = PuffRenApplication.instance.getString(R.string._quantity, it) }
+}
+
 @BindingAdapter("imageUrl")
 fun bindImage(imageView: ImageView, imgUrl: String?){
     imgUrl?.let {

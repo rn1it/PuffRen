@@ -11,6 +11,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:background="@drawable/bg_circle"
+        android:backgroundTint="@color/orange_ffa626"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,21 +29,15 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="1" />
 
-    <TextView
-        android:id="@+id/text_events_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <View
+        android:id="@+id/bot"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
         android:layout_marginTop="4dp"
-        android:textStyle="bold"
-        android:textColor="@color/black_000000"
-        android:textSize="9sp"
-        android:gravity="center"
-        tools:ignore="SmallSp"
-        android:text="note"
+        android:background="@drawable/bg_circle"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@id/text_calendar_day"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/text_calendar_day"
-        app:layout_constraintTop_toBottomOf="@id/text_calendar_day"
-        tools:text="note"/>
-
+        app:layout_constraintStart_toStartOf="@id/text_calendar_day"
+        app:layout_constraintTop_toBottomOf="@+id/text_calendar_day" />
 </androidx.constraintlayout.widget.ConstraintLayout>
