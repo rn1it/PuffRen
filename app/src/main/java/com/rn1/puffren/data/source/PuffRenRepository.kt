@@ -33,4 +33,6 @@ interface PuffRenRepository {
     suspend fun getSaleCalendar(token: String): DataResult<SaleCalendar>
 
     suspend fun getReportStatus(token: String): DataResult<ReportStatus>
+
+    suspend fun reportSale(token: String, reportDetail: ReportDetail): DataResult<ReportResult>
 }

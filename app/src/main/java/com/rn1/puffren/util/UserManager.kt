@@ -10,6 +10,7 @@ object UserManager {
 
     private const val USER_DATA = "user_data"
     private const val USER_TOKEN = "user_token"
+    private const val RECORD_ID = "recordId"
 
     private val _user = MutableLiveData<User>()
 
@@ -33,6 +34,29 @@ object UserManager {
                     PuffRenApplication.instance
                         .getSharedPreferences(USER_DATA, Context.MODE_PRIVATE).edit()
                         .putString(USER_TOKEN, value)
+                        .apply()
+                    value
+                }
+            }
+        }
+
+    var recordId: String? = null
+        get() = PuffRenApplication.instance
+            .getSharedPreferences(USER_DATA, Context.MODE_PRIVATE)
+            .getString(RECORD_ID, null)
+        set(value) {
+            field = when (value) {
+                null -> {
+                    PuffRenApplication.instance
+                        .getSharedPreferences(USER_DATA, Context.MODE_PRIVATE).edit()
+                        .remove(RECORD_ID)
+                        .apply()
+                    null
+                }
+                else -> {
+                    PuffRenApplication.instance
+                        .getSharedPreferences(USER_DATA, Context.MODE_PRIVATE).edit()
+                        .putString(RECORD_ID, value)
                         .apply()
                     value
                 }

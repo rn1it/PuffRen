@@ -32,15 +32,36 @@
 
         <TextView
             android:id="@+id/text_open_time"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@{reportOpenStatus.openTime}"
             app:layout_constraintBottom_toBottomOf="@id/image_alarm"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/image_alarm"
             app:layout_constraintTop_toTopOf="@id/image_alarm"
-            tools:text="20:00"/>
+            tools:text="20:00" />
+
+        <TextView
+            android:id="@+id/text_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/to"
+            app:layout_constraintBottom_toBottomOf="@id/image_alarm"
+            app:layout_constraintStart_toEndOf="@id/text_open_time"
+            app:layout_constraintTop_toTopOf="@id/image_alarm"
+            tools:text="-" />
+
+        <TextView
+            android:id="@+id/text_close_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{reportOpenStatus.closeTime}"
+            app:layout_constraintBottom_toBottomOf="@id/image_alarm"
+            app:layout_constraintStart_toEndOf="@id/text_to"
+            app:layout_constraintTop_toTopOf="@id/image_alarm"
+            tools:text="20:30" />
 
         <TextView
             android:id="@+id/text_open_location"

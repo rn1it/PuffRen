@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rn1.puffren.MainViewModel
 import com.rn1.puffren.data.source.PuffRenRepository
-import com.rn1.puffren.ui.cart.CartViewModel
 import com.rn1.puffren.ui.coupon.CouponViewModel
 import com.rn1.puffren.ui.edit.EditMembershipViewModel
 import com.rn1.puffren.ui.history.HistoryViewModel

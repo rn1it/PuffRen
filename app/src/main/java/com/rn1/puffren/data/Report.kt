@@ -41,7 +41,7 @@ data class ReportOpenStatus(
 )
 
 data class ReportDetail(
-    val id: String,
+    val id: String? = null,
     @Json(name = "open_date")
     val openDate: String? = null,
     @Json(name = "report_status")

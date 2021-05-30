@@ -72,4 +72,11 @@ class DefaultPuffRenRepository(
     override suspend fun getReportStatus(token: String): DataResult<ReportStatus> {
         return puffRenRemoteDataSource.getReportStatus(token)
     }
+
+    override suspend fun reportSale(
+        token: String,
+        reportDetail: ReportDetail
+    ): DataResult<ReportResult> {
+        return puffRenRemoteDataSource.reportSale(token, reportDetail)
+    }
 }

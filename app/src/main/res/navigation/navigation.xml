@@ -135,6 +135,16 @@
             app:popUpTo="@id/historyFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/saleReportFragment"
+        android:name="com.rn1.puffren.ui.report.sale.SaleReportFragment"
+        android:label="SaleReportFragment"
+        tools:layout="@layout/fragment_sale_report">
+        <argument
+            android:name="date"
+            app:argType="string" />
+    </fragment>
+
     <action
         android:id="@+id/action_global_locationFragment"
         app:destination="@id/locationFragment" />
@@ -204,4 +214,7 @@
         android:id="@+id/action_global_advanceReportFragment"
         app:destination="@id/advanceReportFragment" />
 
+    <action
+        android:id="@+id/action_global_saleReportFragment"
+        app:destination="@id/saleReportFragment" />
 </navigation>

@@ -63,4 +63,11 @@ class PuffRenLocalDataSource: PuffRenDataSource {
     override suspend fun getReportStatus(token: String): DataResult<ReportStatus> {
         TODO("Not yet implemented")
     }
+
+    override suspend fun reportSale(
+        token: String,
+        reportDetail: ReportDetail
+    ): DataResult<ReportResult> {
+        TODO("Not yet implemented")
+    }
 }

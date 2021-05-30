@@ -12,7 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg_color_yellow">
+        android:background="@color/bg_color_yellow"
+        tools:context=".ui.history.item.ReportFragment">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -93,6 +94,20 @@
                             app:layout_constraintTop_toTopOf="parent"
                             tools:text="2015-05-28"/>
 
+                        <Button
+                            android:id="@+id/button_report_sale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:background="@drawable/round_corner_layout"
+                            android:backgroundTint="@color/black_000000"
+                            android:text="@string/report_sale_info"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/text_today_open_date"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/text_today_open_date"
+                            tools:text="回報營收" />
+
                         <View
                             android:id="@+id/view_line"
                             android:layout_width="0dp"
@@ -159,7 +174,7 @@
                 android:padding="16dp">
 
                 <Button
-                    android:id="@+id/button_report_sale"
+                    android:id="@+id/button_report"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:background="@drawable/round_corner_layout"
@@ -180,7 +195,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button_report_sale" />
+                    app:layout_constraintTop_toBottomOf="@+id/button_report" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

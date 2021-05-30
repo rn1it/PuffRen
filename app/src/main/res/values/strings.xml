@@ -97,5 +97,22 @@
     <string name="already_advance_report">已預先回報</string>
     <string name="open_at_">將於 %s 營業</string>
     <string name="report_sale_info">回報營收</string>
-
+    <string name="report_close">回報關攤</string>
+    <string name="confirm_close">確定關攤</string>
+    <string name="close_success">關攤完成</string>
+    <string name="report_open">回報出攤</string>
+    <string name="confirm_open">確定出攤</string>
+    <string name="location_field_note">出攤地點不可空白</string>
+    <string name="open_success">出攤完成，祝營業順利 ^_^</string>
+    <string name="report_closed">回報休息</string>
+    <string name="closed_comfirm">確定休息</string>
+    <string name="closed_success">回報休息成功</string>
+    <string name="to">-</string>
+    <string name="select_weather_note">請選擇天氣</string>
+    <string-array name="weather_main_type">
+        <item>晴</item>
+        <item>陰</item>
+        <item>雨</item>
+        <item>晴時多雲</item>
+    </string-array>
 </resources>

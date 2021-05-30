@@ -3,13 +3,15 @@ package com.rn1.puffren.ui.history.advance
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.rn1.puffren.databinding.ItemLocationBinding
+import com.rn1.puffren.ui.report.ReportViewModel
 
 class LocationAdapter(
-    private val viewModel: AdvanceReportViewModel
+    private val viewModel: ViewModel
     ) : ListAdapter<String, LocationAdapter.LocationViewHolder>(ReportDiffCallbackUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationViewHolder {
@@ -20,7 +22,14 @@ class LocationAdapter(
         val location = getItem(position)
         holder.bind(location)
         holder.itemView.setOnClickListener {
-            viewModel.selectLocationOption(location)
+            when(viewModel) {
+                is AdvanceReportViewModel -> {
+                    viewModel.selectLocationOption(location)
+                }
+                is ReportViewModel -> {
+                    viewModel.selectLocationOption(location)
+                }
+            }
         }
     }
 

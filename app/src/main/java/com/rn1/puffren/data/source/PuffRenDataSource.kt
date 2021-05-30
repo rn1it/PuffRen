@@ -1,9 +1,6 @@
 package com.rn1.puffren.data.source
 
 import com.rn1.puffren.data.*
-import retrofit2.http.Body
-import retrofit2.http.Header
-import retrofit2.http.POST
 
 interface PuffRenDataSource {
 
@@ -36,4 +33,6 @@ interface PuffRenDataSource {
     suspend fun getSaleCalendar(token: String): DataResult<SaleCalendar>
 
     suspend fun getReportStatus(token: String): DataResult<ReportStatus>
+
+    suspend fun reportSale(token: String, reportDetail: ReportDetail): DataResult<ReportResult>
 }

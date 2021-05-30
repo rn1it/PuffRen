@@ -33,3 +33,8 @@ fun Fragment.getVmFactory(product: Product?, itemPackage: ItemPackage?): CartVie
     val repository = (requireContext().applicationContext as PuffRenApplication).puffRenRepository
     return CartViewModelFactory(repository, product, itemPackage)
 }
+
+fun Fragment.getVmFactory(string: String): StringViewModelFactory {
+    val repository = (requireContext().applicationContext as PuffRenApplication).puffRenRepository
+    return StringViewModelFactory(repository, string)
+}

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rn1.puffren.data.DataResult
-import com.rn1.puffren.data.Day
+import com.rn1.puffren.data.ReportOpenStatus
 import com.rn1.puffren.data.ReportStatus
 import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.network.LoadApiStatus
@@ -21,6 +21,18 @@ class ReportViewModel(
     val reportStatus: LiveData<ReportStatus>
         get() = _reportStatus
 
+    private val _reportOpenStatus =  MutableLiveData<ReportOpenStatus>()
+    val reportOpenStatus: LiveData<ReportOpenStatus>
+        get() = _reportOpenStatus
+
+    private val _location = MutableLiveData<String>()
+    val location: LiveData<String>
+        get() = _location
+
+    private val _locationOptions = MutableLiveData<List<String>>()
+    val locationOptions: LiveData<List<String>>
+        get() = _locationOptions
+
     private val _status = MutableLiveData<LoadApiStatus>()
     val status: LiveData<LoadApiStatus>
         get() = _status
@@ -34,10 +46,12 @@ class ReportViewModel(
         Logger.i("[${this::class.simpleName}]${this}")
         Logger.i("------------------------------------")
 
-        getReportStatus()
+        // TODO move to onResume()
+        // getReportStatus()
+        getPartnerLocations()
     }
 
-    private fun getReportStatus(){
+    fun getReportStatus(){
 
         viewModelScope.launch {
 
@@ -56,5 +70,54 @@ class ReportViewModel(
                 }
             }
         }
+    }
+
+    private fun getPartnerLocations(){
+        viewModelScope.launch {
+
+            _locationOptions.value = when(val result = repository.getPartnerLocations(UserManager.userToken!!)) {
+                is DataResult.Success -> {
+                    _status.value = LoadApiStatus.DONE
+                    result.data
+                }
+                is DataResult.Fail -> {
+                    _error.value = result.error
+                    null
+                }
+                is DataResult.Error -> {
+                    _error.value = result.exception.toString()
+                    null
+                }
+            }
+        }
+    }
+
+    fun reportForToday(location: String?, openStatus: Int, recordId: String?) {
+
+        viewModelScope.launch {
+
+            val reportOpenStatus = ReportOpenStatus(openLocation = location, openStatus = openStatus, recordId = recordId)
+
+             when(val result = repository.reportForToday(UserManager.userToken!!, reportOpenStatus)) {
+                is DataResult.Success -> {
+                    _status.value = LoadApiStatus.DONE
+                    _reportOpenStatus.value = result.data
+                    UserManager.recordId = result.data.recordId
+                    getReportStatus()
+                }
+                is DataResult.Fail -> {
+                    _error.value = result.error
+                    _reportOpenStatus.value = null
+                }
+                is DataResult.Error -> {
+                    _error.value = result.exception.toString()
+                    _reportOpenStatus.value = null
+                }
+            }
+        }
+    }
+
+    fun selectLocationOption(location: String){
+        _location.value = location
     }
 }
