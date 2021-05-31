@@ -56,7 +56,7 @@ interface PuffrenApiService{
      * Member Registry
      */
     @POST("user/register?origin=2")
-    suspend fun registry(@Body user:User): String
+    suspend fun registry(@Body user:User): RegistryResult
 
     /**
      * Product List

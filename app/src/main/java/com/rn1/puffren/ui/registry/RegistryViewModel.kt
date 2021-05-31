@@ -62,8 +62,8 @@ class RegistryViewModel(val repository: PuffRenRepository): ViewModel() {
                     is DataResult.Success -> {
                         val token = result.data
                         Logger.d("註冊成功: token= $token")
-                        UserManager.userToken = token
-                        getUserByToken(token)
+                        UserManager.userToken = result.data.accessToken
+                        getUserByToken(result.data.accessToken!!)
                     }
 
                     is DataResult.Fail -> {
@@ -83,10 +83,15 @@ class RegistryViewModel(val repository: PuffRenRepository): ViewModel() {
             nickname.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_FORMAT_NICKNAME_EMPTY
             password.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_FORMAT_PASSWORD_EMPTY
             confirmPassword.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_FORMAT_PASSWORD_CONFIRM_EMPTY
+            password.value != confirmPassword.value -> _invalidInfo.value = INVALID_FORMAT_PASSWORD_CONFIRM
             else -> {
                 _passRegistryCheck.value = true
             }
         }
+    }
+
+    fun cleanInvalidInfo() {
+        _invalidInfo.value = null
     }
 
     private fun getUserByToken(token: String){

@@ -10,7 +10,7 @@ interface PuffRenDataSource {
 
     suspend fun getLoginUser(token: String): DataResult<User>
 
-    suspend fun registry(user:User): DataResult<String>
+    suspend fun registry(user:User): DataResult<RegistryResult>
 
     suspend fun getProductListByType(type: String): DataResult<List<Product>>
 

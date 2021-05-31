@@ -83,7 +83,7 @@
             android:layout_marginStart="16dp"
             android:background="@drawable/round_corner_layout"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:text="@={viewModel.password}"
             android:textAlignment="center"
             android:paddingHorizontal="8dp"

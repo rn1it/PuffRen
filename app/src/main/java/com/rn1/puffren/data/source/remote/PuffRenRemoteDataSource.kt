@@ -62,7 +62,7 @@ object PuffRenRemoteDataSource: PuffRenDataSource {
         }
     }
 
-    override suspend fun registry(user: User): DataResult<String> {
+    override suspend fun registry(user: User): DataResult<RegistryResult> {
         if (!isInternetConnected()) {
             return DataResult.Fail(getString(R.string.internet_not_connected))
         }
