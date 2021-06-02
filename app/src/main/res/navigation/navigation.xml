@@ -151,6 +151,12 @@
         android:label="AchievementTypeFragment"
         tools:layout="@layout/fragment_achievement_type"/>
 
+    <fragment
+        android:id="@+id/foodCarFragment"
+        android:name="com.rn1.puffren.ui.car.FoodCarFragment"
+        android:label="FoodCarFragment"
+        tools:layout="@layout/fragment_food_car"/>
+
     <action
         android:id="@+id/action_global_locationFragment"
         app:destination="@id/locationFragment" />
@@ -227,4 +233,8 @@
     <action
         android:id="@+id/action_global_achievementTypeFragment"
         app:destination="@id/achievementTypeFragment"/>
+
+    <action
+        android:id="@+id/action_global_foodCarFragment"
+        app:destination="@id/foodCarFragment" />
 </navigation>

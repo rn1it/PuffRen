@@ -37,6 +37,10 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
     val navigateToProfile: LiveData<Boolean>
         get() = _navigateToProfile
 
+    private val _navigateToFoodCar =  MutableLiveData<Boolean>()
+    val navigateToFoodCar: LiveData<Boolean>
+        get() = _navigateToFoodCar
+
     init {
         Logger.i("------------------------------------")
         Logger.i("[${this::class.simpleName}]${this}")
@@ -80,6 +84,9 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
             2 -> {
                 navigateToProfile()
             }
+            3 -> {
+                navigateToFoodCar()
+            }
         }
     }
 
@@ -105,5 +112,13 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
 
     fun navigateToProfileDone(){
         _navigateToProfile.value = null
+    }
+
+    private fun navigateToFoodCar(){
+        _navigateToFoodCar.value = true
+    }
+
+    fun navigateToFoodCarDone(){
+        _navigateToFoodCar.value = null
     }
 }

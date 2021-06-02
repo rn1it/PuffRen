@@ -64,6 +64,13 @@ class HomeFragment : Fragment() {
             }
         })
 
+        viewModel.navigateToFoodCar.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                findNavController().navigate(NavigationDirections.actionGlobalFoodCarFragment())
+                viewModel.navigateToFoodCarDone()
+            }
+        })
+
         viewModel.homePageItem.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
