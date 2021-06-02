@@ -48,7 +48,8 @@ data class ReportDetail(
     val reportStatus: Int? = null,
     val sales: Int? = null,
     val weather: String? = null,
-    val details: List<ReportItem>? = null
+    val details: List<ReportItem>? = null,
+    val items: List<ReportItem>? = null
 )
 
 data class ReportResult(

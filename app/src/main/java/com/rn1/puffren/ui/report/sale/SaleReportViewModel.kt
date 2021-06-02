@@ -81,18 +81,18 @@ class SaleReportViewModel(
     fun reportSale(spinnerPosition: Int) {
         val weather = WeatherMain.values()[spinnerPosition].title
 
-        val details = mutableListOf<ReportItem>()
+        val items = mutableListOf<ReportItem>()
 
         for (item in itemMap) {
             val reportItem = ReportItem(id = item.key, quantity = item.value)
-            details.add(reportItem)
+            items.add(reportItem)
         }
 
         val reportDetail = ReportDetail(
             openDate = openDate.value,
             sales = saleAmount.value,
             weather = weather,
-            details = details
+            items = items
         )
 
         viewModelScope.launch {

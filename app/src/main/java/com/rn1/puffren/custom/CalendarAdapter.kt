@@ -1,8 +1,7 @@
 package com.rn1.puffren.custom
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.rn1.puffren.PuffRenApplication
 import com.rn1.puffren.R
-import com.rn1.puffren.data.Events
 import com.rn1.puffren.data.SaleCalendar
 import com.rn1.puffren.ext.show
 import kotlinx.android.synthetic.main.item_day_cell.view.*
@@ -36,7 +34,6 @@ class CalendarAdapter(
         }
     }
 
-    @SuppressLint("SetTextI18n")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
         val monthDate = dates[position]
@@ -97,7 +94,7 @@ class CalendarAdapter(
                         && displayYear == eventCalendar.get(Calendar.YEAR)) {
                         bot.apply {
                             show()
-                            background.setTint(PuffRenApplication.instance.getColor(R.color.colorAccent))
+                            backgroundTintList = ColorStateList.valueOf(PuffRenApplication.instance.getColor(R.color.colorAccent))
                         }
                     }
                 }
@@ -108,7 +105,7 @@ class CalendarAdapter(
                         && displayYear == eventCalendar.get(Calendar.YEAR)) {
                         bot.apply {
                             show()
-                            background.setTint(PuffRenApplication.instance.getColor(R.color.grey_999999))
+                            backgroundTintList = ColorStateList.valueOf(PuffRenApplication.instance.getColor(R.color.grey_999999))
                         }
                     }
                 }
@@ -119,7 +116,7 @@ class CalendarAdapter(
                         && displayYear == eventCalendar.get(Calendar.YEAR)) {
                         bot.apply {
                             show()
-                            background.setTint(PuffRenApplication.instance.getColor(R.color.colorPrimaryDark))
+                            backgroundTintList = ColorStateList.valueOf(PuffRenApplication.instance.getColor(R.color.colorPrimaryDark))
                         }
                     }
                 }

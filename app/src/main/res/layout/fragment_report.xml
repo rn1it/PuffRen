@@ -50,26 +50,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="每日 23:00 前完成營收回報"
+                        android:text="@string/report_everyday"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/text_my_report_title" />
 
-                    <!--                <TextView-->
-                    <!--                    android:id="@+id/text_not_report_yet"-->
-                    <!--                    android:layout_width="0dp"-->
-                    <!--                    android:layout_height="wrap_content"-->
-                    <!--                    android:layout_marginTop="16dp"-->
-                    <!--                    android:background="@drawable/round_corner_layout"-->
-                    <!--                    android:backgroundTint="#E1E1E1"-->
-                    <!--                    android:paddingVertical="8dp"-->
-                    <!--                    android:text="今天還沒有營業紀錄喔!"-->
-                    <!--                    android:textAlignment="center"-->
-                    <!--                    app:layout_constraintEnd_toEndOf="@+id/text_my_report_note"-->
-                    <!--                    app:layout_constraintStart_toStartOf="@+id/text_my_report_note"-->
-                    <!--                    app:layout_constraintTop_toBottomOf="@+id/text_my_report_note" />-->
+                    <TextView
+                        android:id="@+id/text_no_record_today"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:background="@drawable/round_corner_layout"
+                        android:backgroundTint="@color/grey_e1e1e1"
+                        android:paddingVertical="8dp"
+                        android:text="@string/no_record_today"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_my_report_note" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/view_today"
@@ -94,12 +95,27 @@
                             app:layout_constraintTop_toTopOf="parent"
                             tools:text="2015-05-28"/>
 
+                        <TextView
+                            android:id="@+id/text_report_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16sp"
+                            android:paddingHorizontal="8dp"
+                            android:background="@drawable/round_corner_layout"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/text_today_open_date"
+                            app:layout_constraintStart_toEndOf="@+id/text_today_open_date"
+                            app:layout_constraintTop_toTopOf="@+id/text_today_open_date"
+                            tools:text="已收攤" />
+
                         <Button
                             android:id="@+id/button_report_sale"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:background="@drawable/round_corner_layout"
                             android:backgroundTint="@color/black_000000"
+                            android:visibility="gone"
                             android:text="@string/report_sale_info"
                             android:textColor="@color/white"
                             android:textSize="14sp"
@@ -170,16 +186,19 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:layout_height="wrap_content">
 
                 <Button
                     android:id="@+id/button_report"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/round_corner_layout"
-                    android:backgroundTint="@android:color/holo_green_dark"
+                    android:backgroundTint="@color/grey_e1e1e1"
+                    android:enabled="false"
                     android:text="@string/report_location"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -188,10 +207,12 @@
                     android:id="@+id/button_closed_today"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_margin="16dp"
                     android:background="@drawable/round_corner_layout"
-                    android:backgroundTint="#F44336"
+                    android:backgroundTint="@color/grey_e1e1e1"
+                    android:enabled="false"
                     android:text="@string/closed_today"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

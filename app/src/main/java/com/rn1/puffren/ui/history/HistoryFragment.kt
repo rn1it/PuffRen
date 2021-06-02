@@ -56,7 +56,7 @@ class HistoryFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        testData()
+//        testData()
         initialLayout()
         setUpCalendar(saleCalendar)
 
@@ -64,12 +64,12 @@ class HistoryFragment : Fragment() {
             viewModel.navigate(destination)
         }
 
-//        viewModel.saleCalendar.observe(viewLifecycleOwner, Observer {
-//            it?.let {
-//                saleCalendar = it
-//                setUpCalendar(saleCalendar)
-//            }
-//        })
+        viewModel.saleCalendar.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                saleCalendar = it
+                setUpCalendar(saleCalendar)
+            }
+        })
 
         viewModel.navigateToReportItem.observe(viewLifecycleOwner, Observer {
             it?.let {

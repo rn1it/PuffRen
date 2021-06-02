@@ -109,6 +109,11 @@
     <string name="closed_success">回報休息成功</string>
     <string name="to">-</string>
     <string name="select_weather_note">請選擇天氣</string>
+    <string name="report_everyday">每日 23:00 前完成營收回報</string>
+    <string name="no_record_today">今天還沒有營業紀錄喔!</string>
+    <string name="already_close">已收攤</string>
+    <string name="already_report_in_time">已準時回報</string>
+    <string name="opening">營業中</string>
     <string-array name="weather_main_type">
         <item>晴</item>
         <item>陰</item>

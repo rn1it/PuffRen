@@ -38,7 +38,7 @@ class ReportItemAdapter(
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
                 override fun afterTextChanged(p0: Editable?) {}
                 override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    viewModel.setItemAmount(reportItem.id, text.toString())
+                    viewModel.setItemAmount(reportItem.id!!, text.toString())
                 }
             })
 
