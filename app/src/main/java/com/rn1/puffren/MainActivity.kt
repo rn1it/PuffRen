@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.cartFragment -> CurrentFragmentType.CART
                 R.id.editMembershipFragment -> CurrentFragmentType.EDITMEMBERSHIP
                 R.id.editPasswordFragment -> CurrentFragmentType.EDITPASSWORD
+                R.id.achievementTypeFragment -> CurrentFragmentType.ACHIEVEMENT
                 else -> mainViewModel.currentFragmentType.value
             }
         }

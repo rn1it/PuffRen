@@ -145,6 +145,12 @@
             app:argType="string" />
     </fragment>
 
+    <fragment
+        android:id="@+id/achievementTypeFragment"
+        android:name="com.rn1.puffren.ui.achievement.AchievementTypeFragment"
+        android:label="AchievementTypeFragment"
+        tools:layout="@layout/fragment_achievement_type"/>
+
     <action
         android:id="@+id/action_global_locationFragment"
         app:destination="@id/locationFragment" />
@@ -217,4 +223,8 @@
     <action
         android:id="@+id/action_global_saleReportFragment"
         app:destination="@id/saleReportFragment" />
+
+    <action
+        android:id="@+id/action_global_achievementTypeFragment"
+        app:destination="@id/achievementTypeFragment"/>
 </navigation>

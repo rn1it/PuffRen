@@ -79,4 +79,8 @@ class DefaultPuffRenRepository(
     ): DataResult<ReportResult> {
         return puffRenRemoteDataSource.reportSale(token, reportDetail)
     }
+
+    override suspend fun getMemberAchievement(token: String): DataResult<List<Achievement>> {
+        return puffRenRemoteDataSource.getMemberAchievement(token)
+    }
 }

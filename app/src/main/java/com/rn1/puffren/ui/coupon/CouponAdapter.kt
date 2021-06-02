@@ -21,8 +21,8 @@ class CouponAdapter: ListAdapter<Coupon, CouponAdapter.CouponViewHolder>(CouponD
 
     class CouponViewHolder(private val binding: ItemCouponBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(Coupon: Coupon){
-            binding.coupon = Coupon
+        fun bind(coupon: Coupon){
+            binding.coupon = coupon
             binding.executePendingBindings()
         }
 

@@ -70,4 +70,8 @@ class PuffRenLocalDataSource: PuffRenDataSource {
     ): DataResult<ReportResult> {
         TODO("Not yet implemented")
     }
+
+    override suspend fun getMemberAchievement(token: String): DataResult<List<Achievement>> {
+        TODO("Not yet implemented")
+    }
 }

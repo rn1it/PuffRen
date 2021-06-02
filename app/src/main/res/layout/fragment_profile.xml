@@ -216,7 +216,7 @@
                     android:id="@+id/image_performance"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/placeholder"
+                    android:src="@drawable/puffren_performance"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -396,7 +396,7 @@
                     android:id="@+id/image_member_coupon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/placeholder"
+                    android:src="@drawable/coupon"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -414,10 +414,41 @@
                     app:layout_constraintTop_toBottomOf="@+id/image_member_coupon" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_member_achievement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:focusable="true"
+                android:onClick="@{() -> viewModel.navigateToMemberAchievement()}"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/profile_activity"
+                app:layout_constraintStart_toStartOf="@+id/profile_activity"
+                app:layout_constraintTop_toBottomOf="@+id/profile_activity">
+
+                <ImageView
+                    android:id="@+id/image_member_achievement"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/member_achievement"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_profile_member_achievement_title"
+                    style="@style/text_style_profile_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/coupon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_member_achievement" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

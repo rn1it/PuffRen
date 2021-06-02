@@ -62,6 +62,10 @@ class ProfileViewModel(
     val navigateToPerformance: LiveData<Boolean>
         get() = _navigateToPerformance
 
+    private val _navigateToMemberAchievement = MutableLiveData<Boolean>()
+    val navigateToMemberAchievement: LiveData<Boolean>
+        get() = _navigateToMemberAchievement
+
     private val _status = MutableLiveData<LoadApiStatus>()
     val status: LiveData<LoadApiStatus>
         get() = _status
@@ -192,5 +196,13 @@ class ProfileViewModel(
 
     fun navigateToPerformanceDone(){
         _navigateToPerformance.value = null
+    }
+
+    fun navigateToMemberAchievement(){
+        _navigateToMemberAchievement.value = true
+    }
+
+    fun navigateToMemberAchievementDone(){
+        _navigateToMemberAchievement.value = null
     }
 }

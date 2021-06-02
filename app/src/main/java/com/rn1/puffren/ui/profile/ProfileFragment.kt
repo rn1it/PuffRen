@@ -104,6 +104,13 @@ class ProfileFragment : Fragment() {
             }
         })
 
+        viewModel.navigateToMemberAchievement.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                findNavController().navigate(NavigationDirections.actionGlobalAchievementTypeFragment())
+                viewModel.navigateToMemberAchievementDone()
+            }
+        })
+
         viewModel.user.observe(viewLifecycleOwner, Observer {
             it?.let {
                 setProfileImage(it)

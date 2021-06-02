@@ -6,6 +6,7 @@ import com.rn1.puffren.data.ItemPackage
 import com.rn1.puffren.data.Product
 import com.rn1.puffren.data.User
 import com.rn1.puffren.factory.*
+import com.rn1.puffren.ui.achievement.AchievementTypeFilter
 import com.rn1.puffren.ui.product.ProdTypeFilter
 
 
@@ -37,4 +38,9 @@ fun Fragment.getVmFactory(product: Product?, itemPackage: ItemPackage?): CartVie
 fun Fragment.getVmFactory(string: String): StringViewModelFactory {
     val repository = (requireContext().applicationContext as PuffRenApplication).puffRenRepository
     return StringViewModelFactory(repository, string)
+}
+
+fun Fragment.getVmFactory(achievementTypeFilter: AchievementTypeFilter): AchievementViewModelFactory{
+    val repository = (requireContext().applicationContext as PuffRenApplication).puffRenRepository
+    return AchievementViewModelFactory(repository, achievementTypeFilter)
 }

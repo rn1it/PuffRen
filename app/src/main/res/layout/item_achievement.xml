@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="achievement"
+            type="com.rn1.puffren.data.Achievement" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:padding="16dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{achievement.title}"
+            android:textColor="@color/black_000000"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="我愛泡芙人" />
+
+        <TextView
+            android:id="@+id/text_sub_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{achievement.subtitle}"
+            android:textColor="@color/black_000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_title"
+            tools:text="活動期間內累計消費達指定金額即可獲得獎勵" />
+
+        <TextView
+            android:id="@+id/title_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/activity_period"
+            android:textColor="@color/black_000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_sub_title"
+            tools:text="活動日期:" />
+
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black_000000"
+            app:layout_constraintBottom_toBottomOf="@id/title_date"
+            app:layout_constraintStart_toEndOf="@id/title_date"
+            app:layout_constraintTop_toTopOf="@id/title_date"
+            tools:text="2021-05-25至2021-06-30" />
+
+        <TextView
+            android:id="@+id/title_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/progress"
+            android:textColor="@color/black_000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_date"
+            tools:text="進度:" />
+
+        <TextView
+            android:id="@+id/text_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black_000000"
+            app:layout_constraintBottom_toBottomOf="@id/title_progress"
+            app:layout_constraintStart_toEndOf="@id/title_progress"
+            app:layout_constraintTop_toTopOf="@id/title_progress"
+            tools:text="1/5" />
+
+        <TextView
+            android:id="@+id/text_reward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="@{achievement.rewardCouponTitle}"
+            android:textColor="@color/orange_ffa626"
+            app:layout_constraintBottom_toBottomOf="@+id/title_progress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title_progress"
+            tools:text="商品$30折價券" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_progress" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

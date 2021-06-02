@@ -129,6 +129,12 @@ interface PuffrenApiService{
      */
     @POST("partner/salesReport")
     suspend fun reportSale(@Header("Authorization") token: String, @Body reportDetail: ReportDetail): ReportResult
+
+    /**
+     * Member Achievement
+     */
+    @GET("user/achievement")
+    suspend fun getMemberAchievement(@Header("Authorization") token: String): List<Achievement>
 }
 
 object PuffrenApi {

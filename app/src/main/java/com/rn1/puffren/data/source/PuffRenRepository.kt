@@ -35,4 +35,6 @@ interface PuffRenRepository {
     suspend fun getReportStatus(token: String): DataResult<ReportStatus>
 
     suspend fun reportSale(token: String, reportDetail: ReportDetail): DataResult<ReportResult>
+
+    suspend fun getMemberAchievement(token: String): DataResult<List<Achievement>>
 }
