@@ -128,4 +128,12 @@
     <string name="progress_divide_">%d/%d</string>
     <string name="no_achievement">目前沒有成就項目!</string>
     <string name="coming_soon">Coming Soon !!</string>
+
+    <!-- invalid info -->
+    <string name="invalid_email_empty">Email帳號不可為空</string>
+    <string name="invalid_name_empty">暱稱不可為空</string>
+    <string name="invalid_password_empty">密碼不可為空</string>
+    <string name="invalid_password_comfirm_empty">密碼確認不可為空</string>
+    <string name="password_comfirm_fail">確認密碼與輸入密碼不同</string>
+    <string name="login_fail">登入失敗，請確認帳號密碼是否正確。</string>
 </resources>

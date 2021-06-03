@@ -116,8 +116,6 @@ class ProfileFragment : Fragment() {
                 setProfileImage(it)
             }
         })
-
-
         return binding.root
     }
 

@@ -101,7 +101,7 @@
             android:background="@drawable/round_corner_layout"
             android:backgroundTint="@color/orange_ffa626"
             android:text="@string/login"
-            android:onClick="@{() -> viewModel.login()}"
+            android:onClick="@{() -> viewModel.checkLoginInfo()}"
             app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
             app:layout_constraintStart_toStartOf="@+id/text_title_password"
             app:layout_constraintTop_toBottomOf="@+id/text_title_password" />

@@ -38,8 +38,6 @@ class HistoryViewModel(
         Logger.i("------------------------------------")
         Logger.i("[${this::class.simpleName}]${this}")
         Logger.i("------------------------------------")
-
-        getSaleCalendar()
     }
 
     fun navigate(destination: Int){
@@ -49,7 +47,7 @@ class HistoryViewModel(
         }
     }
 
-    private fun getSaleCalendar(){
+    fun getSaleCalendar(){
 
         viewModelScope.launch {
 

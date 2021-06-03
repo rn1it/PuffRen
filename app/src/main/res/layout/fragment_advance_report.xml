@@ -88,14 +88,13 @@
             app:layout_constraintStart_toEndOf="@id/title_location"
             app:layout_constraintTop_toTopOf="@+id/title_location" />
 
-        <!-- TODO visibility gone-->
         <TextView
             android:id="@+id/text_option"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/option"
             android:textColor="#2196F3"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/title_location"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/title_location" />

@@ -35,11 +35,10 @@ class HistoryFragment : Fragment() {
     private lateinit var calendarAdapter: CalendarAdapter
 
     private val calendar = Calendar.getInstance(Locale.TAIWAN)
-    private val dateFormat = SimpleDateFormat("MMMM yyyy", Locale.TAIWAN)
-    private val eventDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.TAIWAN)
+    private val monthFormat = SimpleDateFormat("MMMM yyyy", Locale.TAIWAN)
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.TAIWAN)
 
     private val dates = mutableListOf<Date>()
-    private val eventsList = mutableListOf<Events>()
 
     private var selectedDate: Date? = null
     private var destination = 1
@@ -73,7 +72,11 @@ class HistoryFragment : Fragment() {
 
         viewModel.navigateToReportItem.observe(viewLifecycleOwner, Observer {
             it?.let {
-                findNavController().navigate(NavigationDirections.actionGlobalReportItemFragment())
+                findNavController().navigate(
+                    NavigationDirections.actionGlobalSaleReportFragment(
+                        dateFormat.format(selectedDate!!)
+                    )
+                )
                 viewModel.navigateToReportItemDone()
             }
         })
@@ -88,6 +91,9 @@ class HistoryFragment : Fragment() {
     }
 
     private fun initialLayout() {
+
+        binding.textReport.hide()
+        binding.textReportData.hide()
 
         nextButton = binding.btNext
         previousButton = binding.btPrevious
@@ -110,7 +116,7 @@ class HistoryFragment : Fragment() {
     }
 
     private fun setUpCalendar(saleCalendar: SaleCalendar?) {
-        val currentDate = dateFormat.format(calendar.time)
+        val currentDate = monthFormat.format(calendar.time)
         currentDateText.text = currentDate
 
         dates.clear()
@@ -132,14 +138,13 @@ class HistoryFragment : Fragment() {
 
     private fun setupGridItemClickListener() {
 
-        val today = eventDateFormat.format(Date())
-
+        val today = dateFormat.format(Date())
         gridView.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 selectedDate = dates[position]
                 setUpCalendar(saleCalendar)
 
-                val date = eventDateFormat.format(selectedDate!!)
+                val date = dateFormat.format(selectedDate!!)
                 compareDate(today, date)
 
                  saleCalendar?.let { calendar ->
@@ -220,5 +225,18 @@ class HistoryFragment : Fragment() {
         val list4 = listOf(ReportItem("0", "原殼泡芙", 20, 20), ReportItem("0", "原泡芙", 30, 30), ReportItem("0", "殼泡芙", 20, 90))
         val list3 = listOf(ReportDetail(id = "0", openDate = "2021-05-18", details = list4))
         saleCalendar = SaleCalendar(list1, list2, list3)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        resetData()
+        viewModel.getSaleCalendar()
+        initialLayout()
+        setUpCalendar(saleCalendar)
+    }
+
+    private fun resetData() {
+        selectedDate = null
+        saleCalendar = null
     }
 }

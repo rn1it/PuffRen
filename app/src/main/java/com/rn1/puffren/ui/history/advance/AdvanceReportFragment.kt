@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rn1.puffren.R
 import com.rn1.puffren.databinding.FragmentAdvanceReportBinding
 import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.ext.show
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -65,7 +66,7 @@ class AdvanceReportFragment : Fragment() {
         viewModel.locationOptions.observe(viewLifecycleOwner, Observer { options ->
             options?.let {
                 binding.textOption.apply {
-                    visibility = View.VISIBLE
+                    show()
                     setOnClickListener {
                         setUpLocationPicker(options)
                     }
