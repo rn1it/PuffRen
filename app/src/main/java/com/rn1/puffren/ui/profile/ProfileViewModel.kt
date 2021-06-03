@@ -142,7 +142,6 @@ class ProfileViewModel(
     }
 
     fun navigateToQRCode(){
-
         _navigateToQRCode.value = true
     }
 

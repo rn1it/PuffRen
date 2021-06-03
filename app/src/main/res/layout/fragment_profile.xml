@@ -74,31 +74,30 @@
             style="@style/text_style_profile_title"
             android:textStyle="bold"/>
 
+        <!--TODO android:text='@{viewModel.user.vendor? @string/member_feature : @string/member_feature}'-->
         <TextView
             android:id="@+id/text_feature_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="64dp"
-            android:onClick="@{() -> viewModel.switchUserType()}"
-            android:text='@{viewModel.user.vendor? @string/member_feature : @string/member_feature}'
+            android:text='@{viewModel.testIsVendor? @string/vendor_feature : @string/member_feature}'
             tools:text="泡芙人功能"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_profile"
             style="@style/text_style_profile_title"
             android:textSize="18sp"/>
 
+        <!--TODO android:visibility="@{viewModel.user.vendor? View.VISIBLE : View.GONE}"-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/vendor_feature_block"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-
             android:visibility="@{viewModel.testIsVendor? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_feature_title">
-<!--            android:visibility="@{viewModel.user.vendor? View.VISIBLE : View.GONE}"-->
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/profile_report"
@@ -449,6 +448,19 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/button_switch_role"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/round_corner_layout"
+            android:backgroundTint="@color/orange_ffa626"
+            android:onClick="@{() -> viewModel.switchUserType()}"
+            android:text="切換角色"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
