@@ -12,9 +12,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.R
-import com.rn1.puffren.data.Product
 import com.rn1.puffren.databinding.FragmentProdItemBinding
 import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.ext.hide
+import com.rn1.puffren.ext.show
 import com.rn1.puffren.ui.product.ProdTypeFilter
 
 class ProdItemFragment(prodTypeFilter: ProdTypeFilter) : Fragment() {
@@ -50,6 +51,12 @@ class ProdItemFragment(prodTypeFilter: ProdTypeFilter) : Fragment() {
                 viewModel.navigateToProductDetailDone()
             }
         })
+
+        if (viewModel.getProdTypeFilter() == ProdTypeFilter.DELIVERY) {
+            binding.layoutComingSoon.show()
+        } else {
+            binding.layoutComingSoon.hide()
+        }
 
         return binding.root
     }

@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class ProdItemViewModel(
     private val repository: PuffRenRepository,
-    prodTypeFilter: ProdTypeFilter
+    private val prodTypeFilter: ProdTypeFilter
 ): ViewModel() {
 
     private val _productList = MutableLiveData<List<Product>>()
@@ -79,5 +79,9 @@ class ProdItemViewModel(
 
     fun navigateToProductDetailDone(){
         _product.value = null
+    }
+
+    fun getProdTypeFilter(): ProdTypeFilter{
+        return prodTypeFilter
     }
 }

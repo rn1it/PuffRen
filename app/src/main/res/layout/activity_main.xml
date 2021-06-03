@@ -55,18 +55,19 @@
                     app:layout_constraintTop_toTopOf="parent"
                     style="@style/text_style_toolbar"/>
 
+                <!-- TODO android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.PRODUCT ? View.VISIBLE : View.GONE}"-->
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginEnd="24dp"
-                    android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.PRODUCT ? View.VISIBLE : View.GONE}"
+                    android:visibility="gone"
                     android:src="@drawable/shopping_cart"
                     android:onClick="@{() -> viewModel.navigateToCart()}"
                     app:layout_constraintBottom_toBottomOf="@+id/toolbar_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/toolbar_title" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+          </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.Toolbar>
 
         <fragment
