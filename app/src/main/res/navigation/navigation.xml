@@ -157,6 +157,12 @@
         android:label="FoodCarFragment"
         tools:layout="@layout/fragment_food_car"/>
 
+    <fragment
+        android:id="@+id/activityFragment"
+        android:name="com.rn1.puffren.ui.activity.ActivityFragment"
+        android:label="ActivityFragment"
+        tools:layout="@layout/fragment_activity" />
+
     <action
         android:id="@+id/action_global_locationFragment"
         app:destination="@id/locationFragment" />
@@ -237,4 +243,8 @@
     <action
         android:id="@+id/action_global_foodCarFragment"
         app:destination="@id/foodCarFragment" />
+
+    <action
+        android:id="@+id/action_global_activityFragment"
+        app:destination="@id/activityFragment" />
 </navigation>

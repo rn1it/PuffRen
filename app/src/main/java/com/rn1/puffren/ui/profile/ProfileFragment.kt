@@ -78,7 +78,7 @@ class ProfileFragment : Fragment() {
 
         viewModel.navigateToActivity.observe(viewLifecycleOwner, Observer {
             it?.let {
-
+                findNavController().navigate(NavigationDirections.actionGlobalActivityFragment())
                 viewModel.navigateToActivityDone()
             }
         })
