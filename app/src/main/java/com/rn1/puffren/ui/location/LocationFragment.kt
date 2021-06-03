@@ -19,11 +19,11 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.tabs.TabLayout
+import com.rn1.puffren.PuffRenApplication
 import com.rn1.puffren.R
 import com.rn1.puffren.data.Day
 import com.rn1.puffren.databinding.FragmentLocationBinding
 import com.rn1.puffren.ext.getVmFactory
-import com.rn1.puffren.util.Logger
 
 class LocationFragment : Fragment() {
 
@@ -44,7 +44,6 @@ class LocationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupTabLayout()
         initMap()
     }
@@ -54,8 +53,6 @@ class LocationFragment : Fragment() {
         binding.tabLocationItem.apply {
             addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab) {
-                    Logger.d("aaaaa onTabSelected p = ${tab.position}")
-
                     removeAllMarkers()
 
                     when(tab.position) {
@@ -71,28 +68,16 @@ class LocationFragment : Fragment() {
     }
 
     private fun initMap(){
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        val mapFragment =
+            childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
     }
 
     private val callback = OnMapReadyCallback { googleMap ->
 
+        //TODO GPS LOCATION
         val school = LatLng(25.042613022341943, 121.56475417585145)
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(school, 11f))
-
-        /* for test
-        marker = googleMap.addMarker(
-            MarkerOptions()
-                .position(school)
-                .title("AppWorks School")
-                .snippet("#12 1234")
-                .icon(BitmapDescriptorFactory.fromBitmap(generateSmallIcon(R.drawable.brown_marker)))
-        ).apply {
-            // isVisible = false
-            // maybe can use tag to hide and show markers
-            tag = 0
-        }
-        */
 
         viewModel.partners.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -104,8 +89,12 @@ class LocationFragment : Fragment() {
                                 MarkerOptions()
                                     .position(latLng)
                                     .title(partner.open_location)
-                                    .snippet("#12 1234")
-                                    .icon(BitmapDescriptorFactory.fromBitmap(generateSmallIcon(R.drawable.brown_marker)))
+                                    .snippet(PuffRenApplication.instance.getString(
+                                        R.string.puffren_level, partner.level)
+                                    )
+                                    .icon(BitmapDescriptorFactory.fromBitmap(
+                                        generateSmallIcon(R.drawable.brown_marker))
+                                    )
                             }
                         ))
                 }
@@ -113,14 +102,14 @@ class LocationFragment : Fragment() {
         })
 
         googleMap.setOnInfoWindowClickListener {
-
-            val gmmIntentUri: Uri = Uri.parse("geo:${it.position.latitude},${it.position.longitude}")
+            val gmmIntentUri: Uri = Uri.parse(
+                "geo:${it.position.latitude},${it.position.longitude}?q=${Uri.encode(it.title)}"
+            )
             val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
             mapIntent.setPackage("com.google.android.apps.maps")
 
             startActivity(mapIntent)
         }
-
     }
 
     private fun generateSmallIcon(id: Int): Bitmap {
