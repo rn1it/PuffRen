@@ -48,14 +48,14 @@ class LocationFragment : Fragment() {
         initMap()
     }
 
-    private fun setupTabLayout(){
+    private fun setupTabLayout() {
 
         binding.tabLocationItem.apply {
             addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab) {
                     removeAllMarkers()
 
-                    when(tab.position) {
+                    when (tab.position) {
                         0 -> viewModel.getPartnersInfoByDay(Day.TODAY)
                         else -> viewModel.getPartnersInfoByDay(Day.TOMORROW)
                     }
@@ -67,7 +67,7 @@ class LocationFragment : Fragment() {
         }
     }
 
-    private fun initMap(){
+    private fun initMap() {
         val mapFragment =
             childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
@@ -75,25 +75,29 @@ class LocationFragment : Fragment() {
 
     private val callback = OnMapReadyCallback { googleMap ->
 
-        //TODO GPS LOCATION
-        val school = LatLng(25.042613022341943, 121.56475417585145)
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(school, 11f))
+        val taiwan = LatLng(24.133118710492916, 121.13635709722656)
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(taiwan, 7F))
 
         viewModel.partners.observe(viewLifecycleOwner, Observer {
             it?.let {
 
-                for (partner in it){
+                for (partner in it) {
                     makers.add(
                         googleMap.addMarker(
                             partner.latLng?.let { latLng ->
                                 MarkerOptions()
                                     .position(latLng)
                                     .title(partner.openLocation)
-                                    .snippet(PuffRenApplication.instance.getString(
-                                        R.string.puffren_level, partner.level ?: getString(R.string.no_level))
+                                    .snippet(
+                                        PuffRenApplication.instance.getString(
+                                            R.string.puffren_level,
+                                            partner.level ?: getString(R.string.no_level)
+                                        )
                                     )
-                                    .icon(BitmapDescriptorFactory.fromBitmap(
-                                        generateSmallIcon(R.drawable.brown_marker))
+                                    .icon(
+                                        BitmapDescriptorFactory.fromBitmap(
+                                            generateSmallIcon(partner.openStatus)
+                                        )
                                     )
                             }
                         ))
@@ -112,15 +116,23 @@ class LocationFragment : Fragment() {
         }
     }
 
-    private fun generateSmallIcon(id: Int): Bitmap {
+    private fun generateSmallIcon(openStatus: Int?): Bitmap {
         val height = 100
         val width = 100
-        val bitmap = BitmapFactory.decodeResource(this.resources, id)
-        return Bitmap.createScaledBitmap(bitmap, width, height, false)
+        return when (openStatus) {
+            1 -> {
+                val bitmap = BitmapFactory.decodeResource(this.resources, R.drawable.brown_marker)
+                Bitmap.createScaledBitmap(bitmap, width, height, false)
+            }
+            else -> {
+                val bitmap = BitmapFactory.decodeResource(this.resources, R.drawable.red_marker)
+                Bitmap.createScaledBitmap(bitmap, width, height, false)
+            }
+        }
     }
 
-    private fun removeAllMarkers(){
-        for(maker in makers) {
+    private fun removeAllMarkers() {
+        for (maker in makers) {
             maker.remove()
         }
     }
