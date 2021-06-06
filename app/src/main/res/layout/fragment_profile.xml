@@ -395,7 +395,7 @@
                     android:id="@+id/image_member_coupon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/coupon"
+                    android:src="@drawable/member_coupon"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -440,7 +440,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/coupon"
+                    android:text="@string/achievement"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

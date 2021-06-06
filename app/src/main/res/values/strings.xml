@@ -138,4 +138,5 @@
     <string name="invalid_password_comfirm_empty">密碼確認不可為空</string>
     <string name="password_comfirm_fail">確認密碼與輸入密碼不同</string>
     <string name="login_fail">登入失敗，請確認帳號密碼是否正確。</string>
+    <string name="achievement">成就達成</string>
 </resources>
