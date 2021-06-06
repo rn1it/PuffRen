@@ -6,5 +6,5 @@ data class Performance(
     val level: String? = null,
     val score: Int? = null,
     @Json(name = "created_at")
-    val created_at: String? = null
+    val createdAt: String? = null
 )

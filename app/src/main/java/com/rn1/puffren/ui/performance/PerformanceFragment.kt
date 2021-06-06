@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.rn1.puffren.databinding.FragmentPerformanceBinding
 import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.ext.hide
 
 class PerformanceFragment : Fragment() {
 
@@ -29,7 +30,11 @@ class PerformanceFragment : Fragment() {
 
         viewModel.performances.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.submitList(it)
+                if (it.isEmpty()) {
+                    recycler.hide()
+                } else {
+                    adapter.submitList(it)
+                }
             }
         })
 

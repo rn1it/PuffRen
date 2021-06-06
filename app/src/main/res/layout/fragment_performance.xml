@@ -13,10 +13,21 @@
         android:background="@color/bg_color_yellow"
         tools:context=".ui.performance.PerformanceFragment">
 
+        <TextView
+            android:id="@+id/text_no_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_performance_data"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_performance"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/bg_color_yellow"
             android:overScrollMode="never"
             android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

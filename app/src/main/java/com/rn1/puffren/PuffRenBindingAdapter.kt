@@ -44,7 +44,6 @@ fun bindImage(imageView: ImageView, imgUrl: String?){
     imgUrl?.let {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
         Glide.with(imageView.context)
-//            .asBitmap()
             .load(imgUri)
             .apply(
                 RequestOptions()
@@ -69,4 +68,20 @@ fun bindLevel(textView: TextView, level: String?) {
             else -> it
         }
     }
+}
+
+/**
+ * Displays performance level to [TextView]
+ */
+@BindingAdapter("performanceLevel")
+fun bindPerformanceLevel(textView: TextView, level: String?) {
+    level?.let { textView.text = PuffRenApplication.instance.getString(R.string._level_test, it) }
+}
+
+/**
+ * Displays performance score to [TextView]
+ */
+@BindingAdapter("score")
+fun bindPerformanceScore(textView: TextView, score: Int?) {
+    score?.let { textView.text = PuffRenApplication.instance.getString(R.string._score, it) }
 }
