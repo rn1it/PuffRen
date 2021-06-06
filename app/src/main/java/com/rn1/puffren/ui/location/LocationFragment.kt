@@ -88,9 +88,9 @@ class LocationFragment : Fragment() {
                             partner.latLng?.let { latLng ->
                                 MarkerOptions()
                                     .position(latLng)
-                                    .title(partner.open_location)
+                                    .title(partner.openLocation)
                                     .snippet(PuffRenApplication.instance.getString(
-                                        R.string.puffren_level, partner.level)
+                                        R.string.puffren_level, partner.level ?: getString(R.string.no_level))
                                     )
                                     .icon(BitmapDescriptorFactory.fromBitmap(
                                         generateSmallIcon(R.drawable.brown_marker))

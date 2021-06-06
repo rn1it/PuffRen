@@ -8,7 +8,8 @@ data class OpenInfo(
     @Json(name = "open_date")
     val openDate: String? = null,
     @Json(name="report_status")
-    val reportStatus: Int? = null
+    val reportStatus: Int? = null,
+    val isOnBreak: Boolean? =  null
 )
 
 data class OverdueInfo(

@@ -74,7 +74,7 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
     }
 
     fun navigate(homePageItem: HomePageItem){
-        when(homePageItem.entry) {
+        when(homePageItem.seq) {
             0 -> {
                 navigateToLocation()
             }

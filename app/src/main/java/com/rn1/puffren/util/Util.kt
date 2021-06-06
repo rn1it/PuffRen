@@ -36,9 +36,17 @@ object Util {
     /**
      * Transfer Address to Latitude and Longitude
      */
-    fun transferToLatLng(address: String?): LatLng?{
-        val geocoder = Geocoder(PuffRenApplication.instance, Locale.TAIWAN)
+    fun transferToLatLng(lat: Double? , lng: Double?, address: String?): LatLng?{
         var result: LatLng? = null
+
+        lat?.let {
+            lng?.let {
+                result = LatLng(lat, lng)
+                return result
+            }
+        }
+
+        val geocoder = Geocoder(PuffRenApplication.instance, Locale.TAIWAN)
 
         try {
             val adder = geocoder.getFromLocationName(address,1)[0]
