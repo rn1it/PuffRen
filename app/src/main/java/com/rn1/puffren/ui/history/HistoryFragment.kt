@@ -20,6 +20,7 @@ import com.rn1.puffren.ext.hide
 import com.rn1.puffren.ext.show
 import com.rn1.puffren.ui.history.item.ReportItemAdapter
 import com.rn1.puffren.util.MAX_CALENDAR_DAYS
+import com.rn1.puffren.util.Util.getDateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -36,7 +37,7 @@ class HistoryFragment : Fragment() {
 
     private val calendar = Calendar.getInstance(Locale.TAIWAN)
     private val monthFormat = SimpleDateFormat("MMMM yyyy", Locale.TAIWAN)
-    private val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.TAIWAN)
+    private val dateFormat = getDateFormat()
 
     private val dates = mutableListOf<Date>()
 

@@ -10,6 +10,7 @@ import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.Logger
 import com.rn1.puffren.util.UserManager
+import com.rn1.puffren.util.Util.getTimeFormat
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -18,7 +19,7 @@ class AdvanceReportViewModel(
     val repository: PuffRenRepository
 ) : ViewModel(){
 
-    private val timeFormat = SimpleDateFormat("HH:mm", Locale.TAIWAN)
+    private val timeFormat = getTimeFormat()
 
     private val _reportResult = MutableLiveData<String>()
     val reportResult: LiveData<String>

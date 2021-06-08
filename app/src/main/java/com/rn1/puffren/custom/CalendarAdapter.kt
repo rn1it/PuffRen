@@ -11,6 +11,7 @@ import com.rn1.puffren.PuffRenApplication
 import com.rn1.puffren.R
 import com.rn1.puffren.data.SaleCalendar
 import com.rn1.puffren.ext.show
+import com.rn1.puffren.util.Util.getDateFormat
 import kotlinx.android.synthetic.main.item_day_cell.view.*
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -126,7 +127,7 @@ class CalendarAdapter(
     }
 
     private fun convertStringToDate(eventDate: String): Date{
-        val format = SimpleDateFormat("yyyy-MM-dd", Locale.TAIWAN)
+        val format = getDateFormat()
         var date: Date? = null
 
         try {

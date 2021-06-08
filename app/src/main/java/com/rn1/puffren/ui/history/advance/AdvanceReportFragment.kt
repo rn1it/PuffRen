@@ -17,6 +17,7 @@ import com.rn1.puffren.R
 import com.rn1.puffren.databinding.FragmentAdvanceReportBinding
 import com.rn1.puffren.ext.getVmFactory
 import com.rn1.puffren.ext.show
+import com.rn1.puffren.util.Util.getTimeFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,7 +26,7 @@ class AdvanceReportFragment : Fragment() {
     lateinit var binding: FragmentAdvanceReportBinding
     val viewModel by viewModels<AdvanceReportViewModel> { getVmFactory() }
 
-    private val timeFormat = SimpleDateFormat("HH:mm", Locale.TAIWAN)
+    private val timeFormat = getTimeFormat()
     private lateinit var alertDialog: AlertDialog
     private val calendar = Calendar.getInstance(Locale.TAIWAN)
 

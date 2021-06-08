@@ -26,6 +26,7 @@ import com.rn1.puffren.ext.hide
 import com.rn1.puffren.ext.show
 import com.rn1.puffren.ui.history.advance.LocationAdapter
 import com.rn1.puffren.util.UserManager
+import com.rn1.puffren.util.Util.getDateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -39,7 +40,7 @@ class ReportFragment : Fragment() {
     var reportStatus: ReportStatus? = null
     private lateinit var alertDialog: AlertDialog
 
-    private val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.TAIWAN)
+    private val dateFormat = getDateFormat()
     private var isOpening = false
     private var closedToday = false
 

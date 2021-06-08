@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import com.google.android.gms.maps.model.LatLng
 import com.rn1.puffren.PuffRenApplication
 import java.lang.Exception
+import java.text.SimpleDateFormat
 import java.util.*
 
 object Util {
@@ -36,7 +37,7 @@ object Util {
     /**
      * Transfer Address to Latitude and Longitude
      */
-    fun transferToLatLng(lat: Double? , lng: Double?, address: String?): LatLng?{
+    fun transferToLatLng(lat: Double?, lng: Double?, address: String?): LatLng? {
         var result: LatLng? = null
 
         lat?.let {
@@ -49,11 +50,25 @@ object Util {
         val geocoder = Geocoder(PuffRenApplication.instance, Locale.TAIWAN)
 
         try {
-            val adder = geocoder.getFromLocationName(address,1)[0]
+            val adder = geocoder.getFromLocationName(address, 1)[0]
             result = LatLng(adder.latitude, adder.longitude)
         } catch (e: Exception) {
             e.printStackTrace()
         }
         return result
+    }
+
+    /**
+     * Date Format
+     */
+    fun getDateFormat(): SimpleDateFormat {
+        return SimpleDateFormat("yyyy-MM-dd", Locale.TAIWAN)
+    }
+
+    /**
+     * Time Format
+     */
+    fun getTimeFormat(): SimpleDateFormat {
+        return SimpleDateFormat("HH:mm", Locale.TAIWAN)
     }
 }

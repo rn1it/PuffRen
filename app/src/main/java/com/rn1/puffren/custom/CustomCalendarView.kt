@@ -12,6 +12,7 @@ import com.rn1.puffren.R
 import com.rn1.puffren.data.Events
 import com.rn1.puffren.data.SaleCalendar
 import com.rn1.puffren.util.MAX_CALENDAR_DAYS
+import com.rn1.puffren.util.Util.getDateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,7 +29,7 @@ class CustomCalendarView(context: Context?, attrs: AttributeSet?) : LinearLayout
     private val dateFormat = SimpleDateFormat("MMMM yyyy", Locale.TAIWAN)
     private val monthFormat = SimpleDateFormat("MM", Locale.TAIWAN)
     private val yearFormat = SimpleDateFormat("yyyy", Locale.TAIWAN)
-    private val eventDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.TAIWAN)
+    private val eventDateFormat = getDateFormat()
 
     private val dates = mutableListOf<Date>()
     private val eventsList = mutableListOf<Events>()

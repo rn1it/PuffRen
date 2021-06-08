@@ -1,5 +1,6 @@
 package com.rn1.puffren.ui.edit
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,6 +14,8 @@ import androidx.navigation.fragment.findNavController
 import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.databinding.FragmentEditMembershipBinding
 import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.util.Logger
+import com.rn1.puffren.util.Util.getDateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,9 +24,8 @@ class EditMembershipFragment : Fragment() {
     lateinit var binding: FragmentEditMembershipBinding
     val viewModel by viewModels<EditMembershipViewModel> { getVmFactory() }
 
-    lateinit var datePicker: DatePicker
-    private val calendar = Calendar.getInstance()
-    private val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.TAIWAN)
+    private val calendar = Calendar.getInstance().apply { set(1990, 1, 1) }
+    private val dateFormat = getDateFormat()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,20 +37,21 @@ class EditMembershipFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.birthDatePicker.setOnClickListener {
-            val d = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-                calendar.set(Calendar.YEAR, year)
-                calendar.set(Calendar.MONTH, monthOfYear)
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                binding.birthDatePicker.text = dateFormat.format(calendar.time)
-            }
 
-            val datePickerDialog = DatePickerDialog(
+            val picker = DatePickerDialog(
                 requireContext(),
-                d,
+                AlertDialog.THEME_HOLO_DARK,
+                { _, year, monthOfYear, dayOfMonth ->
+                    calendar.set(Calendar.YEAR, year)
+                    calendar.set(Calendar.MONTH, monthOfYear)
+                    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                    binding.birthDatePicker.text = dateFormat.format(calendar.time)
+                },
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH)
-            ).show()
+            )
+            picker.show()
         }
 
         viewModel.navigateToEditPassword.observe(viewLifecycleOwner, Observer {
