@@ -17,7 +17,7 @@ import java.util.*
 class AdvanceReportViewModel(
     val repository: PuffRenRepository,
     private val argument: String
-) : ViewModel(){
+) : ViewModel() {
 
     private val timeFormat = getTimeFormat()
 
@@ -59,36 +59,40 @@ class AdvanceReportViewModel(
         getPartnerLocations()
     }
 
-    private fun getPartnerLocations(){
+    private fun getPartnerLocations() {
         viewModelScope.launch {
 
-            _locationOptions.value = when(val result = repository.getPartnerLocations(UserManager.userToken!!)) {
-                is DataResult.Success -> {
-                    _status.value = LoadApiStatus.DONE
-                    result.data
+            _locationOptions.value =
+                when (val result =
+                    repository.getPartnerLocations(UserManager.userToken!!)
+                ) {
+                    is DataResult.Success -> {
+                        _status.value = LoadApiStatus.DONE
+                        result.data
+                    }
+                    is DataResult.Fail -> {
+                        _error.value = result.error
+                        null
+                    }
+                    is DataResult.Error -> {
+                        _error.value = result.exception.toString()
+                        null
+                    }
                 }
-                is DataResult.Fail -> {
-                    _error.value = result.error
-                    null
-                }
-                is DataResult.Error -> {
-                    _error.value = result.exception.toString()
-                    null
-                }
-            }
         }
     }
 
-    fun reportInAdvance(){
+    fun reportInAdvance() {
         viewModelScope.launch {
 
             val reportOpenStatus = ReportOpenStatus(
-                    reportDate = reportDate.value,
-                    openTime = openTime.value,
-                    openLocation = openLocation.value
+                reportDate = reportDate.value,
+                openTime = openTime.value,
+                openLocation = openLocation.value
             )
 
-            _reportResult.value = when(val result = repository.reportInAdvance(UserManager.userToken!!, reportOpenStatus)) {
+            _reportResult.value = when (val result =
+                repository.reportInAdvance(UserManager.userToken!!, reportOpenStatus)) {
                 is DataResult.Success -> {
                     _status.value = LoadApiStatus.DONE
                     result.data.message
@@ -105,7 +109,7 @@ class AdvanceReportViewModel(
         }
     }
 
-    fun selectLocationOption(location: String){
+    fun selectLocationOption(location: String) {
         _location.value = location
     }
 }

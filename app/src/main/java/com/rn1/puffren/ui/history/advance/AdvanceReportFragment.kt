@@ -18,6 +18,7 @@ import com.rn1.puffren.databinding.FragmentAdvanceReportBinding
 import com.rn1.puffren.ext.getVmFactory
 import com.rn1.puffren.ext.show
 import com.rn1.puffren.ui.report.sale.SaleReportFragmentArgs
+import com.rn1.puffren.util.Logger
 import com.rn1.puffren.util.Util.getTimeFormat
 import java.util.*
 
@@ -79,8 +80,9 @@ class AdvanceReportFragment : Fragment() {
 
         viewModel.reportResult.observe(viewLifecycleOwner, Observer {
             it?.let {
-                Toast.makeText(context, "$it 回報完成", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(AdvanceReportFragmentDirections.actionAdvanceReportFragmentToHistoryFragment())
+                Logger.d("$it ${getString(R.string.report_success)}")
+                Toast.makeText(context, getString(R.string.report_success), Toast.LENGTH_SHORT).show()
+                findNavController().popBackStack()
             }
         })
 
