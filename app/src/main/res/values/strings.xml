@@ -61,7 +61,7 @@
     <string name="puffren_location">泡芙人位置</string>
     <string name="where_are_puffrens">泡芙人在哪裡</string>
     <string name="puffrens_tomorrow">明天哪裡有泡芙人</string>
-    <string name="puffren_level">等級: %s</string>
+    <string name="puffren_level">泡芙人等級: %s</string>
     <string name="no_level">未分級</string>
 
     <!-- cart -->
