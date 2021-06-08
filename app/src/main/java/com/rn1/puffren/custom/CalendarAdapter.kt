@@ -14,7 +14,6 @@ import com.rn1.puffren.ext.show
 import com.rn1.puffren.util.Util.getDateFormat
 import kotlinx.android.synthetic.main.item_day_cell.view.*
 import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.*
 
 class CalendarAdapter(

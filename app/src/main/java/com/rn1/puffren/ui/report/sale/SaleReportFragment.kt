@@ -15,7 +15,10 @@ import com.rn1.puffren.ext.getVmFactory
 class SaleReportFragment : Fragment() {
 
     lateinit var binding: FragmentSaleReportBinding
-    val viewModel by viewModels<SaleReportViewModel> { getVmFactory(SaleReportFragmentArgs.fromBundle(requireArguments()).date) }
+    val viewModel by viewModels<SaleReportViewModel> {
+        getVmFactory(SaleReportFragmentArgs.fromBundle(requireArguments()).date)
+    }
+
     private lateinit var adapter: ReportItemAdapter
 
     override fun onCreateView(

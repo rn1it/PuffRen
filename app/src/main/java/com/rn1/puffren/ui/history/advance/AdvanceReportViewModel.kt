@@ -12,11 +12,11 @@ import com.rn1.puffren.util.Logger
 import com.rn1.puffren.util.UserManager
 import com.rn1.puffren.util.Util.getTimeFormat
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.*
 
 class AdvanceReportViewModel(
-    val repository: PuffRenRepository
+    val repository: PuffRenRepository,
+    private val argument: String
 ) : ViewModel(){
 
     private val timeFormat = getTimeFormat()
@@ -26,7 +26,7 @@ class AdvanceReportViewModel(
         get() = _reportResult
 
     val reportDate = MutableLiveData<String>().apply {
-        value = "2021-05-30"
+        value = argument
     }
 
     val openTime = MutableLiveData<String>().apply {

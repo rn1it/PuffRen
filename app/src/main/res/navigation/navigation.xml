@@ -133,6 +133,9 @@
             android:id="@+id/action_advanceReportFragment_to_historyFragment"
             app:destination="@id/historyFragment"
             app:popUpTo="@id/historyFragment" />
+        <argument
+            android:name="date"
+            app:argType="string" />
     </fragment>
 
     <fragment

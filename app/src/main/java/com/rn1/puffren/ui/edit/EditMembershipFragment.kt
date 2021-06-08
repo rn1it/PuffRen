@@ -7,16 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.databinding.FragmentEditMembershipBinding
 import com.rn1.puffren.ext.getVmFactory
-import com.rn1.puffren.util.Logger
 import com.rn1.puffren.util.Util.getDateFormat
-import java.text.SimpleDateFormat
 import java.util.*
 
 class EditMembershipFragment : Fragment() {

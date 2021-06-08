@@ -3,6 +3,7 @@ package com.rn1.puffren.factory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rn1.puffren.data.source.PuffRenRepository
+import com.rn1.puffren.ui.history.advance.AdvanceReportViewModel
 import com.rn1.puffren.ui.report.sale.SaleReportViewModel
 
 @Suppress("UNCHECKED_CAST")
@@ -16,6 +17,10 @@ class StringViewModelFactory(
             when {
                 isAssignableFrom(SaleReportViewModel::class.java) ->
                     SaleReportViewModel(puffRenRepository, string)
+
+                isAssignableFrom(AdvanceReportViewModel::class.java) ->
+                    AdvanceReportViewModel(puffRenRepository, string)
+
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }

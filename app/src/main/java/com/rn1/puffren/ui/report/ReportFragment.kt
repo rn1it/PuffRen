@@ -27,7 +27,6 @@ import com.rn1.puffren.ext.show
 import com.rn1.puffren.ui.history.advance.LocationAdapter
 import com.rn1.puffren.util.UserManager
 import com.rn1.puffren.util.Util.getDateFormat
-import java.text.SimpleDateFormat
 import java.util.*
 
 class ReportFragment : Fragment() {

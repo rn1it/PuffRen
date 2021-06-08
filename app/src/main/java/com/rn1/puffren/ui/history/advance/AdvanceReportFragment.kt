@@ -17,14 +17,16 @@ import com.rn1.puffren.R
 import com.rn1.puffren.databinding.FragmentAdvanceReportBinding
 import com.rn1.puffren.ext.getVmFactory
 import com.rn1.puffren.ext.show
+import com.rn1.puffren.ui.report.sale.SaleReportFragmentArgs
 import com.rn1.puffren.util.Util.getTimeFormat
-import java.text.SimpleDateFormat
 import java.util.*
 
 class AdvanceReportFragment : Fragment() {
 
     lateinit var binding: FragmentAdvanceReportBinding
-    val viewModel by viewModels<AdvanceReportViewModel> { getVmFactory() }
+    val viewModel by viewModels<AdvanceReportViewModel> {
+        getVmFactory(SaleReportFragmentArgs.fromBundle(requireArguments()).date)
+    }
 
     private val timeFormat = getTimeFormat()
     private lateinit var alertDialog: AlertDialog
@@ -99,9 +101,7 @@ class AdvanceReportFragment : Fragment() {
         val addView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_location, null)
         val recyclerView = addView.findViewById<RecyclerView>(R.id.recycler_location).apply {
             adapter = LocationAdapter(viewModel).apply {
-                //TODO
-                //submitList(options)
-                submitList(listOf("a","b","c"))
+                submitList(options)
             }
         }
         builder.setView(addView)

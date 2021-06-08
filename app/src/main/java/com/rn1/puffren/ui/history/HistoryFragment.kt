@@ -84,7 +84,12 @@ class HistoryFragment : Fragment() {
 
         viewModel.navigateToAdvanceReport.observe(viewLifecycleOwner, Observer {
             it?.let {
-                findNavController().navigate(NavigationDirections.actionGlobalAdvanceReportFragment())
+                findNavController()
+                    .navigate(
+                        NavigationDirections.actionGlobalAdvanceReportFragment(
+                            dateFormat.format(selectedDate!!)
+                        )
+                    )
                 viewModel.navigateToAdvanceReportDone()
             }
         })
@@ -133,7 +138,8 @@ class HistoryFragment : Fragment() {
             monthCalendar.add(Calendar.DAY_OF_MONTH, 1)
         }
 
-        calendarAdapter = CalendarAdapter(requireContext(), dates, calendar, saleCalendar, selectedDate)
+        calendarAdapter =
+            CalendarAdapter(requireContext(), dates, calendar, saleCalendar, selectedDate)
         gridView.adapter = calendarAdapter
     }
 
@@ -148,7 +154,7 @@ class HistoryFragment : Fragment() {
                 val date = dateFormat.format(selectedDate!!)
                 compareDate(today, date)
 
-                 saleCalendar?.let { calendar ->
+                saleCalendar?.let { calendar ->
                     val expect = calendar.expectToOpen.filter { it.reportDate == date }
                     val relax = calendar.relax.filter { it.reportDate == date }
                     val open = calendar.reportDetails.filter { it.openDate == date }
@@ -162,7 +168,10 @@ class HistoryFragment : Fragment() {
                             }
                             textReportData.apply {
                                 show()
-                                text = PuffRenApplication.instance.getString(R.string.open_at_, expect[0].expectedOpenTime)
+                                text = PuffRenApplication.instance.getString(
+                                    R.string.open_at_,
+                                    expect[0].expectedOpenTime
+                                )
                             }
                         } else if (relax.isNotEmpty()) {
                             viewReportDetail.hide()
@@ -199,7 +208,7 @@ class HistoryFragment : Fragment() {
                 Logger.d("year = $year")
                 Logger.d("position = $position")
                 Logger.d("dates[position] = ${dates[position]}")
-                */
+                 */
             }
     }
 
@@ -207,8 +216,8 @@ class HistoryFragment : Fragment() {
      * d1.compareTo(d2) < 0 ==
      * if d1 before d2 -> d1 < d2 == true
      */
-    private fun compareDate(d1: String, d2: String){
-        when(d1 < d2) {
+    private fun compareDate(d1: String, d2: String) {
+        when (d1 < d2) {
             true -> {
                 binding.textReport.text = getString(R.string.report_advance)
                 destination = 2
@@ -221,9 +230,19 @@ class HistoryFragment : Fragment() {
     }
 
     private fun testData() {
-        val list1 = listOf(ReportOpenStatus(reportDate = "2021-05-10", expectedOpenTime = "9:00" , openLocation = "台北市士林區中山北路六段234號"))
+        val list1 = listOf(
+            ReportOpenStatus(
+                reportDate = "2021-05-10",
+                expectedOpenTime = "9:00",
+                openLocation = "台北市士林區中山北路六段234號"
+            )
+        )
         val list2 = listOf(ReportOpenStatus(reportDate = "2021-05-08"))
-        val list4 = listOf(ReportItem("0", "原殼泡芙", 20, 20), ReportItem("0", "原泡芙", 30, 30), ReportItem("0", "殼泡芙", 20, 90))
+        val list4 = listOf(
+            ReportItem("0", "原殼泡芙", 20, 20),
+            ReportItem("0", "原泡芙", 30, 30),
+            ReportItem("0", "殼泡芙", 20, 90)
+        )
         val list3 = listOf(ReportDetail(id = "0", openDate = "2021-05-18", details = list4))
         saleCalendar = SaleCalendar(list1, list2, list3)
     }
