@@ -61,13 +61,13 @@
             style="@style/text_style_login_title"/>
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/edit_text_email"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:background="@drawable/round_corner_layout"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:text="@={viewModel.email}"
             android:textAlignment="center"
             android:paddingHorizontal="8dp"
@@ -77,7 +77,7 @@
             app:layout_constraintTop_toTopOf="@+id/text_title_email" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/edit_text_password"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
@@ -101,8 +101,7 @@
             android:background="@drawable/round_corner_layout"
             android:backgroundTint="@color/orange_ffa626"
             android:text="@string/login"
-            android:onClick="@{() -> viewModel.checkLoginInfo()}"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
+            app:layout_constraintEnd_toEndOf="@+id/edit_text_password"
             app:layout_constraintStart_toStartOf="@+id/text_title_password"
             app:layout_constraintTop_toBottomOf="@+id/text_title_password" />
 
@@ -115,13 +114,12 @@
             android:backgroundTint="@color/orange_ffa626"
             android:text="@string/registry"
             android:textColor="@color/white"
-            android:onClick="@{() -> viewModel.navigateToRegistry()}"
             app:layout_constraintEnd_toEndOf="@+id/button_login"
             app:layout_constraintStart_toStartOf="@+id/button_login"
             app:layout_constraintTop_toBottomOf="@+id/button_login" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/text_forget_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

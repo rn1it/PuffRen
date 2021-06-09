@@ -28,10 +28,10 @@ object Util {
     /**
      * Initialize input manager in order to hide soft keyboard
      */
-    fun hideKeyBoard(view: View) {
+    fun hideKeyBoard() {
         val manager = PuffRenApplication.instance
             .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        manager.hideSoftInputFromWindow(view.applicationWindowToken, 0)
+        manager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 
     /**

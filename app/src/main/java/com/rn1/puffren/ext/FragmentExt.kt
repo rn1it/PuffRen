@@ -44,3 +44,7 @@ fun Fragment.getVmFactory(achievementTypeFilter: AchievementTypeFilter): Achieve
     val repository = (requireContext().applicationContext as PuffRenApplication).puffRenRepository
     return AchievementViewModelFactory(repository, achievementTypeFilter)
 }
+
+fun Fragment.hideKeyboard() {
+    view?.let { activity?.hideKeyboard(it) }
+}

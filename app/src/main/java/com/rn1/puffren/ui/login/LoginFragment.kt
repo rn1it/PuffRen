@@ -15,6 +15,7 @@ import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.R
 import com.rn1.puffren.databinding.FragmentLoginBinding
 import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.ext.hideKeyboard
 import com.rn1.puffren.util.*
 
 class LoginFragment : Fragment() {
@@ -33,10 +34,24 @@ class LoginFragment : Fragment() {
 
         val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
+        binding.buttonLogin.setOnClickListener {
+            hideKeyboard()
+            viewModel.checkLoginInfo()
+        }
+
+        binding.buttonRegistry.setOnClickListener {
+            hideKeyboard()
+            viewModel.navigateToRegistry()
+        }
+
         viewModel.user.observe(viewLifecycleOwner, Observer {
             it?.let {
                 mainViewModel.setupUser(it)
-                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToProfileFragment(it))
+                findNavController().navigate(
+                    LoginFragmentDirections.actionLoginFragmentToProfileFragment(
+                        it
+                    )
+                )
                 viewModel.navigateToProfileDone()
             }
         })
@@ -59,7 +74,8 @@ class LoginFragment : Fragment() {
         viewModel.loginFail.observe(viewLifecycleOwner, Observer {
             it?.let {
                 if (it) {
-                    Toast.makeText(context, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.login_fail), Toast.LENGTH_SHORT)
+                        .show()
                     viewModel.clearLoginFail()
                 }
             }
@@ -67,12 +83,20 @@ class LoginFragment : Fragment() {
 
         viewModel.invalidInfo.observe(viewLifecycleOwner, Observer {
             it?.let {
-                when(it) {
+                when (it) {
                     INVALID_FORMAT_EMAIL_EMPTY -> {
-                        Toast.makeText(requireContext(), getString(R.string.invalid_email_empty), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.invalid_email_empty),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                     INVALID_FORMAT_PASSWORD_EMPTY -> {
-                        Toast.makeText(requireContext(), getString(R.string.invalid_password_empty), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.invalid_password_empty),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
                 viewModel.cleanInvalidInfo()
