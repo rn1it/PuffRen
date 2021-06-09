@@ -22,8 +22,7 @@ import com.rn1.puffren.R
 import com.rn1.puffren.data.*
 import com.rn1.puffren.databinding.FragmentReportBinding
 import com.rn1.puffren.ext.getVmFactory
-import com.rn1.puffren.ext.hide
-import com.rn1.puffren.ext.show
+import com.rn1.puffren.ext.showOrHide
 import com.rn1.puffren.ui.history.advance.LocationAdapter
 import com.rn1.puffren.util.UserManager
 import com.rn1.puffren.util.Util.getDateFormat
@@ -36,39 +35,20 @@ class ReportFragment : Fragment() {
 
     private val todayAdapter = TodayReportAdapter()
     private val overdueAdapter = OverdueAdapter()
-    var reportStatus: ReportStatus? = null
     private lateinit var alertDialog: AlertDialog
 
     private val dateFormat = getDateFormat()
     private var isOpening = false
-    private var closedToday = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        testData()
+
         binding = FragmentReportBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        // for test -----------------------
-//        reportStatus?.let {
-//            with(binding) {
-//                // today
-//                textTodayOpenDate.text = it.today.openDate
-//                recyclerTodayReport.adapter = todayAdapter
-//                todayAdapter.submitList(it.today.details)
-//
-//                //overdue
-//                recyclerOverdueRecord.apply {
-//                    show()
-//                    adapter = overdueAdapter
-//                }
-//                overdueAdapter.submitList(it.overdueRecords)
-//            }
-//        }
-        // --------------------------
         val today = dateFormat.format(Calendar.getInstance(Locale.TAIWAN).time)
         binding.textTodayOpenDate.text = today
         binding.buttonReportSale.setOnClickListener {
@@ -148,7 +128,7 @@ class ReportFragment : Fragment() {
                 setCancelable(true)
                 setTitle(getString(R.string.report_closed))
                 setPositiveButton(getString(R.string.closed_comfirm)) { _, _ ->
-                    viewModel.reportForToday(null, 2, "47")
+                    viewModel.reportForToday(null, 3, null)
                     Toast.makeText(
                         requireContext(),
                         getString(R.string.closed_success),
@@ -162,109 +142,82 @@ class ReportFragment : Fragment() {
 
         viewModel.reportStatus.observe(viewLifecycleOwner, Observer {
             it?.let {
-                /**
-                 * Default: 1. disable open and closed button
-                 *          2. show no record today
-                 * Today:
-                 * 1.with detail ->
-                 *      a. isStillOpen == true : close button, status opening
-                 *      b. isStillOpen == false : open button
-                 *          x. reportStatus == 0 : show report button, status close
-                 *          y. reportStatus == 1 : hide report button, show status reported
-                 *
-                 *
-                 *
-                 * 2.no detail -> open button and closed button
-                 *
-                 * Overdue:
-                 *
-                 */
+
                 val todayInfo = it.today
                 val overdueInfo = it.overdueRecords
 
                 with(binding) {
 
-                    if (todayInfo.details.isNotEmpty()) {
-                        textNoRecordToday.hide()
-                        viewToday.show()
-                        recyclerTodayReport.adapter = todayAdapter
-                        todayAdapter.submitList(todayInfo.details)
-                        when (todayInfo.isStillOpen) {
-                            true -> {
-                                isOpening = true
-                                textReportStatus.apply {
-                                    text = context.getString(R.string.opening)
-                                    backgroundTintList = ColorStateList.valueOf(
-                                        PuffRenApplication.instance.getColor(R.color.green_008000)
-                                    )
-                                }
-                                buttonReport.apply {
-                                    isEnabled = true
-                                    text = getString(R.string.report_close)
-                                    backgroundTintList = ColorStateList.valueOf(
-                                        PuffRenApplication.instance.getColor(R.color.green_008000)
-                                    )
-                                }
-                                buttonClosedToday.apply {
-                                    isEnabled = false
-                                    backgroundTintList = ColorStateList.valueOf(
-                                        PuffRenApplication.instance.getColor(R.color.grey_e1e1e1)
-                                    )
-                                }
-                                buttonReportSale.hide()
-                            }
-                            false -> {
-                                isOpening = false
-                                buttonReport.text = getString(R.string.report_open)
+                    recyclerTodayReport.adapter = todayAdapter
+                    todayAdapter.submitList(todayInfo.details)
 
-                                when (todayInfo.reportStatus) {
-                                    0 -> {
-                                        buttonReport.backgroundTintList = ColorStateList.valueOf(
-                                            PuffRenApplication.instance.getColor(R.color.green_008000)
-                                        )
-                                        buttonReport.isEnabled = true
-                                        buttonReportSale.show()
-                                        textReportStatus.apply {
-                                            text = context.getString(R.string.already_close)
-                                            backgroundTintList = ColorStateList.valueOf(
-                                                PuffRenApplication.instance.getColor(R.color.red_800000)
-                                            )
-                                        }
-                                    }
-                                    1 -> {
-                                        buttonReport.backgroundTintList = ColorStateList.valueOf(
-                                            PuffRenApplication.instance.getColor(R.color.grey_e1e1e1)
-                                        )
-                                        buttonReportSale.hide()
-                                        textReportStatus.apply {
-                                            text = context.getString(R.string.already_report_in_time)
-                                            backgroundTintList = ColorStateList.valueOf(
-                                                PuffRenApplication.instance.getColor(R.color.green_008000)
-                                            )
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    } else {
-                        buttonReport.apply {
-                            isEnabled = true
-                            backgroundTintList =
-                                ColorStateList.valueOf(PuffRenApplication.instance.getColor(R.color.green_008000))
-                        }
-                        buttonClosedToday.apply {
-                            isEnabled = true
-                            backgroundTintList =
-                                ColorStateList.valueOf(PuffRenApplication.instance.getColor(R.color.red_800000))
+                    recyclerOverdueRecord.apply {
+                        adapter = overdueAdapter
+                        showOrHide(overdueInfo.isNotEmpty())
+                    }
+                    overdueAdapter.submitList(overdueInfo)
+
+                    buttonReportSale.showOrHide(
+                        todayInfo.details.isNotEmpty() && todayInfo.reportStatus == 0
+                    )
+
+                    textNoRecordToday.apply {
+                        showOrHide(todayInfo.details.isEmpty() || todayInfo.isOnBreak ?: false)
+                        text = when (todayInfo.isOnBreak) {
+                            true -> getString(R.string.closed_today)
+                            else -> getString(R.string.no_record_today)
                         }
                     }
 
-                    if (overdueInfo.isNotEmpty()) {
-                        recyclerOverdueRecord.apply {
-                            show()
-                            adapter = overdueAdapter
+                    viewToday.showOrHide(todayInfo.details.isNotEmpty())
+
+                    when (todayInfo.isOnBreak) {
+                        true -> {
+                            setReportButton(false, todayInfo.isStillOpen ?: false)
+                            setClosedButton(false)
                         }
-                        overdueAdapter.submitList(overdueInfo)
+                        else -> {
+                            when (todayInfo.details.isEmpty()) {
+                                true -> {
+                                    setReportButton(true, todayInfo.isStillOpen ?: false)
+                                    setClosedButton(true)
+                                }
+                                else -> {
+                                    setClosedButton(false)
+                                    when (todayInfo.isStillOpen) {
+                                        true -> {
+                                            isOpening = true
+                                            setReportButton(true, todayInfo.isStillOpen)
+                                            setReportStatusText(
+                                                todayInfo.isStillOpen,
+                                                todayInfo.reportStatus
+                                            )
+                                        }
+                                        else -> {
+                                            isOpening = false
+                                            setReportStatusText(
+                                                todayInfo.isStillOpen ?: false,
+                                                todayInfo.reportStatus
+                                            )
+                                            when (todayInfo.reportStatus) {
+                                                0 -> {
+                                                    setReportButton(
+                                                        true,
+                                                        todayInfo.isStillOpen ?: false
+                                                    )
+                                                }
+                                                else -> {
+                                                    setReportButton(
+                                                        false,
+                                                        todayInfo.isStillOpen ?: false
+                                                    )
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -273,48 +226,76 @@ class ReportFragment : Fragment() {
         return binding.root
     }
 
+    private fun setReportButton(isEnabled: Boolean, isOpening: Boolean) {
+        binding.buttonReport.apply {
+            this.isEnabled = isEnabled
+            backgroundTintList = when (isEnabled) {
+                true -> {
+                    ColorStateList.valueOf(PuffRenApplication.instance.getColor(R.color.green_008000))
+                }
+                else -> {
+                    ColorStateList.valueOf(PuffRenApplication.instance.getColor(R.color.grey_e1e1e1))
+                }
+            }
+            text = when (isOpening) {
+                true -> {
+                    getString(R.string.report_close)
+                }
+                else -> {
+                    getString(R.string.report_open)
+                }
+            }
+        }
+    }
+
+    private fun setClosedButton(isEnabled: Boolean) {
+        binding.buttonClosedToday.apply {
+            this.isEnabled = isEnabled
+            backgroundTintList = when (isEnabled) {
+                true -> {
+                    ColorStateList.valueOf(PuffRenApplication.instance.getColor(R.color.red_800000))
+                }
+                else -> {
+                    ColorStateList.valueOf(PuffRenApplication.instance.getColor(R.color.grey_e1e1e1))
+                }
+            }
+        }
+    }
+
+    private fun setReportStatusText(isOpening: Boolean, reportStatus: Int?) {
+        binding.textReportStatus.apply {
+
+            when (isOpening) {
+                true -> {
+                    text = context.getString(R.string.opening)
+                    backgroundTintList = ColorStateList.valueOf(
+                        PuffRenApplication.instance.getColor(R.color.green_008000)
+                    )
+                }
+                else -> {
+                    when (reportStatus) {
+                        0 -> {
+                            text = context.getString(R.string.already_close)
+                            backgroundTintList = ColorStateList.valueOf(
+                                PuffRenApplication.instance.getColor(R.color.red_800000)
+                            )
+                        }
+                        else -> {
+                            text = context.getString(R.string.already_report_in_time)
+                            backgroundTintList = ColorStateList.valueOf(
+                                PuffRenApplication.instance.getColor(R.color.green_008000)
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
     override fun onResume() {
         super.onResume()
         viewModel.getReportStatus()
-    }
-
-    private fun testData() {
-        val detail1 = ReportOpenStatus(
-            recordId = "31",
-            openStatus = 2,
-            openTime = "15:00",
-            closeTime = "22:20",
-            openLocation = "台北市大安區安和路二段161號台北市大安區安和路二段161號台北市大安區安和路二段161號"
-        )
-        val detail2 = ReportOpenStatus(
-            recordId = "32",
-            openStatus = 1,
-            openTime = "12:00",
-            closeTime = "22:20",
-            openLocation = "台北市大安區安和路二段162號台北市大安區安和路二段161號台北市大安區安和路二段161號"
-        )
-        val detail3 = ReportOpenStatus(
-            recordId = "313",
-            openStatus = 2,
-            openTime = "13:00",
-            closeTime = "22:20",
-            openLocation = "台北市大安區安和路二段163號台北市大安區安和路二段161號台北市大安區安和路二段161號"
-        )
-        val detail4 = ReportOpenStatus(
-            recordId = "314",
-            openStatus = 1,
-            openTime = "16:00",
-            closeTime = "22:20",
-            openLocation = "台北市大安區安和路二段164號台北市大安區安和路二段161號台北市大安區安和路二段161號"
-        )
-        val openInfo = OpenInfo(
-            isStillOpen = false, openDate = "2021-05-15", reportStatus = 0, details = listOf(
-                detail1,
-                detail2
-            )
-        )
-        val overdueInfo = OverdueInfo(openDate = "2021-05-15", details = listOf(detail3, detail4))
-        reportStatus = ReportStatus(openInfo, listOf(overdueInfo, overdueInfo))
     }
 
     @SuppressLint("InflateParams")
