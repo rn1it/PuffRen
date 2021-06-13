@@ -69,10 +69,13 @@ dependencies {
     // Retrofit Logging Interceptor
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
-    //Glide
+    // Glide
     implementation "com.github.bumptech.glide:glide:$version_glide"
     kapt "com.github.bumptech.glide:compiler:$version_glide"
 
-    //QR Code
+    // QR Code
     implementation "com.journeyapps:zxing-android-embedded:$version_zxing"
+
+    // Scratchcard
+    implementation 'in.codeshuffle.scratchcardlayout:ScratchCardLayout:1.0.8'
 }

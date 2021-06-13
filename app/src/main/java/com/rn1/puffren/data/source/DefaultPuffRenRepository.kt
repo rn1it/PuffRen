@@ -83,4 +83,16 @@ class DefaultPuffRenRepository(
     override suspend fun getMemberAchievement(token: String): DataResult<List<Achievement>> {
         return puffRenRemoteDataSource.getMemberAchievement(token)
     }
+
+    override suspend fun getEventInfo(token: String, eventType: String): DataResult<EventInfo> {
+        return puffRenRemoteDataSource.getEventInfo(token, eventType)
+    }
+
+    override suspend fun getPrize(
+        token: String,
+        eventType: String,
+        eventId: String
+    ): DataResult<Prize> {
+        return puffRenRemoteDataSource.getPrize(token, eventType, eventId)
+    }
 }

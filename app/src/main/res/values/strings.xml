@@ -144,4 +144,13 @@
     <string name="achievement">成就達成</string>
     <string name="no_performance_data">還沒有任何歷史考核資料</string>
 
+    <!-- activity -->
+    <string name="start_scratch">點擊開始刮卡</string>
+    <string name="event_title">活動標題</string>
+    <string name="event_description">活動說明</string>
+    <string name="event_period">活動期間</string>
+    <string name="win_prize">恭喜中獎</string>
+    <string name="lose_prize">可惜沒中QQ</string>
+    <string name="lose_prize_note">再接再厲明天會更好</string>
+
 </resources>

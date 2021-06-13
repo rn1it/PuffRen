@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.rn1.puffren.ui.activity.ActivityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="活動標題"
+            android:text="@string/event_title"
             style="@style/text_style_medium_bold_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_activity"
@@ -40,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="活動123"
+            android:text="@{viewModel.eventInfo.event.title}"
             style="@style/text_style_profile_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_activity"
@@ -51,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="活動說明"
+            android:text="@string/event_description"
             style="@style/text_style_medium_bold_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_activity"
@@ -62,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="活動說明123"
+            android:text="@{viewModel.eventInfo.event.description}"
             style="@style/text_style_profile_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_activity_description"
@@ -73,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="活動期間"
+            android:text="@string/event_period"
             style="@style/text_style_medium_bold_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_activity_description"
@@ -84,18 +86,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="活動期間"
+            app:period="@{viewModel.eventInfo.event}"
             style="@style/text_style_profile_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_activity_period"
             tools:text="2021-05-31 至 2021-06-30" />
 
         <Button
+            android:id="@+id/button_start_scratch_card"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:background="@drawable/round_corner_layout"
             android:backgroundTint="@color/orange_ffa626"
-            android:text="點擊開始刮卡"
+            app:button_scratch_enable="@{viewModel.eventInfo.hasRecord}"
+            android:text="@string/start_scratch"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

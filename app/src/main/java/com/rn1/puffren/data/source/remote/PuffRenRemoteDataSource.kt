@@ -294,4 +294,40 @@ object PuffRenRemoteDataSource: PuffRenDataSource {
             DataResult.Error(e)
         }
     }
+
+    override suspend fun getEventInfo(token: String, eventType: String): DataResult<EventInfo> {
+        if (!isInternetConnected()) {
+            return DataResult.Fail(getString(R.string.internet_not_connected))
+        }
+
+        return try {
+
+            val listResult = PuffrenApi.retrofitService.getEventInfo(token, eventType)
+            DataResult.Success(listResult)
+
+        } catch (e: Exception) {
+            Logger.w("[${this::class.simpleName}] exception=${e.message}")
+            DataResult.Error(e)
+        }
+    }
+
+    override suspend fun getPrize(
+        token: String,
+        eventType: String,
+        eventId: String
+    ): DataResult<Prize> {
+        if (!isInternetConnected()) {
+            return DataResult.Fail(getString(R.string.internet_not_connected))
+        }
+
+        return try {
+
+            val listResult = PuffrenApi.retrofitService.getPrize(token, eventType, eventId)
+            DataResult.Success(listResult)
+
+        } catch (e: Exception) {
+            Logger.w("[${this::class.simpleName}] exception=${e.message}")
+            DataResult.Error(e)
+        }
+    }
 }

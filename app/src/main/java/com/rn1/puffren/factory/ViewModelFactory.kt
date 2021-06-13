@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rn1.puffren.MainViewModel
 import com.rn1.puffren.data.source.PuffRenRepository
+import com.rn1.puffren.ui.activity.ActivityViewModel
 import com.rn1.puffren.ui.coupon.CouponViewModel
 import com.rn1.puffren.ui.edit.EditMembershipViewModel
 import com.rn1.puffren.ui.history.HistoryViewModel
@@ -55,6 +56,9 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(PerformanceViewModel::class.java) ->
                     PerformanceViewModel(repository)
+
+                isAssignableFrom(ActivityViewModel::class.java) ->
+                    ActivityViewModel(repository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

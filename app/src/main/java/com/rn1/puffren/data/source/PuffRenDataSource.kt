@@ -37,4 +37,8 @@ interface PuffRenDataSource {
     suspend fun reportSale(token: String, reportDetail: ReportDetail): DataResult<ReportResult>
 
     suspend fun getMemberAchievement(token: String): DataResult<List<Achievement>>
+
+    suspend fun getEventInfo(token: String, eventType: String): DataResult<EventInfo>
+
+    suspend fun getPrize(token: String, eventType: String, eventId: String): DataResult<Prize>
 }

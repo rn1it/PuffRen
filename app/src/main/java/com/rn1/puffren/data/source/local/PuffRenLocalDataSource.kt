@@ -74,4 +74,16 @@ class PuffRenLocalDataSource: PuffRenDataSource {
     override suspend fun getMemberAchievement(token: String): DataResult<List<Achievement>> {
         TODO("Not yet implemented")
     }
+
+    override suspend fun getEventInfo(token: String, eventType: String): DataResult<EventInfo> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getPrize(
+        token: String,
+        eventType: String,
+        eventId: String
+    ): DataResult<Prize> {
+        TODO("Not yet implemented")
+    }
 }

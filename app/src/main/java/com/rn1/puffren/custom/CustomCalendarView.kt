@@ -6,10 +6,9 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.*
 import com.rn1.puffren.R
-import com.rn1.puffren.data.Events
+import com.rn1.puffren.data.CalendarMemo
 import com.rn1.puffren.data.SaleCalendar
 import com.rn1.puffren.util.MAX_CALENDAR_DAYS
 import com.rn1.puffren.util.Util.getDateFormat
@@ -32,7 +31,7 @@ class CustomCalendarView(context: Context?, attrs: AttributeSet?) : LinearLayout
     private val eventDateFormat = getDateFormat()
 
     private val dates = mutableListOf<Date>()
-    private val eventsList = mutableListOf<Events>()
+    private val eventsList = mutableListOf<CalendarMemo>()
 
     private var selectedDate: Date? = null
     private var saleCalendar: SaleCalendar? = null
@@ -179,7 +178,7 @@ class CustomCalendarView(context: Context?, attrs: AttributeSet?) : LinearLayout
 
     private fun saveEvent(event: String, time: String, date: String, month: String, year: String){
         //TODO add event
-        eventsList.add(Events(event, time, date, month, year))
+        eventsList.add(CalendarMemo(event, time, date, month, year))
         Toast.makeText(context, "Event Saved", Toast.LENGTH_SHORT).show()
     }
 

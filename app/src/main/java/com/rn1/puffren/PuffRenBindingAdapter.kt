@@ -1,12 +1,15 @@
 package com.rn1.puffren
 
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.rn1.puffren.data.Event
 
 @SuppressLint("SetTextI18n")
 @BindingAdapter("itemPackages")
@@ -84,4 +87,35 @@ fun bindPerformanceLevel(textView: TextView, level: String?) {
 @BindingAdapter("score")
 fun bindPerformanceScore(textView: TextView, score: Int?) {
     score?.let { textView.text = PuffRenApplication.instance.getString(R.string._score, it) }
+}
+
+/**
+ * Displays date period [TextView]
+ */
+@BindingAdapter("period")
+fun bindPeriod(textView: TextView, event: Event?) {
+    event?.let {
+        textView.text = PuffRenApplication.instance.getString(R.string.period_to_, it.startDate, it.endDate)
+    }
+}
+
+/**
+ * Displays button by enable or not
+ */
+@BindingAdapter("button_scratch_enable")
+fun bindScratchButtonEnable(button: Button, hasRecord: Int?) {
+    hasRecord?.let {
+        button.apply {
+            when(hasRecord) {
+                0 -> {
+                    isEnabled = true
+                    backgroundTintList = ColorStateList.valueOf(PuffRenApplication.instance.getColor(R.color.orange_ffa626))
+                }
+                else -> {
+                    isEnabled = false
+                    backgroundTintList = ColorStateList.valueOf(PuffRenApplication.instance.getColor(R.color.grey_e1e1e1))
+                }
+            }
+        }
+    }
 }

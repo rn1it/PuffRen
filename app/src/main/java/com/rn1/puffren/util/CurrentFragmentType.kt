@@ -16,5 +16,6 @@ enum class CurrentFragmentType(val value: String) {
     HISTORY(""),
     EDITMEMBERSHIP("會員資料修改"),
     EDITPASSWORD("修改密碼"),
-    ACHIEVEMENT("會員成就")
+    ACHIEVEMENT("會員成就"),
+    ACTIVITY("會員專屬活動")
 }

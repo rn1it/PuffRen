@@ -1,6 +1,6 @@
 package com.rn1.puffren.data
 
-data class Events(
+data class CalendarMemo(
     val event: String? = null,
     val time: String? = null,
     val date: String? = null,

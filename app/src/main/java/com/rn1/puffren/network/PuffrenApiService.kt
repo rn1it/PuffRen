@@ -135,6 +135,18 @@ interface PuffrenApiService{
      */
     @GET("user/achievement")
     suspend fun getMemberAchievement(@Header("Authorization") token: String): List<Achievement>
+
+    /**
+     * Get Event Info
+     */
+    @GET("application/event/{eventType}")
+    suspend fun getEventInfo(@Header("Authorization") token: String, @Path("eventType") eventType: String): EventInfo
+
+    /**
+     * Get Prize
+     */
+    @GET("marketing/prize/{eventType}/{eventId}")
+    suspend fun getPrize(@Header("Authorization") token: String, @Path("eventType") eventType: String, @Path("eventId") eventId: String): Prize
 }
 
 object PuffrenApi {

@@ -4,11 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rn1.puffren.data.Coupon
-import com.rn1.puffren.data.CouponType
-import com.rn1.puffren.data.DataResult
+import com.rn1.puffren.data.*
 import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.network.LoadApiStatus
+import com.rn1.puffren.util.EVENT_SCRATCH_CARD
 import com.rn1.puffren.util.Logger
 import com.rn1.puffren.util.UserManager
 import kotlinx.coroutines.launch
@@ -17,9 +16,13 @@ class ActivityViewModel(
     val repository: PuffRenRepository
 ): ViewModel() {
 
-    private val _coupons = MutableLiveData<List<Coupon>>()
-    val coupons: LiveData<List<Coupon>>
-        get() = _coupons
+    private val _eventInfo = MutableLiveData<EventInfo>()
+    val eventInfo: LiveData<EventInfo>
+        get() = _eventInfo
+
+    private val _prize = MutableLiveData<Prize>()
+    val prize: LiveData<Prize>
+        get() = _prize
 
     private val _status = MutableLiveData<LoadApiStatus>()
     val status: LiveData<LoadApiStatus>
@@ -34,14 +37,36 @@ class ActivityViewModel(
         Logger.i("[${this::class.simpleName}]${this}")
         Logger.i("------------------------------------")
 
-        getCoupon()
     }
 
-    private fun getCoupon(){
+    fun getEventInfo(){
 
         viewModelScope.launch {
 
-            _coupons.value = when(val result = repository.getCoupon(UserManager.userToken!!, CouponType.ALL.value)) {
+            _eventInfo.value = when(val result = repository.getEventInfo(UserManager.userToken!!, EVENT_SCRATCH_CARD)) {
+                is DataResult.Success -> {
+                    _status.value = LoadApiStatus.DONE
+                    result.data
+                }
+                is DataResult.Fail -> {
+                    _error.value = result.error
+                    null
+                }
+                is DataResult.Error -> {
+                    _error.value = result.exception.toString()
+                    null
+                }
+            }
+        }
+    }
+
+    fun getPrizeByEventId(){
+
+        viewModelScope.launch {
+
+            val eventId = _eventInfo.value!!.event!!.eventId!!
+
+            _prize.value = when(val result = repository.getPrize(UserManager.userToken!!, EVENT_SCRATCH_CARD, eventId)) {
                 is DataResult.Success -> {
                     _status.value = LoadApiStatus.DONE
                     result.data
