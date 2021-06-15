@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.editPasswordFragment -> CurrentFragmentType.EDITPASSWORD
                 R.id.achievementTypeFragment -> CurrentFragmentType.ACHIEVEMENT
                 R.id.activityFragment -> CurrentFragmentType.ACTIVITY
+                R.id.foodCarFragment -> CurrentFragmentType.FOODCART
                 else -> mainViewModel.currentFragmentType.value
             }
         }
