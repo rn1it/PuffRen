@@ -12,11 +12,12 @@ enum class CurrentFragmentType(val value: String) {
     LOGIN("登入"),
     REGISTRY("註冊"),
     PROFILE("會員頁面"),
-    PERFORMANCE("績效考核"),
+    PERFORMANCE("歷史考核"),
     HISTORY(""),
     EDITMEMBERSHIP("會員資料修改"),
     EDITPASSWORD("修改密碼"),
     ACHIEVEMENT("會員成就"),
     ACTIVITY("會員專屬活動"),
-    FOODCART("")
+    FOODCART(""),
+    REPORT("營業狀況回報")
 }

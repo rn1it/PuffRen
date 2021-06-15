@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.achievementTypeFragment -> CurrentFragmentType.ACHIEVEMENT
                 R.id.activityFragment -> CurrentFragmentType.ACTIVITY
                 R.id.foodCarFragment -> CurrentFragmentType.FOODCART
+                R.id.reportFragment -> CurrentFragmentType.REPORT
                 else -> mainViewModel.currentFragmentType.value
             }
         }

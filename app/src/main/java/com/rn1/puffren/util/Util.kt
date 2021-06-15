@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import com.google.android.gms.maps.model.LatLng
 import com.rn1.puffren.PuffRenApplication
 import java.lang.Exception
@@ -70,5 +71,9 @@ object Util {
      */
     fun getTimeFormat(): SimpleDateFormat {
         return SimpleDateFormat("HH:mm", Locale.TAIWAN)
+    }
+
+    fun setTextToToast(text: String) {
+        Toast.makeText(PuffRenApplication.instance.applicationContext, text, Toast.LENGTH_SHORT).show()
     }
 }

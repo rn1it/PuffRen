@@ -169,7 +169,7 @@ class ReportFragment : Fragment() {
                         }
                     }
 
-                    viewToday.showOrHide(todayInfo.details.isNotEmpty())
+                    viewToday.showOrHide(todayInfo.details.isNotEmpty() && !(todayInfo.isOnBreak ?: false))
 
                     when (todayInfo.isOnBreak) {
                         true -> {

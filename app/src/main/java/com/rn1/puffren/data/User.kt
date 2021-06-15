@@ -11,6 +11,8 @@ data class User(
     val confirmPassword: String? = null,
     @Json(name = "username")
     val userName: String? = "No Name",
+    @Json(name = "fullname")
+    val fullName: String? = null,
     val connection: String? = null,
     val level: String? = null,
     @Json(name = "amount_spent")
@@ -19,13 +21,14 @@ data class User(
     val partnerId: String? = null,
     val score: Int? = null,
 
-    // 0:guest ; 1:partner
+    // 0:member ; 1:partner
     @Json(name = "is_partner")
     val isPartner: Int? = 0,
 
-    // not sure for what?
-    //    val phone: String? = "0912345678",
-    //    val address: String? = "台北市"
+    val phone: String? = null,
+    val address: String? = null,
+    val city: String? = null
+
 ): Parcelable {
     val isVendor: Boolean
         get() = when(isPartner){

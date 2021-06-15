@@ -22,14 +22,14 @@
 
             <TextView
                 android:id="@+id/member_level_title"
+                style="@style/text_style_small_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="@string/member_level"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="SmallSp"
-                style="@style/text_style_small_title" />
+                tools:ignore="SmallSp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/member_level_block"
@@ -44,6 +44,7 @@
 
                 <TextView
                     android:id="@+id/login_account_title"
+                    style="@style/text_style_medium_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -53,24 +54,25 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/text_style_medium_title"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView
                     android:id="@+id/text_login_account"
+                    style="@style/text_style_medium_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="XXXX@XXX.XXX"
+                    android:text="@{viewModel.user.email}"
                     app:layout_constraintBottom_toBottomOf="@+id/login_account_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/login_account_title"
                     app:layout_constraintTop_toTopOf="@+id/login_account_title"
-                    style="@style/text_style_medium_title"/>
+                    tools:text="XXXX@XXX.XXX" />
 
                 <TextView
                     android:id="@+id/level_title"
+                    style="@style/text_style_medium_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -80,24 +82,25 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/login_account_title"
-                    style="@style/text_style_medium_title"/>
+                    app:layout_constraintTop_toBottomOf="@+id/login_account_title" />
 
                 <TextView
                     android:id="@+id/text_level"
+                    style="@style/text_style_medium_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="XXX"
+                    android:text="@{viewModel.user.level}"
                     app:layout_constraintBottom_toBottomOf="@+id/level_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/level_title"
                     app:layout_constraintTop_toTopOf="@+id/level_title"
-                    style="@style/text_style_medium_title"/>
+                    tools:text="XXX" />
 
                 <TextView
                     android:id="@+id/nickname_title"
+                    style="@style/text_style_medium_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -106,8 +109,7 @@
                     android:text="@string/member_nickname"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/level_title"
-                    style="@style/text_style_medium_title"/>
+                    app:layout_constraintTop_toBottomOf="@+id/level_title" />
 
                 <EditText
                     android:id="@+id/edit_nickname"
@@ -118,12 +120,13 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:paddingHorizontal="8dp"
-                    android:text=""
-                    android:textAlignment="center"
+                    android:text="@={viewModel.nickname}"
+                    android:gravity="center|end"
                     app:layout_constraintBottom_toBottomOf="@+id/nickname_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/nickname_title"
-                    app:layout_constraintTop_toTopOf="@+id/nickname_title" />
+                    app:layout_constraintTop_toTopOf="@+id/nickname_title"
+                    tools:text="阿芙" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -134,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
-                android:text="填寫會員資料享有專屬優惠"
+                android:text="@string/member_info_fill_note"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/member_level_block" />
 
@@ -156,7 +159,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="會員姓名:"
+                    android:text="@string/member_name"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -169,12 +172,13 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:paddingHorizontal="8dp"
-                    android:text=""
-                    android:textAlignment="center"
+                    android:text="@={viewModel.fullName}"
+                    android:gravity="center|end"
                     app:layout_constraintBottom_toBottomOf="@+id/name_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/name_title"
-                    app:layout_constraintTop_toTopOf="@+id/name_title" />
+                    app:layout_constraintTop_toTopOf="@+id/name_title"
+                    tools:text="劉泡芙" />
 
                 <TextView
                     android:id="@+id/city_title"
@@ -183,21 +187,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
-                    android:text="會員城市:"
+                    android:text="@string/member_city"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/name_title" />
 
-                <EditText
-                    android:id="@+id/edit_city"
+                <Spinner
+                    android:id="@+id/spinner_city"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_marginHorizontal="8dp"
                     android:background="@drawable/round_corner_border"
-                    android:ems="10"
-                    android:inputType="textPostalAddress"
                     android:paddingHorizontal="8dp"
-                    android:text=""
-                    android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="@+id/city_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/city_title"
@@ -210,7 +210,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
-                    android:text="會員地址:"
+                    android:text="@string/member_address"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/city_title" />
 
@@ -223,12 +223,13 @@
                     android:ems="10"
                     android:inputType="textPostalAddress"
                     android:paddingHorizontal="8dp"
-                    android:text=""
-                    android:textAlignment="center"
+                    android:text="@={viewModel.address}"
+                    android:gravity="center|end"
                     app:layout_constraintBottom_toBottomOf="@+id/address_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/address_title"
-                    app:layout_constraintTop_toTopOf="@+id/address_title" />
+                    app:layout_constraintTop_toTopOf="@+id/address_title"
+                    tools:text="" />
 
                 <TextView
                     android:id="@+id/phone_title"
@@ -237,7 +238,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
-                    android:text="會員電話:"
+                    android:text="@string/member_phone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/address_title" />
 
@@ -250,12 +251,13 @@
                     android:ems="10"
                     android:inputType="phone"
                     android:paddingHorizontal="8dp"
-                    android:text=""
-                    android:textAlignment="center"
+                    android:text="@={viewModel.phone}"
+                    android:gravity="center|end"
                     app:layout_constraintBottom_toBottomOf="@+id/phone_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/phone_title"
-                    app:layout_constraintTop_toTopOf="@+id/phone_title" />
+                    app:layout_constraintTop_toTopOf="@+id/phone_title"
+                    tools:text="" />
 
                 <TextView
                     android:id="@+id/birth_title"
@@ -264,7 +266,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
-                    android:text="會員生日:"
+                    android:text="@string/member_birthday"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/phone_title" />
 
@@ -274,21 +276,21 @@
                     android:layout_height="30dp"
                     android:layout_marginHorizontal="8dp"
                     android:background="@drawable/round_corner_border"
+                    android:gravity="center|end"
                     android:paddingHorizontal="8dp"
                     android:text=""
-                    android:gravity="center"
-                    android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="@+id/birth_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/birth_title"
-                    app:layout_constraintTop_toTopOf="@+id/birth_title" />
+                    app:layout_constraintTop_toTopOf="@+id/birth_title"
+                    tools:text="2011-01-30" />
 
                 <CheckBox
                     android:id="@+id/check_read_notification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="28dp"
-                    android:text="我已經閱讀並同意會員權益聲明與隱私權條款"
+                    android:text="@string/member_privacy_note"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/image_information"
@@ -307,6 +309,7 @@
                     app:layout_constraintStart_toEndOf="@+id/check_read_notification"
                     app:layout_constraintTop_toTopOf="@+id/check_read_notification" />
 
+                <!-- android:onClick="@{() -> viewModel.navigateToEditPassword()}" -->
                 <Button
                     android:id="@+id/button_edit_password"
                     android:layout_width="0dp"
@@ -317,11 +320,11 @@
                     android:backgroundTint="@color/orange_ffa626"
                     android:text="@string/edit_password"
                     android:textColor="@color/white"
-                    android:onClick="@{() -> viewModel.navigateToEditPassword()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/check_read_notification" />
 
+                <!-- android:onClick="@{() -> viewModel.navigateToEditPassword()}" -->
                 <Button
                     android:id="@+id/button_edit_member_info_done"
                     android:layout_width="0dp"
@@ -343,4 +346,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
 </layout>
