@@ -278,7 +278,9 @@
                     android:background="@drawable/round_corner_border"
                     android:gravity="center|end"
                     android:paddingHorizontal="8dp"
-                    android:text=""
+                    android:text="@={viewModel.birthday}"
+                    android:textColor="@color/black_000000"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/birth_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/birth_title"
@@ -309,7 +311,6 @@
                     app:layout_constraintStart_toEndOf="@+id/check_read_notification"
                     app:layout_constraintTop_toTopOf="@+id/check_read_notification" />
 
-                <!-- android:onClick="@{() -> viewModel.navigateToEditPassword()}" -->
                 <Button
                     android:id="@+id/button_edit_password"
                     android:layout_width="0dp"
@@ -318,13 +319,13 @@
                     android:layout_marginTop="24dp"
                     android:background="@drawable/round_corner_layout"
                     android:backgroundTint="@color/orange_ffa626"
+                    android:onClick="@{() -> viewModel.navigateToEditPassword()}"
                     android:text="@string/edit_password"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/check_read_notification" />
 
-                <!-- android:onClick="@{() -> viewModel.navigateToEditPassword()}" -->
                 <Button
                     android:id="@+id/button_edit_member_info_done"
                     android:layout_width="0dp"

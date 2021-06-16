@@ -86,4 +86,8 @@ class PuffRenLocalDataSource: PuffRenDataSource {
     ): DataResult<Prize> {
         TODO("Not yet implemented")
     }
+
+    override suspend fun updateUser(token: String, user: User): DataResult<UpdateUserResult> {
+        TODO("Not yet implemented")
+    }
 }

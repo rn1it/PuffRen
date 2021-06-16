@@ -159,6 +159,8 @@
     <string name="member_phone">會員電話:</string>
     <string name="member_birthday">會員生日:</string>
     <string name="member_privacy_note">我已經閱讀並同意會員權益聲明與隱私權條款</string>
+    <string name="update_user_success">會員資料更新成功!</string>
 
-
+    <!-- user notification -->
+    <string name="user_privacy">會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明</string>
 </resources>

@@ -20,15 +20,14 @@ data class User(
     @Json(name = "partner_id")
     val partnerId: String? = null,
     val score: Int? = null,
-
     // 0:member ; 1:partner
     @Json(name = "is_partner")
     val isPartner: Int? = 0,
-
     val phone: String? = null,
     val address: String? = null,
-    val city: String? = null
-
+    val city: String? = null,
+    @Json(name = "birth_date")
+    val birthDate: String? = null
 ): Parcelable {
     val isVendor: Boolean
         get() = when(isPartner){
@@ -36,3 +35,8 @@ data class User(
             else -> false
         }
 }
+
+data class UpdateUserResult(
+    val userInfo: User? = null,
+    val message: String? = null
+)

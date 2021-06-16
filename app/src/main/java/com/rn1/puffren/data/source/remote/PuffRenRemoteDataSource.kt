@@ -330,4 +330,20 @@ object PuffRenRemoteDataSource: PuffRenDataSource {
             DataResult.Error(e)
         }
     }
+
+    override suspend fun updateUser(token: String, user: User): DataResult<UpdateUserResult> {
+        if (!isInternetConnected()) {
+            return DataResult.Fail(getString(R.string.internet_not_connected))
+        }
+
+        return try {
+
+            val listResult = PuffrenApi.retrofitService.updateUser(token, user)
+            DataResult.Success(listResult)
+
+        } catch (e: Exception) {
+            Logger.w("[${this::class.simpleName}] exception=${e.message}")
+            DataResult.Error(e)
+        }
+    }
 }

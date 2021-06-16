@@ -53,6 +53,12 @@ interface PuffrenApiService{
     suspend fun getLoginUser(@Header("Authorization") token: String): User
 
     /**
+     * Update User Info
+     */
+    @PUT("user/profile")
+    suspend fun updateUser(@Header("Authorization") token: String, @Body user: User): UpdateUserResult
+
+    /**
      * Member Registry
      */
     @POST("user/register?origin=2")

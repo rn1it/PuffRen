@@ -2,8 +2,9 @@ package com.rn1.puffren.ui.edit
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +12,18 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.rn1.puffren.NavigationDirections
+import com.rn1.puffren.R
 import com.rn1.puffren.data.CityMain
 import com.rn1.puffren.databinding.FragmentEditMembershipBinding
 import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.util.INVALID_FORMAT_NICKNAME_EMPTY
+import com.rn1.puffren.util.INVALID_NOT_READ_USER_PRIVACY
+import com.rn1.puffren.util.Logger
 import com.rn1.puffren.util.Util.getDateFormat
 import com.rn1.puffren.util.Util.setTextToToast
 import java.util.*
@@ -27,7 +33,7 @@ class EditMembershipFragment : Fragment() {
     lateinit var binding: FragmentEditMembershipBinding
     val viewModel by viewModels<EditMembershipViewModel> { getVmFactory() }
 
-    private val calendar = Calendar.getInstance().apply { set(1990, 1, 1) }
+    private val calendar = Calendar.getInstance().apply { set(1990, 0, 1) }
     private val dateFormat = getDateFormat()
 
     override fun onCreateView(
@@ -41,11 +47,9 @@ class EditMembershipFragment : Fragment() {
 
         setupCitySpinner()
 
-        setupBt()
-
         binding.birthDatePicker.setOnClickListener {
 
-            val picker = DatePickerDialog(
+            val dialog = DatePickerDialog(
                 requireContext(),
                 AlertDialog.THEME_HOLO_DARK,
                 { _, year, monthOfYear, dayOfMonth ->
@@ -58,8 +62,57 @@ class EditMembershipFragment : Fragment() {
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH)
             )
-            picker.show()
+            dialog.datePicker.maxDate = Date().time
+            dialog.show()
         }
+
+        binding.buttonEditMemberInfoDone.setOnClickListener {
+            viewModel.checkInputInfo()
+        }
+
+
+        binding.checkReadNotification.setOnCheckedChangeListener { p0, isChecked ->
+            viewModel.isReadUserPrivacy.value = isChecked
+        }
+
+        binding.imageInformation.setOnClickListener {
+            val builder = AlertDialog.Builder(context)
+            builder.setCancelable(true)
+            val addView = LayoutInflater
+                .from(requireContext()).inflate(R.layout.dialog_user_privacy, null)
+            builder.setView(addView)
+            val alertDialog = builder.create()
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            alertDialog.show()
+        }
+
+        viewModel.invalidInfo.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when (it) {
+                    INVALID_FORMAT_NICKNAME_EMPTY -> {
+                        setTextToToast(getString(R.string.invalid_name_empty))
+                    }
+                    INVALID_NOT_READ_USER_PRIVACY -> {
+                        setTextToToast("請仔細閱讀會員權益並打勾")
+                    }
+                }
+                viewModel.cleanInvalidInfo()
+            }
+        })
+
+        viewModel.passCheck.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                viewModel.updateUser()
+            }
+        })
+
+        viewModel.updateUserResult.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                setTextToToast(getString(R.string.update_user_success))
+                Logger.d("user = ${it.userInfo}")
+            }
+        })
 
         viewModel.navigateToEditPassword.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -106,8 +159,14 @@ class EditMembershipFragment : Fragment() {
 
             adapter = arrayAdapter
             onItemSelectedListener = object : OnItemSelectedListener{
-                override fun onItemSelected(parent: AdapterView<*>, p1: View?, position: Int, id: Long) {
-                    val city = parent.getItemIdAtPosition(position).toString()
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    p1: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    val city = parent.getItemAtPosition(position).toString()
+                    Logger.d("city = $city")
                     viewModel.city.value = city
                 }
 
@@ -116,12 +175,5 @@ class EditMembershipFragment : Fragment() {
         }
     }
 
-    private fun setupBt() {
-        binding.buttonEditPassword.setOnClickListener {
-            setTextToToast("開發中，敬請期待!")
-        }
-        binding.buttonEditMemberInfoDone.setOnClickListener {
-            setTextToToast("開發中，敬請期待!")
-        }
-    }
+
 }

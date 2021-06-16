@@ -95,4 +95,8 @@ class DefaultPuffRenRepository(
     ): DataResult<Prize> {
         return puffRenRemoteDataSource.getPrize(token, eventType, eventId)
     }
+
+    override suspend fun updateUser(token: String, user: User): DataResult<UpdateUserResult> {
+        return puffRenRemoteDataSource.updateUser(token, user)
+    }
 }

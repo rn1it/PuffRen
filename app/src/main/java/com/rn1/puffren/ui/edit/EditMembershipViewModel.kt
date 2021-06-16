@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rn1.puffren.data.CityMain
 import com.rn1.puffren.data.DataResult
+import com.rn1.puffren.data.UpdateUserResult
 import com.rn1.puffren.data.User
 import com.rn1.puffren.data.source.PuffRenRepository
-import com.rn1.puffren.util.Logger
-import com.rn1.puffren.util.UserManager
+import com.rn1.puffren.util.*
 import kotlinx.coroutines.launch
 
 class EditMembershipViewModel(
@@ -22,13 +22,26 @@ class EditMembershipViewModel(
 
     val nickname = MutableLiveData<String>()
     val fullName = MutableLiveData<String>()
-
     val city = MutableLiveData<String>()
     val spinnerPosition = MutableLiveData<Int>()
-
     val address = MutableLiveData<String>()
     val phone = MutableLiveData<String>()
     val birthday = MutableLiveData<String>()
+    val isReadUserPrivacy = MutableLiveData<Boolean>().apply {
+        value = false
+    }
+
+    private val _updateUserResult = MutableLiveData<UpdateUserResult>()
+    val updateUserResult: LiveData<UpdateUserResult>
+        get() = _updateUserResult
+
+    private val _passCheck = MutableLiveData<Boolean>()
+    val passCheck: LiveData<Boolean>
+        get() = _passCheck
+
+    private val _invalidInfo = MutableLiveData<Int>()
+    val invalidInfo: LiveData<Int>
+        get() = _invalidInfo
 
     private val _navigateToEditPassword = MutableLiveData<Boolean>()
     val navigateToEditPassword: LiveData<Boolean>
@@ -42,10 +55,6 @@ class EditMembershipViewModel(
         getUserProfile()
     }
 
-
-
-
-
     private fun getUserProfile(){
         viewModelScope.launch {
 
@@ -58,7 +67,8 @@ class EditMembershipViewModel(
                     fullName.value = user.fullName
                     address.value = user.address
                     phone.value = user.phone
-//                    address.value = user.
+                    address.value = user.address
+                    birthday.value = user.birthDate
 
                     city.value = user.city
                     if (null != user.city) {
@@ -85,6 +95,51 @@ class EditMembershipViewModel(
             }
         }
         return 0
+    }
+
+    fun checkInputInfo() {
+        when {
+            nickname.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_FORMAT_NICKNAME_EMPTY
+            isReadUserPrivacy.value == false ->  _invalidInfo.value = INVALID_NOT_READ_USER_PRIVACY
+            else -> {
+                _passCheck.value = true
+            }
+        }
+    }
+
+    fun cleanInvalidInfo() {
+        _invalidInfo.value = null
+    }
+
+    fun updateUser() {
+        viewModelScope.launch {
+
+            val user = User(
+                userName = nickname.value,
+                fullName = fullName.value,
+                city = city.value,
+                address = address.value,
+                phone = phone.value,
+                birthDate = birthday.value
+            )
+
+            _updateUserResult.value = when(val result = repository.updateUser(UserManager.userToken!!, user)){
+
+                is DataResult.Success -> {
+                    result.data
+                }
+
+                is DataResult.Fail -> {
+                    Logger.d("Fail")
+                    null
+                }
+
+                is DataResult.Error -> {
+                    Logger.d("Error")
+                    null
+                }
+            }
+        }
     }
 
     fun navigateToEditPassword(){
