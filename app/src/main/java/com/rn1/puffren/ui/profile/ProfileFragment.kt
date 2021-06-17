@@ -119,6 +119,11 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getUserProfile()
+    }
+
     private fun setProfileImage(user: User){
         when(user.level){
             "1" -> binding.imageProfile.setImageResource(R.drawable.lv1_member)

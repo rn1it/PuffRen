@@ -79,11 +79,11 @@ class ProfileViewModel(
         Logger.i("[${this::class.simpleName}]${this}")
         Logger.i("------------------------------------")
 
-        if (user.value == null) {
-            UserManager.userToken?.let {
-                getUserProfile(it)
-            }
-        }
+//        if (user.value == null) {
+//            UserManager.userToken?.let {
+//                getUserProfile(it)
+//            }
+//        }
     }
 
     /**
@@ -103,10 +103,10 @@ class ProfileViewModel(
     }
 
 
-    private fun getUserProfile(token: String){
+    fun getUserProfile(){
         viewModelScope.launch {
 
-            when(val result = repository.getLoginUser(token)){
+            when(val result = repository.getLoginUser(UserManager.userToken!!)){
 
                 is DataResult.Success -> {
                     val user = result.data
