@@ -90,4 +90,8 @@ class PuffRenLocalDataSource: PuffRenDataSource {
     override suspend fun updateUser(token: String, user: User): DataResult<UpdateUserResult> {
         TODO("Not yet implemented")
     }
+
+    override suspend fun getFoodCart(loginResult: LoginResult): DataResult<FoodCartResult> {
+        TODO("Not yet implemented")
+    }
 }

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="reportItem"
+            type="com.rn1.puffren.data.ReportItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/food_cart_set_title"
+            style="@style/text_style_medium_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@{reportItem.title}"
+            app:layout_constraintEnd_toStartOf="@+id/image_minus"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="一般小芙套餐" />
+
+        <TextView
+            android:id="@+id/food_cart_set_price"
+            style="@style/text_style_sale_report_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/food_cart_set_title"
+            app:price="@{reportItem.price}"
+            tools:text="NT$10000" />
+
+        <ImageView
+            android:id="@+id/image_minus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_baseline_minus_circle_outline_24"
+            app:layout_constraintBottom_toBottomOf="@+id/food_cart_set_price"
+            app:layout_constraintEnd_toStartOf="@+id/text_amount"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textSize="16sp"
+            android:text="@{String.valueOf(reportItem.quantity)}"
+            app:layout_constraintBottom_toBottomOf="@+id/image_minus"
+            app:layout_constraintEnd_toStartOf="@+id/image_plus"
+            app:layout_constraintTop_toTopOf="@+id/image_minus"
+            tools:text="0" />
+
+        <ImageView
+            android:id="@+id/image_plus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_add_circle_outline_24"
+            app:layout_constraintBottom_toBottomOf="@+id/image_minus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image_minus" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

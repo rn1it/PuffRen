@@ -153,6 +153,12 @@ interface PuffrenApiService{
      */
     @GET("marketing/prize/{eventType}/{eventId}")
     suspend fun getPrize(@Header("Authorization") token: String, @Path("eventType") eventType: String, @Path("eventId") eventId: String): Prize
+
+    /**
+     * Get Food Cart
+     */
+    @POST("application/foodCart")
+    suspend fun getFoodCart(@Body loginResult: LoginResult) : FoodCartResult
 }
 
 object PuffrenApi {

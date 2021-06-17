@@ -99,7 +99,7 @@ class EditMembershipViewModel(
 
     fun checkInputInfo() {
         when {
-            nickname.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_FORMAT_NICKNAME_EMPTY
+            nickname.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_NAME_EMPTY
             isReadUserPrivacy.value == false ->  _invalidInfo.value = INVALID_NOT_READ_USER_PRIVACY
             else -> {
                 _passCheck.value = true
@@ -149,5 +149,4 @@ class EditMembershipViewModel(
     fun navigateToEditPasswordDone(){
         _navigateToEditPassword.value = null
     }
-
 }

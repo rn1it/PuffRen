@@ -7,5 +7,6 @@ data class ReportItem(
     @Json(name = "item_title")
     val title: String? = null,
     val category: Int? = null,
-    val quantity: Int = 0
+    var quantity: Int = 0,
+    val price: Int = 0
 )

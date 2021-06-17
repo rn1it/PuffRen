@@ -137,7 +137,8 @@
 
     <!-- invalid info -->
     <string name="invalid_email_empty">Email帳號不可為空</string>
-    <string name="invalid_name_empty">暱稱不可為空</string>
+    <string name="invalid_nickname_empty">暱稱不可為空</string>
+    <string name="invalid_order_name_empty">訂購人姓名不可為空</string>
     <string name="invalid_password_empty">密碼不可為空</string>
     <string name="invalid_password_comfirm_empty">密碼確認不可為空</string>
     <string name="password_comfirm_fail">確認密碼與輸入密碼不同</string>
@@ -163,4 +164,22 @@
 
     <!-- user notification -->
     <string name="user_privacy">會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- food cart -->
+    <string name="basic_info">基本資訊</string>
+    <string name="order_date">訂購日期:</string>
+    <string name="order_address">訂購地址:</string>
+    <string name="order_name">訂購人姓名:</string>
+    <string name="order_phone">訂購人電話:</string>
+    <string name="order_email">訂購人Email:</string>
+    <string name="send_order">送出訂單</string>
+    <string name="order_now">立即預約</string>
+    <string name="order_content">訂購內容</string>
+    <string name="invalid_order_date_empty">訂購日期不可為空</string>
+    <string name="invalid_order_address_empty">訂購地址不可為空</string>
+    <string name="invalid_order_phone_empty">訂購人電話不可為空</string>
+    <string name="invalid_order_email_empty">訂購人Email不可為空</string>
+    <string name="invalid_order_item_select">請選擇至少一種套餐</string>
+
 </resources>

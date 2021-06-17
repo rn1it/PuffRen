@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.rn1.puffren.ui.edit.EditMembershipViewModel" />
@@ -12,13 +13,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg_color_yellow">
+        android:background="@color/bg_color_yellow"
+        tools:context=".ui.edit.EditMembershipFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            tools:context=".ui.edit.EditMembershipFragment">
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/member_level_title"
@@ -117,11 +118,11 @@
                     android:layout_height="30dp"
                     android:layout_marginHorizontal="8dp"
                     android:background="@drawable/round_corner_border"
-                    android:ems="10"
+                    android:gravity="center|end"
                     android:inputType="textPersonName"
+                    android:maxLength="12"
                     android:paddingHorizontal="8dp"
                     android:text="@={viewModel.nickname}"
-                    android:gravity="center|end"
                     app:layout_constraintBottom_toBottomOf="@+id/nickname_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/nickname_title"
@@ -169,11 +170,11 @@
                     android:layout_height="30dp"
                     android:layout_marginHorizontal="8dp"
                     android:background="@drawable/round_corner_border"
-                    android:ems="10"
+                    android:gravity="center|end"
                     android:inputType="textPersonName"
+                    android:maxLength="12"
                     android:paddingHorizontal="8dp"
                     android:text="@={viewModel.fullName}"
-                    android:gravity="center|end"
                     app:layout_constraintBottom_toBottomOf="@+id/name_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/name_title"
@@ -220,11 +221,11 @@
                     android:layout_height="30dp"
                     android:layout_marginHorizontal="8dp"
                     android:background="@drawable/round_corner_border"
-                    android:ems="10"
+                    android:gravity="center|end"
                     android:inputType="textPostalAddress"
+                    android:maxLength="40"
                     android:paddingHorizontal="8dp"
                     android:text="@={viewModel.address}"
-                    android:gravity="center|end"
                     app:layout_constraintBottom_toBottomOf="@+id/address_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/address_title"
@@ -248,11 +249,11 @@
                     android:layout_height="30dp"
                     android:layout_marginHorizontal="8dp"
                     android:background="@drawable/round_corner_border"
-                    android:ems="10"
+                    android:gravity="center|end"
                     android:inputType="phone"
+                    android:maxLength="10"
                     android:paddingHorizontal="8dp"
                     android:text="@={viewModel.phone}"
-                    android:gravity="center|end"
                     app:layout_constraintBottom_toBottomOf="@+id/phone_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/phone_title"

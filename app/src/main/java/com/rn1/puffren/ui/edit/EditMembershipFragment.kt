@@ -21,7 +21,7 @@ import com.rn1.puffren.R
 import com.rn1.puffren.data.CityMain
 import com.rn1.puffren.databinding.FragmentEditMembershipBinding
 import com.rn1.puffren.ext.getVmFactory
-import com.rn1.puffren.util.INVALID_FORMAT_NICKNAME_EMPTY
+import com.rn1.puffren.util.INVALID_NAME_EMPTY
 import com.rn1.puffren.util.INVALID_NOT_READ_USER_PRIVACY
 import com.rn1.puffren.util.Logger
 import com.rn1.puffren.util.Util.getDateFormat
@@ -90,8 +90,8 @@ class EditMembershipFragment : Fragment() {
         viewModel.invalidInfo.observe(viewLifecycleOwner, Observer {
             it?.let {
                 when (it) {
-                    INVALID_FORMAT_NICKNAME_EMPTY -> {
-                        setTextToToast(getString(R.string.invalid_name_empty))
+                    INVALID_NAME_EMPTY -> {
+                        setTextToToast(getString(R.string.invalid_nickname_empty))
                     }
                     INVALID_NOT_READ_USER_PRIVACY -> {
                         setTextToToast("請仔細閱讀會員權益並打勾")
@@ -174,6 +174,4 @@ class EditMembershipFragment : Fragment() {
             }
         }
     }
-
-
 }

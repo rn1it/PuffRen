@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.activityFragment -> CurrentFragmentType.ACTIVITY
                 R.id.foodCarFragment -> CurrentFragmentType.FOODCART
                 R.id.reportFragment -> CurrentFragmentType.REPORT
+                R.id.foodCartContentFragment -> CurrentFragmentType.FOODCARTORDER
                 else -> mainViewModel.currentFragmentType.value
             }
         }

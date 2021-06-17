@@ -79,10 +79,10 @@ class RegistryViewModel(val repository: PuffRenRepository): ViewModel() {
 
     fun checkRegistryInfo(){
         when {
-            email.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_FORMAT_EMAIL_EMPTY
-            nickname.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_FORMAT_NICKNAME_EMPTY
-            password.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_FORMAT_PASSWORD_EMPTY
-            confirmPassword.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_FORMAT_PASSWORD_CONFIRM_EMPTY
+            email.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_EMAIL_EMPTY
+            nickname.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_NAME_EMPTY
+            password.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_PASSWORD_EMPTY
+            confirmPassword.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_PASSWORD_CONFIRM_EMPTY
             password.value != confirmPassword.value -> _invalidInfo.value = INVALID_FORMAT_PASSWORD_CONFIRM
             else -> {
                 _passRegistryCheck.value = true

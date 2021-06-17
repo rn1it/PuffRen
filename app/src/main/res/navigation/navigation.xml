@@ -41,14 +41,14 @@
         <action
             android:id="@+id/action_loginFragment_to_profileFragment"
             app:destination="@id/profileFragment"
-            app:popUpTo="@id/homeFragment"/>
+            app:popUpTo="@id/homeFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/reportFragment"
         android:name="com.rn1.puffren.ui.report.ReportFragment"
         android:label="ReportFragment"
-        tools:layout="@layout/fragment_report"/>
+        tools:layout="@layout/fragment_report" />
 
     <fragment
         android:id="@+id/profileFragment"
@@ -65,7 +65,7 @@
         android:id="@+id/editMembershipFragment"
         android:name="com.rn1.puffren.ui.edit.EditMembershipFragment"
         android:label="EditMembershipFragment"
-        tools:layout="@layout/fragment_edit_membership"/>
+        tools:layout="@layout/fragment_edit_membership" />
 
     <fragment
         android:id="@+id/cartFragment"
@@ -86,37 +86,37 @@
         android:id="@+id/registryFragment"
         android:name="com.rn1.puffren.ui.registry.RegistryFragment"
         android:label="RegistryFragment"
-        tools:layout="@layout/fragment_registry"/>
+        tools:layout="@layout/fragment_registry" />
 
     <fragment
         android:id="@+id/performanceFragment"
         android:name="com.rn1.puffren.ui.performance.PerformanceFragment"
         android:label="PerformanceFragment"
-        tools:layout="@layout/fragment_performance"/>
+        tools:layout="@layout/fragment_performance" />
 
     <fragment
         android:id="@+id/QRCodeFragment"
         android:name="com.rn1.puffren.ui.qrcode.QRCodeFragment"
         android:label="QRCodeFragment"
-        tools:layout="@layout/fragment_q_r_code"/>
+        tools:layout="@layout/fragment_q_r_code" />
 
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.rn1.puffren.ui.history.HistoryFragment"
         android:label="HistoryFragment"
-        tools:layout="@layout/fragment_history"/>
+        tools:layout="@layout/fragment_history" />
 
     <fragment
         android:id="@+id/couponFragment"
         android:name="com.rn1.puffren.ui.coupon.CouponFragment"
         android:label="CouponFragment"
-        tools:layout="@layout/fragment_coupon"/>
+        tools:layout="@layout/fragment_coupon" />
 
     <fragment
         android:id="@+id/editPasswordFragment"
         android:name="com.rn1.puffren.ui.edit.EditPasswordFragment"
         android:label="EditPasswordFragment"
-        tools:layout="@layout/fragment_edit_password"/>
+        tools:layout="@layout/fragment_edit_password" />
 
     <fragment
         android:id="@+id/reportItemFragment"
@@ -148,19 +148,25 @@
         android:id="@+id/achievementTypeFragment"
         android:name="com.rn1.puffren.ui.achievement.AchievementTypeFragment"
         android:label="AchievementTypeFragment"
-        tools:layout="@layout/fragment_achievement_type"/>
+        tools:layout="@layout/fragment_achievement_type" />
 
     <fragment
         android:id="@+id/foodCarFragment"
-        android:name="com.rn1.puffren.ui.car.FoodCarFragment"
+        android:name="com.rn1.puffren.ui.car.FoodCartFragment"
         android:label="FoodCarFragment"
-        tools:layout="@layout/fragment_food_car"/>
+        tools:layout="@layout/fragment_food_car" />
 
     <fragment
         android:id="@+id/activityFragment"
         android:name="com.rn1.puffren.ui.activity.ActivityFragment"
         android:label="ActivityFragment"
         tools:layout="@layout/fragment_activity" />
+
+    <fragment
+        android:id="@+id/foodCartContentFragment"
+        android:name="com.rn1.puffren.ui.car.content.FoodCartContentFragment"
+        android:label="FoodCartContentFragment"
+        tools:layout="@layout/fragment_food_cart_content" />
 
     <action
         android:id="@+id/action_global_locationFragment"
@@ -185,7 +191,7 @@
 
     <action
         android:id="@+id/action_global_reportFragment"
-        app:destination="@id/reportFragment"/>
+        app:destination="@id/reportFragment" />
 
     <action
         android:id="@+id/action_global_profileFragment"
@@ -221,7 +227,7 @@
 
     <action
         android:id="@+id/action_global_editPasswordFragment"
-        app:destination="@id/editPasswordFragment"/>
+        app:destination="@id/editPasswordFragment" />
 
     <action
         android:id="@+id/action_global_reportItemFragment"
@@ -237,7 +243,7 @@
 
     <action
         android:id="@+id/action_global_achievementTypeFragment"
-        app:destination="@id/achievementTypeFragment"/>
+        app:destination="@id/achievementTypeFragment" />
 
     <action
         android:id="@+id/action_global_foodCarFragment"
@@ -246,4 +252,9 @@
     <action
         android:id="@+id/action_global_activityFragment"
         app:destination="@id/activityFragment" />
+
+    <action
+        android:id="@+id/action_global_foodCartContentFragment"
+        app:destination="@id/foodCartContentFragment" />
+
 </navigation>

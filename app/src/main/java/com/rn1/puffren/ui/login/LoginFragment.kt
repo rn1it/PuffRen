@@ -84,14 +84,14 @@ class LoginFragment : Fragment() {
         viewModel.invalidInfo.observe(viewLifecycleOwner, Observer {
             it?.let {
                 when (it) {
-                    INVALID_FORMAT_EMAIL_EMPTY -> {
+                    INVALID_EMAIL_EMPTY -> {
                         Toast.makeText(
                             requireContext(),
                             getString(R.string.invalid_email_empty),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-                    INVALID_FORMAT_PASSWORD_EMPTY -> {
+                    INVALID_PASSWORD_EMPTY -> {
                         Toast.makeText(
                             requireContext(),
                             getString(R.string.invalid_password_empty),

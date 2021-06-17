@@ -1,7 +1,5 @@
 package com.rn1.puffren.util
 
-import com.rn1.puffren.R
-import com.rn1.puffren.util.Util.getString
 
 enum class CurrentFragmentType(val value: String) {
     HOME(""),
@@ -19,5 +17,6 @@ enum class CurrentFragmentType(val value: String) {
     ACHIEVEMENT("會員成就"),
     ACTIVITY("會員專屬活動"),
     FOODCART(""),
-    REPORT("營業狀況回報")
+    REPORT("營業狀況回報"),
+    FOODCARTORDER("餐車服務預約")
 }

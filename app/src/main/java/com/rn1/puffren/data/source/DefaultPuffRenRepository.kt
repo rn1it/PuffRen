@@ -99,4 +99,8 @@ class DefaultPuffRenRepository(
     override suspend fun updateUser(token: String, user: User): DataResult<UpdateUserResult> {
         return puffRenRemoteDataSource.updateUser(token, user)
     }
+
+    override suspend fun getFoodCart(loginResult: LoginResult): DataResult<FoodCartResult> {
+        return puffRenRemoteDataSource.getFoodCart(loginResult)
+    }
 }

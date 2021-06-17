@@ -91,8 +91,8 @@ class LoginViewModel(private val repository: PuffRenRepository) : ViewModel() {
 
     fun checkLoginInfo(){
         when {
-            email.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_FORMAT_EMAIL_EMPTY
-            password.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_FORMAT_PASSWORD_EMPTY
+            email.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_EMAIL_EMPTY
+            password.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_PASSWORD_EMPTY
             else -> {
                 _passRegistryCheck.value = true
             }

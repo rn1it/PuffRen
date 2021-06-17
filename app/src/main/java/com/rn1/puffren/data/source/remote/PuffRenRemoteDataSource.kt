@@ -346,4 +346,20 @@ object PuffRenRemoteDataSource: PuffRenDataSource {
             DataResult.Error(e)
         }
     }
+
+    override suspend fun getFoodCart(loginResult: LoginResult): DataResult<FoodCartResult> {
+        if (!isInternetConnected()) {
+            return DataResult.Fail(getString(R.string.internet_not_connected))
+        }
+
+        return try {
+
+            val listResult = PuffrenApi.retrofitService.getFoodCart(loginResult)
+            DataResult.Success(listResult)
+
+        } catch (e: Exception) {
+            Logger.w("[${this::class.simpleName}] exception=${e.message}")
+            DataResult.Error(e)
+        }
+    }
 }
