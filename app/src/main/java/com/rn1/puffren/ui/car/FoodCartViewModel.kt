@@ -64,6 +64,12 @@ class FoodCartViewModel(
                 is DataResult.Success -> {
                     _status.value = LoadApiStatus.DONE
 
+                    val userInfo = result.data.userInfo
+                    orderName.value = userInfo.fullName
+                    email.value = userInfo.email
+                    phone.value = userInfo.phone
+                    address.value = userInfo.address
+
                     createFoodSetList(result.data.foodCartSets)
                     result.data
                 }
