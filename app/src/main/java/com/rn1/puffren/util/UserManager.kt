@@ -11,7 +11,7 @@ object UserManager {
     private const val USER_DATA = "user_data"
     private const val USER_TOKEN = "user_token"
     private const val USER_ID = "user_id"
-    private const val RECORD_ID = "recordId"
+    private const val RECORD_ID = "record_id"
 
     private val _user = MutableLiveData<User>()
 

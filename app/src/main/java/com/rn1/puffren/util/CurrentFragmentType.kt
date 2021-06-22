@@ -18,5 +18,6 @@ enum class CurrentFragmentType(val value: String) {
     ACTIVITY("會員專屬活動"),
     FOODCART(""),
     REPORT("營業狀況回報"),
-    FOODCARTORDER("餐車服務預約")
+    FOODCARTORDER("餐車服務預約"),
+    QRCODE("會員消費累積")
 }

@@ -17,3 +17,9 @@ const val MAX_CALENDAR_DAYS = 42
 
 // Event
 const val EVENT_SCRATCH_CARD = "scratch"
+
+// Time
+const val SCANNER_TIMEOUT = 300000L
+
+// Encode
+const val ENCODE_UTF_8 = "UTF-8"

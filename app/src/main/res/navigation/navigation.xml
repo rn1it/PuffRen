@@ -95,10 +95,15 @@
         tools:layout="@layout/fragment_performance" />
 
     <fragment
-        android:id="@+id/QRCodeFragment"
+        android:id="@+id/qRCodeFragment"
         android:name="com.rn1.puffren.ui.qrcode.QRCodeFragment"
         android:label="QRCodeFragment"
-        tools:layout="@layout/fragment_q_r_code" />
+        tools:layout="@layout/fragment_q_r_code" >
+        <argument
+            android:name="user"
+            app:argType="com.rn1.puffren.data.User"
+            app:nullable="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/historyFragment"
@@ -215,7 +220,7 @@
 
     <action
         android:id="@+id/action_global_QRCodeFragment"
-        app:destination="@id/QRCodeFragment" />
+        app:destination="@id/qRCodeFragment" />
 
     <action
         android:id="@+id/action_global_historyFragment"

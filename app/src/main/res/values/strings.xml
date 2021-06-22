@@ -182,4 +182,22 @@
     <string name="invalid_order_email_empty">訂購人Email不可為空</string>
     <string name="invalid_order_item_select">請選擇至少一種套餐</string>
 
+
+    <!-- QR Code -->
+    <string name="enter_total_amount">請輸入結帳金額</string>
+    <string name="use_coupon">使用折價券</string>
+    <string name="create_qr_code">產生 QR Code</string>
+    <string name="discount">折價:</string>
+    <string name="total_after_discount">折扣後結帳金額</string>
+    <string name="back">返回</string>
+    <string name="ok_and_create_order">確認 成立訂單</string>
+    <string name="total_amount">消費金額</string>
+    <string name="coupon_discount">優惠券折扣</string>
+    <string name="member_discount">會員折扣</string>
+    <string name="total_amount_after_discount">應付金額</string>
+    <string name="amount_detail">消費明細</string>
+    <string name="member_info">客戶資訊</string>
+    <string name="please_scan_qr_code">請掃描 QR CODE</string>
+    <string name="error_msg_contact_it">發生錯誤，請聯絡開發人員</string>
+
 </resources>

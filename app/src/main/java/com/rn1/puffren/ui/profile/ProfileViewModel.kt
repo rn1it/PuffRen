@@ -34,9 +34,9 @@ class ProfileViewModel(
     val navigateToSaleReportHistory: LiveData<Boolean>
         get() = _navigateToSaleReportHistory
 
-    private val _navigateToQRCode = MutableLiveData<Boolean>()
-    val navigateToQRCode: LiveData<Boolean>
-        get() = _navigateToQRCode
+    private val _navigateToScannerActivity = MutableLiveData<Boolean>()
+    val navigateToScannerActivity: LiveData<Boolean>
+        get() = _navigateToScannerActivity
 
     private val _navigateToOrder = MutableLiveData<Boolean>()
     val navigateToOrder: LiveData<Boolean>
@@ -50,8 +50,8 @@ class ProfileViewModel(
     val navigateToActivity: LiveData<Boolean>
         get() = _navigateToActivity
 
-    private val _navigateToMemberQRCode = MutableLiveData<Boolean>()
-    val navigateToMemberQRCode: LiveData<Boolean>
+    private val _navigateToMemberQRCode = MutableLiveData<User>()
+    val navigateToMemberQRCode: LiveData<User>
         get() = _navigateToMemberQRCode
 
     private val _navigateToMemberCoupon = MutableLiveData<Boolean>()
@@ -141,14 +141,6 @@ class ProfileViewModel(
         _navigateToSaleReportHistory.value = null
     }
 
-    fun navigateToQRCode(){
-        _navigateToQRCode.value = true
-    }
-
-    fun navigateToQRCodeDone(){
-        _navigateToQRCode.value = null
-    }
-
     fun navigateToOrder(){
         _navigateToOrder.value = true
     }
@@ -165,6 +157,10 @@ class ProfileViewModel(
         _navigateToEditMember.value = null
     }
 
+    fun navigateToScannerActivity(){
+        _navigateToScannerActivity.value = true
+    }
+
     fun navigateToActivity(){
         _navigateToActivity.value = true
     }
@@ -174,7 +170,7 @@ class ProfileViewModel(
     }
 
     fun navigateToMemberQRCode(){
-        _navigateToMemberQRCode.value = true
+        _navigateToMemberQRCode.value = _user.value
     }
 
     fun navigateToMemberQRCodeDone(){

@@ -172,7 +172,7 @@
                 android:layout_marginEnd="32dp"
                 android:padding="8dp"
                 android:focusable="true"
-                android:onClick="@{() -> viewModel.navigateToQRCode()}"
+                android:onClick="@{() -> viewModel.navigateToScannerActivity()}"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_history_report"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/profile_history_report">

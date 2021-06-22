@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.foodCarFragment -> CurrentFragmentType.FOODCART
                 R.id.reportFragment -> CurrentFragmentType.REPORT
                 R.id.foodCartContentFragment -> CurrentFragmentType.FOODCARTORDER
+                R.id.qRCodeFragment -> CurrentFragmentType.QRCODE
                 else -> mainViewModel.currentFragmentType.value
             }
         }

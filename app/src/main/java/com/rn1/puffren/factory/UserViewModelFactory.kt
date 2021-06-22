@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.rn1.puffren.data.User
 import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.ui.profile.ProfileViewModel
+import com.rn1.puffren.ui.qrcode.QRCodeViewModel
 
 @Suppress("UNCHECKED_CAST")
 class UserViewModelFactory(private val puffRenRepository: PuffRenRepository,
@@ -16,6 +17,10 @@ class UserViewModelFactory(private val puffRenRepository: PuffRenRepository,
             when {
                 isAssignableFrom(ProfileViewModel::class.java) ->
                     ProfileViewModel(puffRenRepository, user)
+
+                isAssignableFrom(QRCodeViewModel::class.java) ->
+                    QRCodeViewModel(puffRenRepository, user)
+
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
