@@ -13,9 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.R
 import com.rn1.puffren.databinding.FragmentProdItemBinding
-import com.rn1.puffren.ext.getVmFactory
-import com.rn1.puffren.ext.hide
-import com.rn1.puffren.ext.show
+import com.rn1.puffren.ext.*
+import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.ui.product.ProdTypeFilter
 
 class ProdItemFragment(prodTypeFilter: ProdTypeFilter) : Fragment() {
@@ -25,6 +24,8 @@ class ProdItemFragment(prodTypeFilter: ProdTypeFilter) : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ProdItemAdapter
+
+    private val loadingDialog by lazy { loadingDialog() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +50,15 @@ class ProdItemFragment(prodTypeFilter: ProdTypeFilter) : Fragment() {
             it?.let {
                 findNavController().navigate(NavigationDirections.actionGlobalDetailFragment(it))
                 viewModel.navigateToProductDetailDone()
+            }
+        })
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when(it) {
+                    LoadApiStatus.LOADING -> showDialog(loadingDialog)
+                    LoadApiStatus.DONE, LoadApiStatus.ERROR -> dismissDialog(loadingDialog)
+                }
             }
         })
 

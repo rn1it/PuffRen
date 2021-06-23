@@ -93,7 +93,6 @@ class ProfileViewModel(
         value = true
     }
 
-
     // TODO
     fun switchUserType(){
         testIsVendor.value = when (testIsVendor.value) {
@@ -102,23 +101,26 @@ class ProfileViewModel(
         }
     }
 
-
     fun getUserProfile(){
         viewModelScope.launch {
 
+            _status.value = LoadApiStatus.LOADING
             when(val result = repository.getLoginUser(UserManager.userToken!!)){
 
                 is DataResult.Success -> {
                     val user = result.data
                     Logger.d("登入使用者: $user")
+                    _status.value = LoadApiStatus.DONE
                     _user.value = user
                 }
 
                 is DataResult.Fail -> {
+                    _status.value = LoadApiStatus.ERROR
                     Logger.d("Fail")
                 }
 
                 is DataResult.Error -> {
+                    _status.value = LoadApiStatus.ERROR
                     Logger.d("Error")
                 }
             }
@@ -159,6 +161,10 @@ class ProfileViewModel(
 
     fun navigateToScannerActivity(){
         _navigateToScannerActivity.value = true
+    }
+
+    fun navigateToScannerActivityDone(){
+        _navigateToScannerActivity.value = null
     }
 
     fun navigateToActivity(){

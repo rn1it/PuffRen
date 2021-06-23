@@ -7,14 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.rn1.puffren.data.BuyDetail
 import com.rn1.puffren.databinding.FragmentQRCodeBinding
-import com.rn1.puffren.ext.getVmFactory
-import com.rn1.puffren.ext.hideKeyboard
+import com.rn1.puffren.ext.*
+import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.ENCODE_UTF_8
 import com.squareup.moshi.Moshi
 
@@ -23,6 +24,8 @@ class QRCodeFragment : Fragment() {
     lateinit var binding: FragmentQRCodeBinding
     private val moshi by lazy { Moshi.Builder().build() }
     private val jsonAdapter = moshi.adapter(BuyDetail::class.java)
+
+    private val loadingDialog by lazy { loadingDialog() }
 
     val viewModel by viewModels<QRCodeViewModel> {
         getVmFactory(
@@ -70,6 +73,15 @@ class QRCodeFragment : Fragment() {
                 e.printStackTrace()
             }
         }
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when (it) {
+                    LoadApiStatus.LOADING -> showDialog(loadingDialog)
+                    LoadApiStatus.DONE, LoadApiStatus.ERROR -> dismissDialog(loadingDialog)
+                }
+            }
+        })
 
         return binding.root
     }

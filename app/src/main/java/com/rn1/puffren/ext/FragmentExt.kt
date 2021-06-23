@@ -1,14 +1,21 @@
 package com.rn1.puffren.ext
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
 import androidx.fragment.app.Fragment
 import com.rn1.puffren.PuffRenApplication
+import com.rn1.puffren.R
 import com.rn1.puffren.data.ItemPackage
 import com.rn1.puffren.data.Product
 import com.rn1.puffren.data.User
 import com.rn1.puffren.factory.*
 import com.rn1.puffren.ui.achievement.AchievementTypeFilter
 import com.rn1.puffren.ui.product.ProdTypeFilter
-
 
 fun Fragment.getVmFactory(): ViewModelFactory{
     val repository = (requireContext().applicationContext as PuffRenApplication).puffRenRepository
@@ -47,4 +54,33 @@ fun Fragment.getVmFactory(achievementTypeFilter: AchievementTypeFilter): Achieve
 
 fun Fragment.hideKeyboard() {
     view?.let { activity?.hideKeyboard(it) }
+}
+
+fun Fragment.loadingDialog(cancelable: Boolean = true): Dialog =
+    Dialog(requireActivity()).apply {
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        setContentView(initLoadingProgress())
+        setCanceledOnTouchOutside(false)
+        setCancelable(cancelable)
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+fun Fragment.initLoadingProgress(): View =
+    LayoutInflater.from(requireActivity()).inflate(R.layout.dialog_loading, getRootView(), false)
+
+
+fun Fragment.getRootView(): ViewGroup {
+    return requireActivity().findViewById(android.R.id.content)
+}
+
+fun Fragment.showDialog(dialog: Dialog?) {
+    if (dialog != null && !dialog.isShowing) {
+        dialog.show()
+    }
+}
+
+fun Fragment.dismissDialog(dialog: Dialog?) {
+    if (dialog != null && dialog.isShowing) {
+        dialog.dismiss()
+    }
 }

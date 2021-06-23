@@ -1,8 +1,6 @@
 package com.rn1.puffren.ui.history
 
 import androidx.lifecycle.*
-import androidx.navigation.NavDestination
-import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.data.*
 import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.network.LoadApiStatus
@@ -51,16 +49,20 @@ class HistoryViewModel(
 
         viewModelScope.launch {
 
+            _status.value = LoadApiStatus.LOADING
+
             _saleCalendar.value = when(val result = repository.getSaleCalendar(UserManager.userToken!!)) {
                 is DataResult.Success -> {
                     _status.value = LoadApiStatus.DONE
                     result.data
                 }
                 is DataResult.Fail -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.error
                     null
                 }
                 is DataResult.Error -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.exception.toString()
                     null
                 }

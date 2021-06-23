@@ -10,7 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.rn1.puffren.R
 import com.rn1.puffren.databinding.FragmentFoodCartContentBinding
+import com.rn1.puffren.ext.dismissDialog
 import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.ext.loadingDialog
+import com.rn1.puffren.ext.showDialog
+import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.ui.car.FoodCartViewModel
 import com.rn1.puffren.util.*
 import com.rn1.puffren.util.Util.getDateFormat
@@ -23,6 +27,8 @@ class FoodCartContentFragment : Fragment() {
 
     private val adapter by lazy { FoodCarSetAdapter(viewModel) }
     private val calendar = Calendar.getInstance(Locale.TAIWAN).apply { add(Calendar.DATE, 7) }
+
+    private val loadingDialog by lazy { loadingDialog() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -98,6 +104,15 @@ class FoodCartContentFragment : Fragment() {
         viewModel.passCheck.observe(viewLifecycleOwner, Observer {
             it?.let {
                 viewModel.sendOrder()
+            }
+        })
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when (it) {
+                    LoadApiStatus.LOADING -> showDialog(loadingDialog)
+                    LoadApiStatus.DONE, LoadApiStatus.ERROR -> dismissDialog(loadingDialog)
+                }
             }
         })
 

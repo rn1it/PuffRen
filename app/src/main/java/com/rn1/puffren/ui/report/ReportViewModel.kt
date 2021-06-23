@@ -55,16 +55,20 @@ class ReportViewModel(
 
         viewModelScope.launch {
 
+            _status.value = LoadApiStatus.LOADING
+
             _reportStatus.value = when(val result = repository.getReportStatus(UserManager.userToken!!)) {
                 is DataResult.Success -> {
                     _status.value = LoadApiStatus.DONE
                     result.data
                 }
                 is DataResult.Fail -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.error
                     null
                 }
                 is DataResult.Error -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.exception.toString()
                     null
                 }
@@ -73,7 +77,10 @@ class ReportViewModel(
     }
 
     private fun getPartnerLocations(){
+
         viewModelScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
 
             _locationOptions.value = when(val result = repository.getPartnerLocations(UserManager.userToken!!)) {
                 is DataResult.Success -> {
@@ -81,10 +88,12 @@ class ReportViewModel(
                     result.data
                 }
                 is DataResult.Fail -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.error
                     null
                 }
                 is DataResult.Error -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.exception.toString()
                     null
                 }
@@ -96,6 +105,8 @@ class ReportViewModel(
 
         viewModelScope.launch {
 
+            _status.value = LoadApiStatus.LOADING
+
             val reportOpenStatus = ReportOpenStatus(openLocation = location, openStatus = openStatus, recordId = recordId)
 
              when(val result = repository.reportForToday(UserManager.userToken!!, reportOpenStatus)) {
@@ -106,10 +117,12 @@ class ReportViewModel(
                     getReportStatus()
                 }
                 is DataResult.Fail -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.error
                     _reportOpenStatus.value = null
                 }
                 is DataResult.Error -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.exception.toString()
                     _reportOpenStatus.value = null
                 }

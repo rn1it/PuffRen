@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 class AchievementViewModel(
     private val repository: PuffRenRepository,
     private val achievementTypeFilter: AchievementTypeFilter
-): ViewModel() {
+) : ViewModel() {
 
     private val _achievements = MutableLiveData<List<Achievement>>()
     val achievements: LiveData<List<Achievement>>
@@ -41,20 +41,25 @@ class AchievementViewModel(
 
         viewModelScope.launch {
 
-            _achievements.value = when(val result = repository.getMemberAchievement(UserManager.userToken!!)) {
-                is DataResult.Success -> {
-                    _status.value = LoadApiStatus.DONE
-                    result.data.filter { it.rewardReceived == achievementTypeFilter.status }
+            _status.value = LoadApiStatus.LOADING
+
+            _achievements.value =
+                when (val result = repository.getMemberAchievement(UserManager.userToken!!)) {
+                    is DataResult.Success -> {
+                        _status.value = LoadApiStatus.DONE
+                        result.data.filter { it.rewardReceived == achievementTypeFilter.status }
+                    }
+                    is DataResult.Fail -> {
+                        _status.value = LoadApiStatus.ERROR
+                        _error.value = result.error
+                        null
+                    }
+                    is DataResult.Error -> {
+                        _status.value = LoadApiStatus.ERROR
+                        _error.value = result.exception.toString()
+                        null
+                    }
                 }
-                is DataResult.Fail -> {
-                    _error.value = result.error
-                    null
-                }
-                is DataResult.Error -> {
-                    _error.value = result.exception.toString()
-                    null
-                }
-            }
         }
     }
 }

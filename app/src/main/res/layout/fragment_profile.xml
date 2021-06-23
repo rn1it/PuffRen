@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.rn1.puffren.ui.profile.ProfileViewModel" />
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,71 +24,76 @@
             android:layout_marginStart="64dp"
             android:layout_marginTop="16dp"
             android:scaleType="centerCrop"
-            tools:src="@drawable/vendor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/vendor" />
 
+        <!-- android:text='@{viewModel.user.vendor? @string/puffren_id : @string/user_nickname}'-->
         <TextView
             android:id="@+id/text_user_name_title"
+            style="@style/text_style_profile_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/user_nickname"
+            android:text='@{viewModel.testIsVendor? @string/puffren_id : @string/user_nickname}'
             app:layout_constraintBottom_toTopOf="@+id/text_user_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_profile"
             app:layout_constraintTop_toTopOf="@+id/image_profile"
-            style="@style/text_style_profile_title"/>
+            tools:text="泡芙人編號" />
 
+        <!-- android:text='@{viewModel.user.vendor? viewModel.user.partnerId : viewModel.user.userName}'-->
         <TextView
             android:id="@+id/text_user_name"
+            style="@style/text_style_profile_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.user.userName}"
-            tools:text="@string/app_name"
+            android:text='@{viewModel.testIsVendor? viewModel.user.partnerId : viewModel.user.userName}'
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/text_user_level_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_profile"
             app:layout_constraintTop_toBottomOf="@+id/text_user_name_title"
-            style="@style/text_style_profile_title"
-            android:textStyle="bold"/>
+            tools:text="@string/app_name" />
 
+        <!-- android:text='@{viewModel.user.vendor? @string/puffren_id : @string/user_nickname}'-->
         <TextView
             android:id="@+id/text_user_level_title"
+            style="@style/text_style_profile_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/user_level"
+            android:text='@{viewModel.testIsVendor? @string/puffren_performance_level : @string/user_level}'
             app:layout_constraintBottom_toTopOf="@+id/text_user_level"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_profile"
             app:layout_constraintTop_toBottomOf="@+id/text_user_name"
-            style="@style/text_style_profile_title"/>
+            tools:text="泡芙人考核等級" />
 
         <TextView
             android:id="@+id/text_user_level"
+            style="@style/text_style_profile_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:level="@{viewModel.user.level}"
-            tools:text="@string/lvl1_member"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/image_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_profile"
             app:layout_constraintTop_toBottomOf="@+id/text_user_level_title"
-            style="@style/text_style_profile_title"
-            android:textStyle="bold"/>
+            app:level="@{viewModel.user.level}"
+            tools:text="@string/lvl1_member" />
 
         <!--TODO android:text='@{viewModel.user.vendor? @string/member_feature : @string/member_feature}'-->
         <TextView
             android:id="@+id/text_feature_title"
+            style="@style/text_style_profile_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="64dp"
             android:text='@{viewModel.testIsVendor? @string/vendor_feature : @string/member_feature}'
-            tools:text="泡芙人功能"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_profile"
-            style="@style/text_style_profile_title"
-            android:textSize="18sp"/>
+            tools:text="泡芙人功能" />
 
         <!--TODO android:visibility="@{viewModel.user.vendor? View.VISIBLE : View.GONE}"-->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -104,9 +111,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:padding="8dp"
                 android:focusable="true"
                 android:onClick="@{() -> viewModel.navigateToSaleReport()}"
+                android:padding="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -121,23 +128,23 @@
 
                 <TextView
                     android:id="@+id/text_profile_report_tilte"
+                    style="@style/text_style_profile_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/sales_figures_report"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_qrcodeile_report"
-                    style="@style/text_style_profile_title"/>
+                    app:layout_constraintTop_toBottomOf="@+id/profile_qrcodeile_report" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/profile_history_report"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
                 android:focusable="true"
                 android:onClick="@{() -> viewModel.navigateToSaleReportHistory()}"
+                android:padding="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_report"
                 app:layout_constraintEnd_toStartOf="@+id/profile_qrcode"
                 app:layout_constraintStart_toEndOf="@+id/profile_report"
@@ -154,6 +161,7 @@
 
                 <TextView
                     android:id="@+id/text_profile_history_report_title"
+                    style="@style/text_style_profile_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -161,8 +169,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_qrcodeile_history_report"
-                    style="@style/text_style_profile_title"/>
+                    app:layout_constraintTop_toBottomOf="@+id/profile_qrcodeile_history_report" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -170,9 +177,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                android:padding="8dp"
                 android:focusable="true"
                 android:onClick="@{() -> viewModel.navigateToScannerActivity()}"
+                android:padding="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_history_report"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/profile_history_report">
@@ -188,6 +195,7 @@
 
                 <TextView
                     android:id="@+id/text_profile_qrcode_title"
+                    style="@style/text_style_profile_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -195,8 +203,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_qrcodeile_qrcode"
-                    style="@style/text_style_profile_title"/>
+                    app:layout_constraintTop_toBottomOf="@+id/profile_qrcodeile_qrcode" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -250,9 +257,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:padding="8dp"
                 android:focusable="true"
                 android:onClick="@{() -> viewModel.navigateToOrder()}"
+                android:padding="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -267,23 +274,23 @@
 
                 <TextView
                     android:id="@+id/text_profile_order_tilte"
+                    style="@style/text_style_profile_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/search_order"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/image_profile_order"
-                    style="@style/text_style_profile_title"/>
+                    app:layout_constraintTop_toBottomOf="@+id/image_profile_order" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/profile_member_info_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
                 android:focusable="true"
                 android:onClick="@{() -> viewModel.navigateToEditMember()}"
+                android:padding="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_order"
                 app:layout_constraintEnd_toStartOf="@+id/profile_activity"
                 app:layout_constraintStart_toEndOf="@+id/profile_order"
@@ -300,6 +307,7 @@
 
                 <TextView
                     android:id="@+id/text_profile_member_info_edit_title"
+                    style="@style/text_style_profile_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -307,8 +315,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/image_profile_member_info_edit"
-                    style="@style/text_style_profile_title"/>
+                    app:layout_constraintTop_toBottomOf="@+id/image_profile_member_info_edit" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -316,9 +323,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                android:padding="8dp"
                 android:focusable="true"
                 android:onClick="@{() -> viewModel.navigateToActivity()}"
+                android:padding="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_member_info_edit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/profile_member_info_edit">
@@ -334,6 +341,7 @@
 
                 <TextView
                     android:id="@+id/text_profile_activity_title"
+                    style="@style/text_style_profile_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -341,8 +349,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/image_profile_activity"
-                    style="@style/text_style_profile_title"/>
+                    app:layout_constraintTop_toBottomOf="@+id/image_profile_activity" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

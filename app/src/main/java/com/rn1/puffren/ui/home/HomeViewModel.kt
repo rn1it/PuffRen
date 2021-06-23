@@ -17,14 +17,6 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
     val homePageItem: LiveData<List<HomePageItem>>
         get() = _homePageItems
 
-    private val _status = MutableLiveData<LoadApiStatus>()
-    val status: LiveData<LoadApiStatus>
-        get() = _status
-
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String>
-        get() = _error
-
     private val _navigateToLocation =  MutableLiveData<Boolean>()
     val navigateToLocation: LiveData<Boolean>
         get() = _navigateToLocation
@@ -40,6 +32,14 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
     private val _navigateToFoodCar =  MutableLiveData<Boolean>()
     val navigateToFoodCar: LiveData<Boolean>
         get() = _navigateToFoodCar
+
+    private val _status = MutableLiveData<LoadApiStatus>()
+    val status: LiveData<LoadApiStatus>
+        get() = _status
+
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
 
     init {
         Logger.i("------------------------------------")
@@ -62,10 +62,12 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
                     result.data
                 }
                 is DataResult.Fail -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.error
                     null
                 }
                 is DataResult.Error -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.exception.toString()
                     null
                 }

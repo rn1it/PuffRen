@@ -1,5 +1,6 @@
 package com.rn1.puffren.ui.history
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,9 +16,8 @@ import com.rn1.puffren.R
 import com.rn1.puffren.custom.CalendarAdapter
 import com.rn1.puffren.data.*
 import com.rn1.puffren.databinding.FragmentHistoryBinding
-import com.rn1.puffren.ext.getVmFactory
-import com.rn1.puffren.ext.hide
-import com.rn1.puffren.ext.show
+import com.rn1.puffren.ext.*
+import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.ui.history.item.ReportItemAdapter
 import com.rn1.puffren.util.MAX_CALENDAR_DAYS
 import com.rn1.puffren.util.Util.getDateFormat
@@ -46,6 +46,8 @@ class HistoryFragment : Fragment() {
 
     private var saleCalendar: SaleCalendar? = null
     private val reportItemAdapter = ReportItemAdapter()
+
+    private val loadingDialog by lazy { loadingDialog() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -93,6 +95,16 @@ class HistoryFragment : Fragment() {
                 viewModel.navigateToAdvanceReportDone()
             }
         })
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when(it) {
+                    LoadApiStatus.LOADING -> showDialog(loadingDialog)
+                    LoadApiStatus.DONE, LoadApiStatus.ERROR -> dismissDialog(loadingDialog)
+                }
+            }
+        })
+
         return binding.root
     }
 

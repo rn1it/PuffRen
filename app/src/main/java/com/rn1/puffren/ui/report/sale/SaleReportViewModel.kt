@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class SaleReportViewModel(
     val repository: PuffRenRepository,
     private val argument: String
-): ViewModel() {
+) : ViewModel() {
 
     private val itemMap = mutableMapOf<String, Int>()
 
@@ -46,25 +46,29 @@ class SaleReportViewModel(
         getReportItem()
     }
 
-    private fun getReportItem(){
+    private fun getReportItem() {
 
         viewModelScope.launch {
-            _reportItems.value = when (val result = repository.getReportItems(UserManager.userToken!!)) {
-                is DataResult.Success -> {
-                    _status.value = LoadApiStatus.DONE
-                    result.data
+
+            _status.value = LoadApiStatus.LOADING
+
+            _reportItems.value =
+                when (val result = repository.getReportItems(UserManager.userToken!!)) {
+                    is DataResult.Success -> {
+                        _status.value = LoadApiStatus.DONE
+                        result.data
+                    }
+                    is DataResult.Error -> {
+                        _status.value = LoadApiStatus.ERROR
+                        _error.value = result.exception.toString()
+                        null
+                    }
+                    is DataResult.Fail -> {
+                        _status.value = LoadApiStatus.ERROR
+                        _error.value = result.error
+                        null
+                    }
                 }
-                is DataResult.Error -> {
-                    _status.value = LoadApiStatus.ERROR
-                    _error.value =  result.exception.toString()
-                    null
-                }
-                is DataResult.Fail -> {
-                    _status.value = LoadApiStatus.ERROR
-                    _error.value = result.error
-                    null
-                }
-            }
         }
     }
 
@@ -96,20 +100,26 @@ class SaleReportViewModel(
         )
 
         viewModelScope.launch {
-            _reportResult.value = when(val result = repository.reportSale(UserManager.userToken!!, reportDetail)) {
-                is DataResult.Success -> {
-                    _status.value = LoadApiStatus.DONE
-                    result.data
+
+            _status.value = LoadApiStatus.LOADING
+
+            _reportResult.value =
+                when (val result = repository.reportSale(UserManager.userToken!!, reportDetail)) {
+                    is DataResult.Success -> {
+                        _status.value = LoadApiStatus.DONE
+                        result.data
+                    }
+                    is DataResult.Fail -> {
+                        _status.value = LoadApiStatus.ERROR
+                        _error.value = result.error
+                        null
+                    }
+                    is DataResult.Error -> {
+                        _status.value = LoadApiStatus.ERROR
+                        _error.value = result.exception.toString()
+                        null
+                    }
                 }
-                is DataResult.Fail -> {
-                    _error.value = result.error
-                    null
-                }
-                is DataResult.Error -> {
-                    _error.value = result.exception.toString()
-                    null
-                }
-            }
         }
     }
 

@@ -10,13 +10,19 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.rn1.puffren.R
 import com.rn1.puffren.databinding.FragmentRegistryBinding
+import com.rn1.puffren.ext.dismissDialog
 import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.ext.loadingDialog
+import com.rn1.puffren.ext.showDialog
+import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.*
 
 class RegistryFragment : Fragment() {
 
     lateinit var binding: FragmentRegistryBinding
     val viewModel by viewModels<RegistryViewModel> { getVmFactory() }
+
+    private val loadingDialog by lazy { loadingDialog() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +61,15 @@ class RegistryFragment : Fragment() {
                     }
                 }
                 viewModel.cleanInvalidInfo()
+            }
+        })
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when (it) {
+                    LoadApiStatus.LOADING -> showDialog(loadingDialog)
+                    LoadApiStatus.DONE, LoadApiStatus.ERROR -> dismissDialog(loadingDialog)
+                }
             }
         })
 

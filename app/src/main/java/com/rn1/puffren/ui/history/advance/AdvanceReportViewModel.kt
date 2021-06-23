@@ -60,7 +60,10 @@ class AdvanceReportViewModel(
     }
 
     private fun getPartnerLocations() {
+
         viewModelScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
 
             _locationOptions.value =
                 when (val result =
@@ -71,10 +74,12 @@ class AdvanceReportViewModel(
                         result.data
                     }
                     is DataResult.Fail -> {
+                        _status.value = LoadApiStatus.ERROR
                         _error.value = result.error
                         null
                     }
                     is DataResult.Error -> {
+                        _status.value = LoadApiStatus.ERROR
                         _error.value = result.exception.toString()
                         null
                     }
@@ -83,7 +88,10 @@ class AdvanceReportViewModel(
     }
 
     fun reportInAdvance() {
+
         viewModelScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
 
             val reportOpenStatus = ReportOpenStatus(
                 reportDate = reportDate.value,
@@ -98,10 +106,12 @@ class AdvanceReportViewModel(
                     result.data.message
                 }
                 is DataResult.Fail -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.error
                     null
                 }
                 is DataResult.Error -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.exception.toString()
                     null
                 }

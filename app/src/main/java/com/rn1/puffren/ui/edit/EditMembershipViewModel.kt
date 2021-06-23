@@ -9,6 +9,7 @@ import com.rn1.puffren.data.DataResult
 import com.rn1.puffren.data.UpdateUserResult
 import com.rn1.puffren.data.User
 import com.rn1.puffren.data.source.PuffRenRepository
+import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.*
 import kotlinx.coroutines.launch
 
@@ -47,6 +48,14 @@ class EditMembershipViewModel(
     val navigateToEditPassword: LiveData<Boolean>
         get() = _navigateToEditPassword
 
+    private val _status = MutableLiveData<LoadApiStatus>()
+    val status: LiveData<LoadApiStatus>
+        get() = _status
+
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+        get() = _error
+
     init {
         Logger.i("------------------------------------")
         Logger.i("[${this::class.simpleName}]${this}")
@@ -56,7 +65,10 @@ class EditMembershipViewModel(
     }
 
     private fun getUserProfile(){
+
         viewModelScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
 
             when(val result = repository.getLoginUser(UserManager.userToken!!)){
 
@@ -74,13 +86,16 @@ class EditMembershipViewModel(
                     if (null != user.city) {
                         spinnerPosition.value = getCitySpinnerPosition(user.city)
                     }
+                    _status.value = LoadApiStatus.DONE
                 }
 
                 is DataResult.Fail -> {
+                    _status.value = LoadApiStatus.ERROR
                     Logger.d("Fail")
                 }
 
                 is DataResult.Error -> {
+                    _status.value = LoadApiStatus.ERROR
                     Logger.d("Error")
                 }
             }
@@ -112,7 +127,10 @@ class EditMembershipViewModel(
     }
 
     fun updateUser() {
+
         viewModelScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
 
             val user = User(
                 userName = nickname.value,
@@ -126,15 +144,18 @@ class EditMembershipViewModel(
             _updateUserResult.value = when(val result = repository.updateUser(UserManager.userToken!!, user)){
 
                 is DataResult.Success -> {
+                    _status.value = LoadApiStatus.DONE
                     result.data
                 }
 
                 is DataResult.Fail -> {
+                    _status.value = LoadApiStatus.ERROR
                     Logger.d("Fail")
                     null
                 }
 
                 is DataResult.Error -> {
+                    _status.value = LoadApiStatus.ERROR
                     Logger.d("Error")
                     null
                 }

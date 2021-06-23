@@ -52,16 +52,20 @@ class QRCodeViewModel(
 
         viewModelScope.launch {
 
+            _status.value = LoadApiStatus.LOADING
+
             _coupons.value = when(val result = repository.getCoupon(UserManager.userToken!!, CouponType.ALL.value)) {
                 is DataResult.Success -> {
                     _status.value = LoadApiStatus.DONE
                     result.data
                 }
                 is DataResult.Fail -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.error
                     null
                 }
                 is DataResult.Error -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.exception.toString()
                     null
                 }

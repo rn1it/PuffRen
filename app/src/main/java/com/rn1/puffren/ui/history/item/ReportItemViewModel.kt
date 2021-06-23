@@ -41,6 +41,8 @@ class ReportItemViewModel(
 
         viewModelScope.launch {
 
+            _status.value = LoadApiStatus.LOADING
+
             _reportItems.value = when (val result = repository.getReportItems(UserManager.userToken!!)) {
                 is DataResult.Success -> {
                     _status.value = LoadApiStatus.DONE
@@ -58,7 +60,5 @@ class ReportItemViewModel(
                 }
             }
         }
-
     }
-
 }

@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class DetailViewModel(
     val repository: PuffRenRepository,
-    val arguments: Product
+    private val arguments: Product
 ) : ViewModel(){
 
     private val _product = MutableLiveData<Product>()
@@ -53,7 +53,7 @@ class DetailViewModel(
 
         viewModelScope.launch {
 
-//            _status.value = LoadApiStatus.LOADING
+            _status.value = LoadApiStatus.LOADING
             val result = repository.getProductDetail(id)
 
             _product.value = when (result) {
@@ -90,5 +90,4 @@ class DetailViewModel(
     fun setPackage(itemPackage: ItemPackage) {
         _itemPackage.value = itemPackage
     }
-
 }

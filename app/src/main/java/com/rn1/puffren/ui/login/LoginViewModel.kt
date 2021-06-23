@@ -52,15 +52,19 @@ class LoginViewModel(private val repository: PuffRenRepository) : ViewModel() {
         Logger.i("------------------------------------")
     }
 
-    fun login(){
+    fun login() {
         if (!email.value.isNullOrEmpty() && !password.value.isNullOrEmpty()) {
+
             viewModelScope.launch {
+
+                _status.value = LoadApiStatus.LOADING
 
                 val login = Login(email.value, password.value)
 
-                when(val result = repository.login(login)){
+                when (val result = repository.login(login)) {
 
                     is DataResult.Success -> {
+                        _status.value = LoadApiStatus.DONE
                         val token = result.data.accessToken!!
                         Logger.d("登入成功: token= $token")
                         UserManager.userToken = token
@@ -69,11 +73,13 @@ class LoginViewModel(private val repository: PuffRenRepository) : ViewModel() {
                     }
 
                     is DataResult.Fail -> {
+                        _status.value = LoadApiStatus.ERROR
                         _loginFail.value = true
                         Logger.d("Login Fail")
                     }
 
                     is DataResult.Error -> {
+                        _status.value = LoadApiStatus.ERROR
                         _loginFail.value = true
                         Logger.d("Login Error")
                     }
@@ -89,7 +95,7 @@ class LoginViewModel(private val repository: PuffRenRepository) : ViewModel() {
         _loginFail.value = null
     }
 
-    fun checkLoginInfo(){
+    fun checkLoginInfo() {
         when {
             email.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_EMAIL_EMPTY
             password.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_PASSWORD_EMPTY
@@ -103,38 +109,43 @@ class LoginViewModel(private val repository: PuffRenRepository) : ViewModel() {
         _invalidInfo.value = null
     }
 
-    private fun getUserByToken(token: String){
+    private fun getUserByToken(token: String) {
 
         viewModelScope.launch {
 
-            when(val result = repository.getLoginUser(token)){
+            _status.value = LoadApiStatus.LOADING
+
+            when (val result = repository.getLoginUser(token)) {
 
                 is DataResult.Success -> {
+                    _status.value = LoadApiStatus.DONE
                     val user = result.data
                     Logger.d("登入使用者: $user")
                     _user.value = user
                 }
 
                 is DataResult.Fail -> {
+                    _status.value = LoadApiStatus.ERROR
                     Logger.d("Fail")
                 }
 
                 is DataResult.Error -> {
+                    _status.value = LoadApiStatus.ERROR
                     Logger.d("Error")
                 }
             }
         }
     }
 
-    fun navigateToProfileDone(){
+    fun navigateToProfileDone() {
         _user.value = null
     }
 
-    fun navigateToRegistry(){
+    fun navigateToRegistry() {
         _navigateToRegistry.value = true
     }
 
-    fun navigateToRegistryDone(){
+    fun navigateToRegistryDone() {
         _navigateToRegistry.value = null
     }
 }

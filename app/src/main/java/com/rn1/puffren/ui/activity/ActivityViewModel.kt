@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class ActivityViewModel(
     val repository: PuffRenRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val _eventInfo = MutableLiveData<EventInfo>()
     val eventInfo: LiveData<EventInfo>
@@ -39,20 +39,25 @@ class ActivityViewModel(
 
     }
 
-    fun getEventInfo(){
+    fun getEventInfo() {
 
         viewModelScope.launch {
 
-            _eventInfo.value = when(val result = repository.getEventInfo(UserManager.userToken!!, EVENT_SCRATCH_CARD)) {
+            _status.value = LoadApiStatus.LOADING
+
+            _eventInfo.value = when (val result =
+                repository.getEventInfo(UserManager.userToken!!, EVENT_SCRATCH_CARD)) {
                 is DataResult.Success -> {
                     _status.value = LoadApiStatus.DONE
                     result.data
                 }
                 is DataResult.Fail -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.error
                     null
                 }
                 is DataResult.Error -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.exception.toString()
                     null
                 }
@@ -60,22 +65,26 @@ class ActivityViewModel(
         }
     }
 
-    fun getPrizeByEventId(){
+    fun getPrizeByEventId() {
 
         viewModelScope.launch {
 
+            _status.value = LoadApiStatus.LOADING
             val eventId = _eventInfo.value!!.event!!.eventId!!
 
-            _prize.value = when(val result = repository.getPrize(UserManager.userToken!!, EVENT_SCRATCH_CARD, eventId)) {
+            _prize.value = when (val result =
+                repository.getPrize(UserManager.userToken!!, EVENT_SCRATCH_CARD, eventId)) {
                 is DataResult.Success -> {
                     _status.value = LoadApiStatus.DONE
                     result.data
                 }
                 is DataResult.Fail -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.error
                     null
                 }
                 is DataResult.Error -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.exception.toString()
                     null
                 }

@@ -14,14 +14,16 @@ import com.rn1.puffren.MainViewModel
 import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.R
 import com.rn1.puffren.databinding.FragmentLoginBinding
-import com.rn1.puffren.ext.getVmFactory
-import com.rn1.puffren.ext.hideKeyboard
+import com.rn1.puffren.ext.*
+import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.*
 
 class LoginFragment : Fragment() {
 
     lateinit var binding: FragmentLoginBinding
     val viewModel by viewModels<LoginViewModel> { getVmFactory() }
+
+    private val loadingDialog by lazy { loadingDialog() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,6 +102,15 @@ class LoginFragment : Fragment() {
                     }
                 }
                 viewModel.cleanInvalidInfo()
+            }
+        })
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when (it) {
+                    LoadApiStatus.LOADING -> showDialog(loadingDialog)
+                    LoadApiStatus.DONE, LoadApiStatus.ERROR -> dismissDialog(loadingDialog)
+                }
             }
         })
 

@@ -20,7 +20,11 @@ import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.R
 import com.rn1.puffren.data.CityMain
 import com.rn1.puffren.databinding.FragmentEditMembershipBinding
+import com.rn1.puffren.ext.dismissDialog
 import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.ext.loadingDialog
+import com.rn1.puffren.ext.showDialog
+import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.INVALID_NAME_EMPTY
 import com.rn1.puffren.util.INVALID_NOT_READ_USER_PRIVACY
 import com.rn1.puffren.util.Logger
@@ -35,6 +39,8 @@ class EditMembershipFragment : Fragment() {
 
     private val calendar = Calendar.getInstance().apply { set(1990, 0, 1) }
     private val dateFormat = getDateFormat()
+
+    private val loadingDialog by lazy { loadingDialog() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -124,6 +130,15 @@ class EditMembershipFragment : Fragment() {
         viewModel.spinnerPosition.observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.spinnerCity.setSelection(it)
+            }
+        })
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when(it) {
+                    LoadApiStatus.LOADING -> showDialog(loadingDialog)
+                    LoadApiStatus.DONE, LoadApiStatus.ERROR -> dismissDialog(loadingDialog)
+                }
             }
         })
 

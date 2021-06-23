@@ -78,4 +78,7 @@ dependencies {
 
     // Scratchcard
     implementation 'in.codeshuffle.scratchcardlayout:ScratchCardLayout:1.0.8'
+
+    //lottie
+    implementation "com.airbnb.android:lottie:$version_lottie"
 }

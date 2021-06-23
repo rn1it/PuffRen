@@ -2,6 +2,7 @@ package com.rn1.puffren.ui.report
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.DialogInterface.OnShowListener
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -21,8 +22,8 @@ import com.rn1.puffren.PuffRenApplication
 import com.rn1.puffren.R
 import com.rn1.puffren.data.*
 import com.rn1.puffren.databinding.FragmentReportBinding
-import com.rn1.puffren.ext.getVmFactory
-import com.rn1.puffren.ext.showOrHide
+import com.rn1.puffren.ext.*
+import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.ui.history.advance.LocationAdapter
 import com.rn1.puffren.util.UserManager
 import com.rn1.puffren.util.Util.getDateFormat
@@ -39,6 +40,8 @@ class ReportFragment : Fragment() {
 
     private val dateFormat = getDateFormat()
     private var isOpening = false
+
+    private val loadingDialog by lazy { loadingDialog() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -219,6 +222,15 @@ class ReportFragment : Fragment() {
                             }
                         }
                     }
+                }
+            }
+        })
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when(it) {
+                    LoadApiStatus.LOADING -> showDialog(loadingDialog)
+                    LoadApiStatus.DONE, LoadApiStatus.ERROR -> dismissDialog(loadingDialog)
                 }
             }
         })

@@ -14,8 +14,8 @@ import androidx.lifecycle.Observer
 import com.rn1.puffren.R
 import com.rn1.puffren.data.Prize
 import com.rn1.puffren.databinding.FragmentActivityBinding
-import com.rn1.puffren.ext.getVmFactory
-import com.rn1.puffren.ext.show
+import com.rn1.puffren.ext.*
+import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.Logger
 import dev.skymansandy.scratchcardlayout.listener.ScratchListener
 import dev.skymansandy.scratchcardlayout.ui.ScratchCardLayout
@@ -28,6 +28,8 @@ class ActivityFragment : Fragment(), ScratchListener {
     private lateinit var scratchCardView: View
     private var isWinPrize: Boolean = false
     private lateinit var prize: Prize
+
+    private val loadingDialog by lazy { loadingDialog() }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreateView(
@@ -47,6 +49,15 @@ class ActivityFragment : Fragment(), ScratchListener {
             it?.let {
                 prize = it
                 getScratchCardDialog(it)
+            }
+        })
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when(it) {
+                    LoadApiStatus.LOADING -> showDialog(loadingDialog)
+                    LoadApiStatus.DONE, LoadApiStatus.ERROR -> dismissDialog(loadingDialog)
+                }
             }
         })
 

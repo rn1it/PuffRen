@@ -1,5 +1,6 @@
 package com.rn1.puffren.ui.location
 
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -23,13 +24,19 @@ import com.rn1.puffren.PuffRenApplication
 import com.rn1.puffren.R
 import com.rn1.puffren.data.Day
 import com.rn1.puffren.databinding.FragmentLocationBinding
+import com.rn1.puffren.ext.dismissDialog
 import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.ext.loadingDialog
+import com.rn1.puffren.ext.showDialog
+import com.rn1.puffren.network.LoadApiStatus
 
 class LocationFragment : Fragment() {
 
     lateinit var binding: FragmentLocationBinding
     val viewModel by viewModels<LocationViewModel> { getVmFactory() }
     private val makers: MutableList<Marker> = mutableListOf()
+
+    private val loadingDialog by lazy { loadingDialog() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +45,15 @@ class LocationFragment : Fragment() {
 
         binding = FragmentLocationBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when(it) {
+                    LoadApiStatus.LOADING -> showDialog(loadingDialog)
+                    LoadApiStatus.DONE, LoadApiStatus.ERROR -> dismissDialog(loadingDialog)
+                }
+            }
+        })
 
         return binding.root
     }

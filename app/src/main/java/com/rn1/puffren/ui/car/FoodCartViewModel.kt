@@ -58,6 +58,7 @@ class FoodCartViewModel(
 
         viewModelScope.launch {
 
+            _status.value = LoadApiStatus.LOADING
             val loginResult = LoginResult(userId = UserManager.userId)
 
             _foodCartResult.value = when (val result = repository.getFoodCart(loginResult)) {

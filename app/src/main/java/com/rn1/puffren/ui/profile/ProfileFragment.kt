@@ -21,7 +21,11 @@ import com.rn1.puffren.R
 import com.rn1.puffren.data.BuyDetail
 import com.rn1.puffren.data.User
 import com.rn1.puffren.databinding.FragmentProfileBinding
+import com.rn1.puffren.ext.dismissDialog
 import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.ext.loadingDialog
+import com.rn1.puffren.ext.showDialog
+import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.SCANNER_TIMEOUT
 import com.rn1.puffren.util.Util.setTextToToast
 import com.squareup.moshi.Moshi
@@ -29,9 +33,17 @@ import com.squareup.moshi.Moshi
 class ProfileFragment : Fragment() {
 
     lateinit var binding: FragmentProfileBinding
-    val viewModel by viewModels<ProfileViewModel> { getVmFactory(ProfileFragmentArgs.fromBundle(requireArguments()).user) }
+    val viewModel by viewModels<ProfileViewModel> {
+        getVmFactory(
+            ProfileFragmentArgs.fromBundle(
+                requireArguments()
+            ).user
+        )
+    }
     private val moshi by lazy { Moshi.Builder().build() }
     private val jsonAdapter = moshi.adapter(BuyDetail::class.java)
+
+    private val loadingDialog by lazy { loadingDialog() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,11 +82,14 @@ class ProfileFragment : Fragment() {
         viewModel.navigateToScannerActivity.observe(viewLifecycleOwner, Observer {
             it?.let {
                 val scanIntegrator = IntentIntegrator.forSupportFragment(this)
-                scanIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES)
-                scanIntegrator.setPrompt(getString(R.string.please_scan_qr_code))
-                scanIntegrator.setTimeout(SCANNER_TIMEOUT)
-                scanIntegrator.setOrientationLocked(false)
-                scanIntegrator.initiateScan()
+                scanIntegrator.apply {
+                    setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES)
+                    setPrompt(getString(R.string.please_scan_qr_code))
+                    setTimeout(SCANNER_TIMEOUT)
+                    setOrientationLocked(false)
+                    initiateScan()
+                }
+                viewModel.navigateToScannerActivityDone()
             }
         })
 
@@ -133,6 +148,16 @@ class ProfileFragment : Fragment() {
                 setProfileImage(it)
             }
         })
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when (it) {
+                    LoadApiStatus.LOADING -> showDialog(loadingDialog)
+                    LoadApiStatus.DONE, LoadApiStatus.ERROR -> dismissDialog(loadingDialog)
+                }
+            }
+        })
+
         return binding.root
     }
 
@@ -164,12 +189,17 @@ class ProfileFragment : Fragment() {
                     alertDialog.show()
 
                     with(dialog) {
-                        findViewById<TextView>(R.id.text_member_nickname).text = buyDetail.userNickname
+                        findViewById<TextView>(R.id.text_member_nickname).text =
+                            buyDetail.userNickname
                         findViewById<TextView>(R.id.text_use_coupon).text = buyDetail.coupon
-                        findViewById<TextView>(R.id.text_buy_total).text = buyDetail.totalAmount.toString()
-                        findViewById<TextView>(R.id.text_coupon_discount).text = buyDetail.couponDiscount.toString()
-                        findViewById<TextView>(R.id.text_member_discount).text = buyDetail.memberDiscount.toString()
-                        findViewById<TextView>(R.id.text_total_after_discount).text = buyDetail.amountAfterDiscount.toString()
+                        findViewById<TextView>(R.id.text_buy_total).text =
+                            buyDetail.totalAmount.toString()
+                        findViewById<TextView>(R.id.text_coupon_discount).text =
+                            buyDetail.couponDiscount.toString()
+                        findViewById<TextView>(R.id.text_member_discount).text =
+                            buyDetail.memberDiscount.toString()
+                        findViewById<TextView>(R.id.text_total_after_discount).text =
+                            buyDetail.amountAfterDiscount.toString()
                         findViewById<TextView>(R.id.button_create_order).setOnClickListener {
                             //TODO
                         }
@@ -185,8 +215,8 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun setProfileImage(user: User){
-        when(user.level){
+    private fun setProfileImage(user: User) {
+        when (user.level) {
             "1" -> binding.imageProfile.setImageResource(R.drawable.lv1_member)
             "2" -> binding.imageProfile.setImageResource(R.drawable.lv2_member)
             "3" -> binding.imageProfile.setImageResource(R.drawable.lv3_member)

@@ -10,6 +10,7 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.rn1.puffren.data.Event
+import com.rn1.puffren.util.Util.getString
 
 @SuppressLint("SetTextI18n")
 @BindingAdapter("itemPackages")
@@ -63,11 +64,12 @@ fun bindImage(imageView: ImageView, imgUrl: String?){
 fun bindLevel(textView: TextView, level: String?) {
     level?.let {
         textView.text = when (it) {
-            "1" -> PuffRenApplication.instance.getString(R.string.lvl1_member)
-            "2" -> PuffRenApplication.instance.getString(R.string.lvl1_member)
-            "3" -> PuffRenApplication.instance.getString(R.string.lvl1_member)
-            "4" -> PuffRenApplication.instance.getString(R.string.lvl1_member)
-            "5" -> PuffRenApplication.instance.getString(R.string.lvl1_member)
+            "1" -> getString(R.string.lvl1_member)
+            "2" -> getString(R.string.lvl1_member)
+            "3" -> getString(R.string.lvl1_member)
+            "4" -> getString(R.string.lvl1_member)
+            "5" -> getString(R.string.lvl1_member)
+            "" -> getString(R.string.not_evaluate_yet)
             else -> it
         }
     }

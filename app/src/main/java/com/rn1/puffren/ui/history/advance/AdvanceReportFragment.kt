@@ -15,8 +15,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.rn1.puffren.R
 import com.rn1.puffren.databinding.FragmentAdvanceReportBinding
-import com.rn1.puffren.ext.getVmFactory
-import com.rn1.puffren.ext.show
+import com.rn1.puffren.ext.*
+import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.ui.report.sale.SaleReportFragmentArgs
 import com.rn1.puffren.util.Logger
 import com.rn1.puffren.util.Util.getTimeFormat
@@ -32,6 +32,8 @@ class AdvanceReportFragment : Fragment() {
     private val timeFormat = getTimeFormat()
     private lateinit var alertDialog: AlertDialog
     private val calendar = Calendar.getInstance(Locale.TAIWAN)
+
+    private val loadingDialog by lazy { loadingDialog() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,7 +83,8 @@ class AdvanceReportFragment : Fragment() {
         viewModel.reportResult.observe(viewLifecycleOwner, Observer {
             it?.let {
                 Logger.d("$it ${getString(R.string.report_success)}")
-                Toast.makeText(context, getString(R.string.report_success), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.report_success), Toast.LENGTH_SHORT)
+                    .show()
                 findNavController().popBackStack()
             }
         })
@@ -90,6 +93,15 @@ class AdvanceReportFragment : Fragment() {
             it?.let {
                 binding.textLocation.setText(it)
                 alertDialog.dismiss()
+            }
+        })
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when (it) {
+                    LoadApiStatus.LOADING -> showDialog(loadingDialog)
+                    LoadApiStatus.DONE, LoadApiStatus.ERROR -> dismissDialog(loadingDialog)
+                }
             }
         })
 

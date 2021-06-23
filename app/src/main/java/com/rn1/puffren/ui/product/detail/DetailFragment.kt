@@ -12,12 +12,18 @@ import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.PuffRenApplication
 import com.rn1.puffren.R
 import com.rn1.puffren.databinding.FragmentDetailBinding
+import com.rn1.puffren.ext.dismissDialog
 import com.rn1.puffren.ext.getVmFactory
+import com.rn1.puffren.ext.loadingDialog
+import com.rn1.puffren.ext.showDialog
+import com.rn1.puffren.network.LoadApiStatus
 
 class DetailFragment : Fragment() {
 
     lateinit var binding: FragmentDetailBinding
     val viewModel by viewModels<DetailViewModel> { getVmFactory(DetailFragmentArgs.fromBundle(requireArguments()).product) }
+
+    private val loadingDialog by lazy { loadingDialog() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,6 +66,15 @@ class DetailFragment : Fragment() {
             it?.let {
                 binding.product = it
                 adapter.submitList(it.groupBuyingDetails)
+            }
+        })
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when(it) {
+                    LoadApiStatus.LOADING -> showDialog(loadingDialog)
+                    LoadApiStatus.DONE, LoadApiStatus.ERROR -> dismissDialog(loadingDialog)
+                }
             }
         })
 

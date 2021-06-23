@@ -49,6 +49,8 @@ class RegistryViewModel(val repository: PuffRenRepository): ViewModel() {
 
             viewModelScope.launch {
 
+                _status.value = LoadApiStatus.LOADING
+
                 val user = User(
                     email = email.value,
                     userName = nickname.value,
@@ -60,6 +62,7 @@ class RegistryViewModel(val repository: PuffRenRepository): ViewModel() {
                 when(val result = repository.registry(user)){
 
                     is DataResult.Success -> {
+                        _status.value = LoadApiStatus.DONE
                         val token = result.data
                         Logger.d("註冊成功: token= $token")
                         UserManager.userToken = result.data.accessToken
@@ -67,10 +70,12 @@ class RegistryViewModel(val repository: PuffRenRepository): ViewModel() {
                     }
 
                     is DataResult.Fail -> {
+                        _status.value = LoadApiStatus.ERROR
                         Logger.d("Fail")
                     }
 
                     is DataResult.Error -> {
+                        _status.value = LoadApiStatus.ERROR
                         Logger.d("Error")
                     }
                 }
@@ -98,19 +103,24 @@ class RegistryViewModel(val repository: PuffRenRepository): ViewModel() {
 
         viewModelScope.launch {
 
+            _status.value = LoadApiStatus.LOADING
+
             when(val result = repository.getLoginUser(token)){
 
                 is DataResult.Success -> {
+                    _status.value = LoadApiStatus.DONE
                     val user = result.data
                     Logger.d("登入使用者: $user")
                     _user.value = user
                 }
 
                 is DataResult.Fail -> {
+                    _status.value = LoadApiStatus.ERROR
                     Logger.d("Fail")
                 }
 
                 is DataResult.Error -> {
+                    _status.value = LoadApiStatus.ERROR
                     Logger.d("Error")
                 }
             }

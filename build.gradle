@@ -8,6 +8,7 @@ buildscript {
         version_retrofit = "2.9.0"
         version_glide = "4.12.0"
         version_zxing = "3.4.0"
+        version_lottie = "3.7.0"
     }
     repositories {
         google()

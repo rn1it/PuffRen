@@ -40,16 +40,20 @@ class PerformanceViewModel(
 
         viewModelScope.launch {
 
+            _status.value = LoadApiStatus.LOADING
+
             _performances.value = when(val result = repository.getPerformance(UserManager.userToken!!)) {
                 is DataResult.Success -> {
                     _status.value = LoadApiStatus.DONE
                     result.data
                 }
                 is DataResult.Fail -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.error
                     null
                 }
                 is DataResult.Error -> {
+                    _status.value = LoadApiStatus.ERROR
                     _error.value = result.exception.toString()
                     null
                 }
