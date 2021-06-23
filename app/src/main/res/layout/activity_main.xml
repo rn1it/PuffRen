@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
-        <import type="com.rn1.puffren.util.CurrentFragmentType"/>
+
+        <import type="android.view.View" />
+
+        <import type="com.rn1.puffren.util.CurrentFragmentType" />
+
         <variable
             name="viewModel"
             type="com.rn1.puffren.MainViewModel" />
@@ -20,9 +23,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            app:contentInsetStart="0dp"
             android:background="@color/orange_ffa626"
             android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.DETAIL || viewModel.currentFragmentType == CurrentFragmentType.HISTORY || viewModel.currentFragmentType == CurrentFragmentType.FOODCART ? View.GONE : View.VISIBLE}"
+            app:contentInsetStart="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -45,6 +48,7 @@
 
                 <TextView
                     android:id="@+id/toolbar_title"
+                    style="@style/text_style_toolbar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -52,8 +56,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/text_style_toolbar"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <!-- TODO android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.PRODUCT ? View.VISIBLE : View.GONE}"-->
                 <ImageView
@@ -61,13 +64,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginEnd="24dp"
-                    android:visibility="gone"
-                    android:src="@drawable/shopping_cart"
                     android:onClick="@{() -> viewModel.navigateToCart()}"
+                    android:src="@drawable/shopping_cart"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/toolbar_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/toolbar_title" />
-          </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/text_logout"
+                    style="@style/text_style_toolbar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:onClick="@{() -> viewModel.navigateToHome()}"
+                    android:text="登出"
+                    android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.PROFILE ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/toolbar_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/toolbar_title" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.appcompat.widget.Toolbar>
 
         <fragment
@@ -75,12 +93,12 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:navGraph="@navigation/navigation"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:navGraph="@navigation/navigation" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

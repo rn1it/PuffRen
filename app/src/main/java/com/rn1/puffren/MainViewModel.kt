@@ -19,6 +19,10 @@ class MainViewModel (private val puffRenRepository: PuffRenRepository) : ViewMod
     val navigateToCart: LiveData<Boolean>
         get() = _navigateToCart
 
+    private val _navigateToHome = MutableLiveData<Boolean>()
+    val navigateToHome: LiveData<Boolean>
+        get() = _navigateToHome
+
     // Record current fragment to support data binding
     val currentFragmentType = MutableLiveData<CurrentFragmentType>()
 
@@ -34,5 +38,13 @@ class MainViewModel (private val puffRenRepository: PuffRenRepository) : ViewMod
 
     fun navigateToCartDone(){
         _navigateToCart.value = null
+    }
+
+    fun navigateToHome(){
+        _navigateToHome.value = true
+    }
+
+    fun navigateToHomeDone(){
+        _navigateToHome.value = null
     }
 }

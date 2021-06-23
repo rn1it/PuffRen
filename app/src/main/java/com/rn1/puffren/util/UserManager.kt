@@ -87,18 +87,13 @@ object UserManager {
             }
         }
 
-    /**
-     * It can be use to check login status directly
-     */
     val isLoggedIn: Boolean
         get() = userToken != null
 
-    /**
-     * Clear the [userToken] and the [user]/[_user] data
-     */
-    fun clear() {
+    fun logout() {
         userToken = null
-        _user.value = null
+        userId = null
+        recordId = null
     }
 
 }

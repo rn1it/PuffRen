@@ -51,7 +51,7 @@
     <string name="send">送出</string>
     <string name="login_success">登入成功</string>
     <string name="registry_success">註冊成功</string>
-    
+    <string name="logout_success">會員已登出</string>
     <!-- order -->
     <string name="search_order">訂單查詢</string>
 

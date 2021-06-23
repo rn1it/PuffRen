@@ -13,6 +13,8 @@ import androidx.navigation.findNavController
 import com.rn1.puffren.databinding.ActivityMainBinding
 import com.rn1.puffren.ext.getVmFactory
 import com.rn1.puffren.util.CurrentFragmentType
+import com.rn1.puffren.util.UserManager
+import com.rn1.puffren.util.Util.setTextToToast
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +31,15 @@ class MainActivity : AppCompatActivity() {
             it?.let {
                 findNavController(R.id.navHostFragment).navigate(NavigationDirections.actionGlobalCartFragment(null, null))
                 mainViewModel.navigateToCartDone()
+            }
+        })
+
+        mainViewModel.navigateToHome.observe(this, Observer {
+            it?.let {
+                UserManager.logout()
+                findNavController(R.id.navHostFragment).navigate(NavigationDirections.actionGlobalHomeFragment())
+                mainViewModel.navigateToHomeDone()
+                setTextToToast(getString(R.string.logout_success))
             }
         })
 
