@@ -49,7 +49,9 @@
     <string name="edit_password">修改密碼</string>
     <string name="edit_member_info_done">會員資料修改完畢</string>
     <string name="send">送出</string>
-
+    <string name="login_success">登入成功</string>
+    <string name="registry_success">註冊成功</string>
+    
     <!-- order -->
     <string name="search_order">訂單查詢</string>
 
@@ -70,6 +72,7 @@
     <!-- cart -->
     <string name="item_selected">選購的商品</string>
     <string name="next_step">下一步</string>
+    <string name="addto_success">加入成功</string>
 
     <!-- calendar -->
     <string name="sunday">日</string>

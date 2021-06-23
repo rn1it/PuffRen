@@ -1,6 +1,7 @@
 package com.rn1.puffren.ui.login
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ class LoginFragment : Fragment() {
     val viewModel by viewModels<LoginViewModel> { getVmFactory() }
 
     private val loadingDialog by lazy { loadingDialog() }
+    private val messageDialog by lazy { messageDialog(getString(R.string.login_success)) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,11 +51,17 @@ class LoginFragment : Fragment() {
         viewModel.user.observe(viewLifecycleOwner, Observer {
             it?.let {
                 mainViewModel.setupUser(it)
-                findNavController().navigate(
-                    LoginFragmentDirections.actionLoginFragmentToProfileFragment(
-                        it
+
+                showDialog(messageDialog)
+                Handler().postDelayed({
+                    findNavController().navigate(
+                        LoginFragmentDirections.actionLoginFragmentToProfileFragment(
+                            it
+                        )
                     )
-                )
+                    dismissDialog(messageDialog)
+                }, 1000)
+
                 viewModel.navigateToProfileDone()
             }
         })

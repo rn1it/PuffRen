@@ -86,7 +86,12 @@
         android:id="@+id/registryFragment"
         android:name="com.rn1.puffren.ui.registry.RegistryFragment"
         android:label="RegistryFragment"
-        tools:layout="@layout/fragment_registry" />
+        tools:layout="@layout/fragment_registry" >
+        <action
+            android:id="@+id/action_registryFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/homeFragment"/>
+    </fragment>
 
     <fragment
         android:id="@+id/performanceFragment"
@@ -98,7 +103,7 @@
         android:id="@+id/qRCodeFragment"
         android:name="com.rn1.puffren.ui.qrcode.QRCodeFragment"
         android:label="QRCodeFragment"
-        tools:layout="@layout/fragment_q_r_code" >
+        tools:layout="@layout/fragment_q_r_code">
         <argument
             android:name="user"
             app:argType="com.rn1.puffren.data.User"

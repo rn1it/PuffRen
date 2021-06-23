@@ -24,10 +24,6 @@ class MainViewModel (private val puffRenRepository: PuffRenRepository) : ViewMod
 
     var user: User? = null
 
-    fun initViewModel(){
-        Logger.d("mainViewModel ready")
-    }
-
     fun setupUser(user : User){
         this.user = user
     }

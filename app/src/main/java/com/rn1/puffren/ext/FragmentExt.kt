@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.rn1.puffren.PuffRenApplication
 import com.rn1.puffren.R
@@ -17,17 +18,17 @@ import com.rn1.puffren.factory.*
 import com.rn1.puffren.ui.achievement.AchievementTypeFilter
 import com.rn1.puffren.ui.product.ProdTypeFilter
 
-fun Fragment.getVmFactory(): ViewModelFactory{
+fun Fragment.getVmFactory(): ViewModelFactory {
     val repository = (requireContext().applicationContext as PuffRenApplication).puffRenRepository
     return ViewModelFactory(repository)
 }
 
-fun Fragment.getVmFactory(user: User?): UserViewModelFactory{
+fun Fragment.getVmFactory(user: User?): UserViewModelFactory {
     val repository = (requireContext().applicationContext as PuffRenApplication).puffRenRepository
     return UserViewModelFactory(repository, user)
 }
 
-fun Fragment.getVmFactory(prodTypeFilter: ProdTypeFilter): ProdItemViewModelFactory{
+fun Fragment.getVmFactory(prodTypeFilter: ProdTypeFilter): ProdItemViewModelFactory {
     val repository = (requireContext().applicationContext as PuffRenApplication).puffRenRepository
     return ProdItemViewModelFactory(repository, prodTypeFilter)
 }
@@ -47,7 +48,7 @@ fun Fragment.getVmFactory(string: String): StringViewModelFactory {
     return StringViewModelFactory(repository, string)
 }
 
-fun Fragment.getVmFactory(achievementTypeFilter: AchievementTypeFilter): AchievementViewModelFactory{
+fun Fragment.getVmFactory(achievementTypeFilter: AchievementTypeFilter): AchievementViewModelFactory {
     val repository = (requireContext().applicationContext as PuffRenApplication).puffRenRepository
     return AchievementViewModelFactory(repository, achievementTypeFilter)
 }
@@ -65,9 +66,25 @@ fun Fragment.loadingDialog(cancelable: Boolean = true): Dialog =
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
+fun Fragment.messageDialog(message: String = "", cancelable: Boolean = true): Dialog {
+    val view = initMessageDialogView().apply {
+        findViewById<TextView>(R.id.text_message_content).text = message
+    }
+
+    return Dialog(requireActivity()).apply {
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        setContentView(view)
+        setCanceledOnTouchOutside(false)
+        setCancelable(cancelable)
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+}
+
 fun Fragment.initLoadingProgress(): View =
     LayoutInflater.from(requireActivity()).inflate(R.layout.dialog_loading, getRootView(), false)
 
+fun Fragment.initMessageDialogView(): View =
+    LayoutInflater.from(requireActivity()).inflate(R.layout.dialog_message, getRootView(), false)
 
 fun Fragment.getRootView(): ViewGroup {
     return requireActivity().findViewById(android.R.id.content)

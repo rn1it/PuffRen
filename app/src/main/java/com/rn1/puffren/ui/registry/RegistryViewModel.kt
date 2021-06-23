@@ -127,4 +127,7 @@ class RegistryViewModel(val repository: PuffRenRepository): ViewModel() {
         }
     }
 
+    fun navigateToProfileDone() {
+        _user.value = null
+    }
 }
