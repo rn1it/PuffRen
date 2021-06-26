@@ -13,97 +13,100 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg_color_yellow"
-        tools:context=".ui.activity.ActivityFragment"
-        android:padding="16dp">
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        tools:context=".ui.activity.ActivityFragment">
 
         <ImageView
             android:id="@+id/image_activity"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/placeholder"
-            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:elevation="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/scratch_event_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/title_activity"
+            style="@style/text_style_medium_bold_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/event_title"
-            style="@style/text_style_medium_bold_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_activity"
             tools:text="活動標題" />
 
         <TextView
             android:id="@+id/text_activity"
+            style="@style/text_style_profile_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@{viewModel.eventInfo.event.title}"
-            style="@style/text_style_profile_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_activity"
             tools:text="活動123" />
 
         <TextView
             android:id="@+id/title_activity_description"
+            style="@style/text_style_medium_bold_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/event_description"
-            style="@style/text_style_medium_bold_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_activity"
             tools:text="活動說明" />
 
         <TextView
             android:id="@+id/text_activity_description"
+            style="@style/text_style_profile_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@{viewModel.eventInfo.event.description}"
-            style="@style/text_style_profile_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_activity_description"
             tools:text="活動說明123" />
 
         <TextView
             android:id="@+id/title_activity_period"
+            style="@style/text_style_medium_bold_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/event_period"
-            style="@style/text_style_medium_bold_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_activity_description"
             tools:text="活動期間" />
 
         <TextView
             android:id="@+id/text_activity_period"
+            style="@style/text_style_profile_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            app:period="@{viewModel.eventInfo.event}"
-            style="@style/text_style_profile_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_activity_period"
+            app:period="@{viewModel.eventInfo.event}"
             tools:text="2021-05-31 至 2021-06-30" />
 
         <Button
             android:id="@+id/button_start_scratch_card"
             android:layout_width="0dp"
             android:layout_height="40dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/round_corner_layout"
             android:backgroundTint="@color/orange_ffa626"
-            app:button_scratch_enable="@{viewModel.eventInfo.hasRecord}"
             android:text="@string/start_scratch"
             android:textColor="@color/white"
+            app:button_scratch_enable="@{viewModel.eventInfo.hasRecord}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.445"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
