@@ -41,7 +41,7 @@
             app:layout_constraintTop_toTopOf="@+id/image_profile"
             tools:text="泡芙人編號" />
 
-        <!-- android:text='@{viewModel.user.vendor? viewModel.user.partnerId : viewModel.user.userName}'-->
+        <!-- android:text='@{viewModel.user.puffren? viewModel.user.partnerId : viewModel.user.userName}'-->
         <TextView
             android:id="@+id/text_user_name"
             style="@style/text_style_profile_title"
@@ -55,7 +55,7 @@
             app:layout_constraintTop_toBottomOf="@+id/text_user_name_title"
             tools:text="@string/app_name" />
 
-        <!-- android:text='@{viewModel.user.vendor? @string/puffren_id : @string/user_nickname}'-->
+        <!-- android:text='@{viewModel.user.puffren? @string/puffren_id : @string/user_nickname}'-->
         <TextView
             android:id="@+id/text_user_level_title"
             style="@style/text_style_profile_title"
@@ -81,7 +81,7 @@
             app:level="@{viewModel.user.level}"
             tools:text="@string/lvl1_member" />
 
-        <!--TODO android:text='@{viewModel.user.vendor? @string/member_feature : @string/member_feature}'-->
+        <!--TODO android:text='@{viewModel.user.puffren? @string/member_feature : @string/member_feature}'-->
         <TextView
             android:id="@+id/text_feature_title"
             style="@style/text_style_profile_title"
@@ -95,7 +95,7 @@
             app:layout_constraintTop_toBottomOf="@+id/image_profile"
             tools:text="泡芙人功能" />
 
-        <!--TODO android:visibility="@{viewModel.user.vendor? View.VISIBLE : View.GONE}"-->
+        <!--TODO android:visibility="@{viewModel.user.puffren? View.VISIBLE : View.GONE}"-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/vendor_feature_block"
             android:layout_width="0dp"

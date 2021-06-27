@@ -29,7 +29,7 @@ data class User(
     @Json(name = "birth_date")
     val birthDate: String? = null
 ): Parcelable {
-    val isVendor: Boolean
+    val isPuffren: Boolean
         get() = when(isPartner){
             1 -> true
             else -> false

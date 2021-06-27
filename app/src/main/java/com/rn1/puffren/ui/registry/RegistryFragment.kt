@@ -12,7 +12,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.rn1.puffren.MainViewModel
+import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.R
+import com.rn1.puffren.data.EntryFrom
 import com.rn1.puffren.databinding.FragmentRegistryBinding
 import com.rn1.puffren.ext.*
 import com.rn1.puffren.network.LoadApiStatus
@@ -21,7 +23,7 @@ import com.rn1.puffren.util.*
 class RegistryFragment : Fragment() {
 
     lateinit var binding: FragmentRegistryBinding
-    val viewModel by viewModels<RegistryViewModel> { getVmFactory() }
+    val viewModel by viewModels<RegistryViewModel> { getVmFactory(RegistryFragmentArgs.fromBundle(requireArguments()).entryFrom) }
 
     private val loadingDialog by lazy { loadingDialog() }
     private val messageDialog by lazy { messageDialog(getString(R.string.registry_success)) }
@@ -83,11 +85,28 @@ class RegistryFragment : Fragment() {
 
                 showDialog(messageDialog)
                 Handler().postDelayed({
-                    findNavController().navigate(
-                        RegistryFragmentDirections.actionRegistryFragmentToProfileFragment(
-                            it
-                        )
-                    )
+                    when(viewModel.entryFrom.value!!) {
+                        EntryFrom.FROM_QR_CODE -> {
+                            when (UserManager.isPuffren) {
+                                true -> {
+                                    findNavController().navigate(NavigationDirections.actionGlobalHomeFragment())
+                                }
+                                else -> {
+                                    findNavController().navigate(
+                                        RegistryFragmentDirections.actionRegistryFragmentToQRCodeFragment(it)
+                                    )
+                                }
+                            }
+                        }
+
+                        EntryFrom.FROM_PROFILE -> {
+                            findNavController().navigate(
+                                RegistryFragmentDirections.actionRegistryFragmentToProfileFragment(
+                                    it
+                                )
+                            )
+                        }
+                    }
                     dismissDialog(messageDialog)
                 }, 1000)
 

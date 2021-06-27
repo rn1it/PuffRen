@@ -10,15 +10,18 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.zxing.integration.android.IntentIntegrator
 import com.rn1.puffren.MainViewModel
 import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.R
+import com.rn1.puffren.data.EntryFrom
 import com.rn1.puffren.databinding.FragmentHomeBinding
 import com.rn1.puffren.ext.dismissDialog
 import com.rn1.puffren.ext.getVmFactory
 import com.rn1.puffren.ext.loadingDialog
 import com.rn1.puffren.ext.showDialog
 import com.rn1.puffren.network.LoadApiStatus
+import com.rn1.puffren.util.SCANNER_TIMEOUT
 import com.rn1.puffren.util.UserManager
 
 class HomeFragment : Fragment() {
@@ -61,10 +64,14 @@ class HomeFragment : Fragment() {
         viewModel.navigateToProfile.observe(viewLifecycleOwner, Observer {
             it?.let {
                 if (UserManager.userToken == null) {
-                    findNavController().navigate(NavigationDirections.actionGlobalLoginFragment())
+                    findNavController().navigate(NavigationDirections.actionGlobalLoginFragment(EntryFrom.FROM_PROFILE))
                     viewModel.navigateToProfileDone()
                 } else {
-                    findNavController().navigate(NavigationDirections.actionGlobalProfileFragment(mainViewModel.user))
+                    findNavController().navigate(
+                        NavigationDirections.actionGlobalProfileFragment(
+                            mainViewModel.user
+                        )
+                    )
                     viewModel.navigateToProfileDone()
                 }
             }
@@ -77,6 +84,36 @@ class HomeFragment : Fragment() {
             }
         })
 
+        viewModel.navigateToQrCode.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (UserManager.userToken == null) {
+                    findNavController().navigate(NavigationDirections.actionGlobalLoginFragment(EntryFrom.FROM_QR_CODE))
+                    viewModel.navigateToQrCodeDone()
+                } else {
+                    when (UserManager.isPuffren) {
+                        true -> {
+                            val scanIntegrator = IntentIntegrator.forSupportFragment(this)
+                            scanIntegrator.apply {
+                                setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES)
+                                setPrompt(getString(R.string.please_scan_qr_code))
+                                setTimeout(SCANNER_TIMEOUT)
+                                setOrientationLocked(false)
+                                initiateScan()
+                            }
+                        }
+                        else -> {
+                            findNavController().navigate(
+                                NavigationDirections.actionGlobalQRCodeFragment(
+                                    mainViewModel.user
+                                )
+                            )
+                        }
+                    }
+                    viewModel.navigateToQrCodeDone()
+                }
+            }
+        })
+
         viewModel.homePageItem.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
@@ -85,7 +122,7 @@ class HomeFragment : Fragment() {
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
             it?.let {
-                when(it) {
+                when (it) {
                     LoadApiStatus.LOADING -> showDialog(loadingDialog)
                     LoadApiStatus.DONE, LoadApiStatus.ERROR -> dismissDialog(loadingDialog)
                 }

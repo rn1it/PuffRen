@@ -42,6 +42,13 @@
             android:id="@+id/action_loginFragment_to_profileFragment"
             app:destination="@id/profileFragment"
             app:popUpTo="@id/homeFragment" />
+        <argument
+            android:name="entryFrom"
+            app:argType="com.rn1.puffren.data.EntryFrom" />
+        <action
+            android:id="@+id/action_loginFragment_to_qRCodeFragment"
+            app:destination="@id/qRCodeFragment"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
 
     <fragment
@@ -91,6 +98,13 @@
             android:id="@+id/action_registryFragment_to_profileFragment"
             app:destination="@id/profileFragment"
             app:popUpTo="@id/homeFragment"/>
+        <argument
+            android:name="entryFrom"
+            app:argType="com.rn1.puffren.data.EntryFrom" />
+        <action
+            android:id="@+id/action_registryFragment_to_qRCodeFragment"
+            app:destination="@id/qRCodeFragment"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
 
     <fragment
@@ -189,6 +203,7 @@
     <action
         android:id="@+id/action_global_homeFragment"
         app:destination="@id/homeFragment"
+        app:launchSingleTop="true"
         app:popUpToInclusive="true" />
 
     <action

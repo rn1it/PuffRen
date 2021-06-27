@@ -5,13 +5,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rn1.puffren.data.DataResult
+import com.rn1.puffren.data.EntryFrom
 import com.rn1.puffren.data.User
 import com.rn1.puffren.data.source.PuffRenRepository
 import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.*
 import kotlinx.coroutines.launch
 
-class RegistryViewModel(val repository: PuffRenRepository): ViewModel() {
+class RegistryViewModel(
+    val repository: PuffRenRepository,
+    private val argument: EntryFrom
+): ViewModel() {
+
+    private val _entryFrom = MutableLiveData<EntryFrom>().apply {
+        value = argument
+    }
+    val entryFrom: LiveData<EntryFrom>
+        get() = _entryFrom
 
     val email = MutableLiveData<String>()
     val nickname = MutableLiveData<String>()
@@ -112,6 +122,7 @@ class RegistryViewModel(val repository: PuffRenRepository): ViewModel() {
                     val user = result.data
                     Logger.d("登入使用者: $user")
                     _user.value = user
+                    UserManager.isPuffren = user.isPuffren
                 }
 
                 is DataResult.Fail -> {

@@ -12,6 +12,7 @@ object UserManager {
     private const val USER_TOKEN = "user_token"
     private const val USER_ID = "user_id"
     private const val RECORD_ID = "record_id"
+    private const val IS_PARTNER = "is_partner"
 
     private val _user = MutableLiveData<User>()
 
@@ -87,6 +88,29 @@ object UserManager {
             }
         }
 
+    var isPuffren: Boolean? = null
+        get() = PuffRenApplication.instance
+            .getSharedPreferences(USER_DATA, Context.MODE_PRIVATE)
+            .getBoolean(IS_PARTNER, false)
+        set(value) {
+            field = when (value) {
+                null -> {
+                    PuffRenApplication.instance
+                        .getSharedPreferences(USER_DATA, Context.MODE_PRIVATE).edit()
+                        .remove(IS_PARTNER)
+                        .apply()
+                    null
+                }
+                else -> {
+                    PuffRenApplication.instance
+                        .getSharedPreferences(USER_DATA, Context.MODE_PRIVATE).edit()
+                        .putBoolean(IS_PARTNER, value)
+                        .apply()
+                    value
+                }
+            }
+        }
+
     val isLoggedIn: Boolean
         get() = userToken != null
 
@@ -95,6 +119,5 @@ object UserManager {
         userId = null
         recordId = null
     }
-
 }
 

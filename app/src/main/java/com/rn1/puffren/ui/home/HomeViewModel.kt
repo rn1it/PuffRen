@@ -33,6 +33,10 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
     val navigateToFoodCar: LiveData<Boolean>
         get() = _navigateToFoodCar
 
+    private val _navigateToQrCode =  MutableLiveData<Boolean>()
+    val navigateToQrCode: LiveData<Boolean>
+        get() = _navigateToQrCode
+
     private val _status = MutableLiveData<LoadApiStatus>()
     val status: LiveData<LoadApiStatus>
         get() = _status
@@ -76,7 +80,7 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
     }
 
     fun navigate(homePageItem: HomePageItem){
-        when(homePageItem.seq) {
+        when(homePageItem.entry) {
             0 -> {
                 navigateToLocation()
             }
@@ -88,6 +92,9 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
             }
             3 -> {
                 navigateToFoodCar()
+            }
+            4 -> {
+                navigateToQrCode()
             }
         }
     }
@@ -122,5 +129,13 @@ class HomeViewModel(private val repository: PuffRenRepository) : ViewModel() {
 
     fun navigateToFoodCarDone(){
         _navigateToFoodCar.value = null
+    }
+
+    private fun navigateToQrCode(){
+        _navigateToQrCode.value = true
+    }
+
+    fun navigateToQrCodeDone(){
+        _navigateToQrCode.value = null
     }
 }

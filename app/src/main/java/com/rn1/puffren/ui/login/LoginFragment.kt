@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.rn1.puffren.MainViewModel
 import com.rn1.puffren.NavigationDirections
 import com.rn1.puffren.R
+import com.rn1.puffren.data.EntryFrom
 import com.rn1.puffren.databinding.FragmentLoginBinding
 import com.rn1.puffren.ext.*
 import com.rn1.puffren.network.LoadApiStatus
@@ -22,7 +23,7 @@ import com.rn1.puffren.util.*
 class LoginFragment : Fragment() {
 
     lateinit var binding: FragmentLoginBinding
-    val viewModel by viewModels<LoginViewModel> { getVmFactory() }
+    val viewModel by viewModels<LoginViewModel> { getVmFactory(LoginFragmentArgs.fromBundle(requireArguments()).entryFrom) }
 
     private val loadingDialog by lazy { loadingDialog() }
     private val messageDialog by lazy { messageDialog(getString(R.string.login_success)) }
@@ -54,11 +55,28 @@ class LoginFragment : Fragment() {
 
                 showDialog(messageDialog)
                 Handler().postDelayed({
-                    findNavController().navigate(
-                        LoginFragmentDirections.actionLoginFragmentToProfileFragment(
-                            it
-                        )
-                    )
+                    when(viewModel.entryFrom.value!!) {
+                        EntryFrom.FROM_QR_CODE -> {
+                            when (UserManager.isPuffren) {
+                                true -> {
+                                    findNavController().navigate(NavigationDirections.actionGlobalHomeFragment())
+                                }
+                                else -> {
+                                    findNavController().navigate(
+                                        LoginFragmentDirections.actionLoginFragmentToQRCodeFragment(it)
+                                    )
+                                }
+                            }
+                        }
+                        EntryFrom.FROM_PROFILE -> {
+                            findNavController().navigate(
+                                LoginFragmentDirections.actionLoginFragmentToProfileFragment(
+                                    it
+                                )
+                            )
+                        }
+                    }
+
                     dismissDialog(messageDialog)
                 }, 1000)
 
@@ -68,7 +86,7 @@ class LoginFragment : Fragment() {
 
         viewModel.navigateToRegistry.observe(viewLifecycleOwner, Observer {
             it?.let {
-                findNavController().navigate(NavigationDirections.actionGlobalRegistryFragment())
+                findNavController().navigate(NavigationDirections.actionGlobalRegistryFragment(viewModel.entryFrom.value!!))
                 viewModel.navigateToRegistryDone()
             }
         })

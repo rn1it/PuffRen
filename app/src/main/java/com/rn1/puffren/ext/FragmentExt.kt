@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.rn1.puffren.PuffRenApplication
 import com.rn1.puffren.R
+import com.rn1.puffren.data.EntryFrom
 import com.rn1.puffren.data.ItemPackage
 import com.rn1.puffren.data.Product
 import com.rn1.puffren.data.User
@@ -51,6 +52,11 @@ fun Fragment.getVmFactory(string: String): StringViewModelFactory {
 fun Fragment.getVmFactory(achievementTypeFilter: AchievementTypeFilter): AchievementViewModelFactory {
     val repository = (requireContext().applicationContext as PuffRenApplication).puffRenRepository
     return AchievementViewModelFactory(repository, achievementTypeFilter)
+}
+
+fun Fragment.getVmFactory(entryFrom: EntryFrom): EntryViewModelFactory {
+    val repository = (requireContext().applicationContext as PuffRenApplication).puffRenRepository
+    return EntryViewModelFactory(repository, entryFrom)
 }
 
 fun Fragment.hideKeyboard() {

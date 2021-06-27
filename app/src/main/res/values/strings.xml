@@ -205,5 +205,6 @@
     <string name="please_scan_qr_code">請掃描 QR CODE</string>
     <string name="error_msg_contact_it">發生錯誤，請聯絡開發人員</string>
     <string name="not_evaluate_yet">尚未獲得評分</string>
+    <string name="logout">登出</string>
 
 </resources>
