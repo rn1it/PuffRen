@@ -64,11 +64,11 @@ fun bindImage(imageView: ImageView, imgUrl: String?){
 fun bindLevel(textView: TextView, level: String?) {
     level?.let {
         textView.text = when (it) {
-            "1" -> getString(R.string.lvl1_member)
-            "2" -> getString(R.string.lvl1_member)
-            "3" -> getString(R.string.lvl1_member)
-            "4" -> getString(R.string.lvl1_member)
-            "5" -> getString(R.string.lvl1_member)
+            //"1" -> getString(R.string.lvl1_member)
+            //"2" -> getString(R.string.lvl1_member)
+            //"3" -> getString(R.string.lvl1_member)
+            //"4" -> getString(R.string.lvl1_member)
+            //"5" -> getString(R.string.lvl1_member)
             "" -> getString(R.string.not_evaluate_yet)
             else -> it
         }
