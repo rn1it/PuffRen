@@ -206,5 +206,6 @@
     <string name="error_msg_contact_it">發生錯誤，請聯絡開發人員</string>
     <string name="not_evaluate_yet">尚未獲得評分</string>
     <string name="logout">登出</string>
+    <string name="no_live_event_now">目前沒有進行中的活動喔!</string>
 
 </resources>

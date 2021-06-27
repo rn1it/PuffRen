@@ -110,7 +110,11 @@ class ProfileFragment : Fragment() {
 
         viewModel.navigateToActivity.observe(viewLifecycleOwner, Observer {
             it?.let {
-                findNavController().navigate(NavigationDirections.actionGlobalActivityFragment())
+                if (viewModel.user.value!!.hasLiveEvent) {
+                    findNavController().navigate(NavigationDirections.actionGlobalActivityFragment())
+                } else {
+                    setTextToToast(getString(R.string.no_live_event_now))
+                }
                 viewModel.navigateToActivityDone()
             }
         })

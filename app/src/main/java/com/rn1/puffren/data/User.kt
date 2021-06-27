@@ -27,10 +27,17 @@ data class User(
     val address: String? = null,
     val city: String? = null,
     @Json(name = "birth_date")
-    val birthDate: String? = null
+    val birthDate: String? = null,
+    val hasEvent: Int? = null
 ): Parcelable {
     val isPuffren: Boolean
         get() = when(isPartner){
+            1 -> true
+            else -> false
+        }
+
+    val hasLiveEvent: Boolean
+        get() = when(hasEvent){
             1 -> true
             else -> false
         }
