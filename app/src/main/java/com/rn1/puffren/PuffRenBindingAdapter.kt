@@ -10,11 +10,13 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.rn1.puffren.data.Event
+import com.rn1.puffren.ext.hide
 import com.rn1.puffren.util.Util.getString
+import java.util.*
 
 @SuppressLint("SetTextI18n")
 @BindingAdapter("itemPackages")
-fun setPackageString(textView: TextView, item: Int){
+fun setPackageString(textView: TextView, item: Int) {
     textView.let {
         when (item) {
             1 -> {
@@ -44,7 +46,7 @@ fun bindQuantity(textView: TextView, quantity: Int?) {
 }
 
 @BindingAdapter("imageUrl")
-fun bindImage(imageView: ImageView, imgUrl: String?){
+fun bindImage(imageView: ImageView, imgUrl: String?) {
     imgUrl?.let {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
         Glide.with(imageView.context)
@@ -52,7 +54,8 @@ fun bindImage(imageView: ImageView, imgUrl: String?){
             .apply(
                 RequestOptions()
                     .placeholder(R.drawable.placeholder)
-                    .error(R.drawable.placeholder))
+                    .error(R.drawable.placeholder)
+            )
             .into(imageView)
     }
 }
@@ -97,7 +100,8 @@ fun bindPerformanceScore(textView: TextView, score: Int?) {
 @BindingAdapter("period")
 fun bindPeriod(textView: TextView, event: Event?) {
     event?.let {
-        textView.text = PuffRenApplication.instance.getString(R.string.period_to_, it.startDate, it.endDate)
+        textView.text =
+            PuffRenApplication.instance.getString(R.string.period_to_, it.startDate, it.endDate)
     }
 }
 
@@ -108,16 +112,33 @@ fun bindPeriod(textView: TextView, event: Event?) {
 fun bindScratchButtonEnable(button: Button, hasRecord: Int?) {
     hasRecord?.let {
         button.apply {
-            when(hasRecord) {
+            when (hasRecord) {
                 0 -> {
                     isEnabled = true
-                    backgroundTintList = ColorStateList.valueOf(PuffRenApplication.instance.getColor(R.color.orange_ffa626))
+                    backgroundTintList =
+                        ColorStateList.valueOf(PuffRenApplication.instance.getColor(R.color.orange_ffa626))
                 }
                 else -> {
                     isEnabled = false
-                    backgroundTintList = ColorStateList.valueOf(PuffRenApplication.instance.getColor(R.color.grey_e1e1e1))
+                    backgroundTintList =
+                        ColorStateList.valueOf(PuffRenApplication.instance.getColor(R.color.grey_e1e1e1))
                 }
             }
+        }
+    }
+}
+
+/**
+ * Displays puffren performance level to image from level
+ */
+@BindingAdapter("performance_level")
+fun bindPerformanceLevel(imageView: ImageView, level: String?) {
+    level?.let {
+        when (level.toUpperCase(Locale.ENGLISH)) {
+            "A" -> imageView.setImageResource(R.drawable.class_a)
+            "B" -> imageView.setImageResource(R.drawable.class_b)
+            "C" -> imageView.setImageResource(R.drawable.class_c)
+            else -> imageView.hide()
         }
     }
 }
