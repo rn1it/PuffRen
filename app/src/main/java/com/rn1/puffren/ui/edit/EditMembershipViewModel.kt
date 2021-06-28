@@ -28,9 +28,6 @@ class EditMembershipViewModel(
     val address = MutableLiveData<String>()
     val phone = MutableLiveData<String>()
     val birthday = MutableLiveData<String>()
-    val isReadUserPrivacy = MutableLiveData<Boolean>().apply {
-        value = false
-    }
 
     private val _updateUserResult = MutableLiveData<UpdateUserResult>()
     val updateUserResult: LiveData<UpdateUserResult>
@@ -115,7 +112,6 @@ class EditMembershipViewModel(
     fun checkInputInfo() {
         when {
             nickname.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_NAME_EMPTY
-            isReadUserPrivacy.value == false ->  _invalidInfo.value = INVALID_NOT_READ_USER_PRIVACY
             else -> {
                 _passCheck.value = true
             }

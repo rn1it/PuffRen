@@ -1,0 +1,629 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>隱私權政策</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="beab2271-6029-442f-b311-339920d99830" class="page sans"><div class="page-body"><h3 id="153a4cc8-3bb4-4757-b8f3-4335cff0122a" class=""><strong>我愛泡芙人隱私政策</strong></h3><h1 id="00d1d9b6-163c-4f3e-be3f-5cce0f419dd0" class=""><strong>隱私政策</strong></h1><p id="e34239c1-b15f-4d41-a309-4c25c498bae6" class="">最後更新：2021 年 6 月 18 日</p><p id="d4b60481-3799-4917-82b6-e09470389973" class="">本隱私政策描述了我們在您使用服務時收集、使用和披露您的信息的政策和程序，並告訴您您的隱私權以及法律如何保護您。</p><p id="c3f61c21-1b4d-4a04-94a8-a2358c173150" class="">我們使用您的個人數據來提供和改進服務。通過使用服務，您同意根據本隱私政策收集和使用信息。本隱私政策是在<a href="https://www.privacypolicies.com/privacy-policy-generator/">隱私政策生成器</a>的幫助下創建的。</p><h1 id="464b97df-656d-4cc5-9f5e-487017569a8e" class=""><strong>解釋和定義</strong></h1><h2 id="46dd5ea5-562e-42e5-8757-afb50a354835" class=""><strong>解釋</strong></h2><p id="6abdb0d6-b7c7-43cf-9b9b-38a365bd3303" class="">首字母大寫的單詞具有在以下條件下定義的含義。下列定義不論以單數形式出現還是以復數形式出現，均應具有相同的含義。</p><h2 id="b3fddacd-1e5f-4370-a626-65ef7e814b0f" class=""><strong>定義</strong></h2><p id="7288b150-140a-49f5-a9a1-904b312c6aeb" class="">就本隱私政策而言：</p><ul id="01b9d364-1fbc-4292-b9ca-67d0d8b3bcee" class="bulleted-list"><li><strong>帳戶</strong>是指為您創建的唯一帳戶，用於訪問我們的服務或我們服務的一部分。</li></ul><ul id="9abf0a56-4bc1-4963-a24b-0a3e2a130c04" class="bulleted-list"><li><strong>關聯公司</strong>是指控制一方、受一方控製或與一方共同控制的實體，其中“控制”是指擁有有權投票選舉董事或其他管理機構的股份、股權或其他證券的 50% 或更多的所有權.</li></ul><ul id="0517f307-648e-4075-b1bc-f9ad3aaa03d3" class="bulleted-list"><li><strong>應用程序</strong>是指您在任何電子設備上下載的本公司提供的軟件程序，名為我愛泡芙人</li></ul><ul id="76109c68-1911-4e56-834a-739e6b42589f" class="bulleted-list"><li><strong>公司</strong>（在本協議中簡稱“本公司”、“我們”、“我們的”或“我們的”）指我愛泡芙工作坊，1F.，No. 22, Ln. 台灣（中華民國）郵遞區號桃園市桃園區正光路86號。</li></ul><ul id="7e1c3f60-4396-4838-b86e-03d101d25941" class="bulleted-list"><li><strong>國家</strong>指：台灣</li></ul><ul id="0c41ae95-3a62-4c27-b2e4-19645c9a397d" class="bulleted-list"><li><strong>設備</strong>是指可以訪問服務的任何設備，例如計算機、手機或數字平板電腦。</li></ul><ul id="c094288a-0d56-41d6-8ab3-448d65dcf9c2" class="bulleted-list"><li><strong>個人數據</strong>是與已識別或可識別個人相關的任何信息。</li></ul><ul id="d1604a32-e6c7-4eff-89f9-51c654f5a3af" class="bulleted-list"><li><strong>服務</strong>是指應用程序。</li></ul><ul id="113c7084-8bda-4b67-b267-3c66c811df92" class="bulleted-list"><li><strong>服務提供商</strong>是指代表公司處理數據的任何自然人或法人。它是指受僱於公司以促進服務、代表公司提供服務、執行與服務相關的服務或協助公司分析如何使用服務的第三方公司或個人。</li></ul><ul id="9b1261d5-6602-4518-842d-e684fcb997bd" class="bulleted-list"><li><strong>使用數據</strong>是指自動收集的<strong>數據</strong>，這些數據要么是通過使用服務生成的，要么是從服務基礎架構本身生成的（例如，頁面訪問的持續時間）。</li></ul><ul id="16b27f87-4f19-4f79-87ac-ced96a78477c" class="bulleted-list"><li><strong>您</strong>是指訪問或使用服務的個人，或代表該個人訪問或使用服務的公司或其他法律實體（如適用）。</li></ul><h1 id="18827607-cae9-4f32-9697-609382704407" class=""><strong>收集和使用您的個人數據</strong></h1><h2 id="829b9796-60bd-4842-8dc3-5d23374e9a7f" class=""><strong>收集的數據類型</strong></h2><h3 id="2a6f26b4-54ea-4444-b9b7-d9d7d73a9698" class=""><strong>個人資料</strong></h3><p id="ff0b8ddc-43c6-417f-bd70-3e35e99489e3" class="">在使用我們的服務時，我們可能會要求您向我們提供某些可用於聯繫或識別您的個人身份信息。個人身份信息可能包括但不限於：</p><ul id="b21d675b-6fc6-47c9-8d3b-c20fde4177ed" class="bulleted-list"><li>電子郵件地址</li></ul><ul id="8ac6fdd5-52a1-4109-a2dd-fda240fc8720" class="bulleted-list"><li>名字和姓氏</li></ul><ul id="d509f76b-ecd4-45b9-9ac0-19643708d4cc" class="bulleted-list"><li>電話號碼</li></ul><ul id="bdd4d88c-9695-4e52-a56d-95e839d8c01b" class="bulleted-list"><li>地址、州、省、郵政編碼、城市</li></ul><ul id="0362a492-4abc-42da-8346-43ec125df1af" class="bulleted-list"><li>使用數據</li></ul><h3 id="7303950d-f414-48f3-bd12-ca63cebd4efc" class=""><strong>使用數據</strong></h3><p id="18e73f11-55d5-430f-a244-60c401b4c62c" class="">使用服務時會自動收集使用數據。</p><p id="61839d32-a4bc-4beb-bfe9-5c7d16e503b3" class="">使用數據可能包括諸如您設備的互聯網協議地址（例如 IP 地址）、瀏覽器類型、瀏覽器版本、您訪問的我們服務的頁面、您訪問的時間和日期、在這些頁面上花費的時間、唯一設備等信息標識符和其他診斷數據。</p><p id="0d53c766-3a6d-46ba-bb8a-cb63edb941d0" class="">當您通過或通過移動設備訪問服務時，我們可能會自動收集某些信息，包括但不限於您使用的移動設備類型、您的移動設備唯一 ID、您的移動設備的 IP 地址、您的手機操作系統、您使用的移動互聯網瀏覽器類型、唯一設備標識符和其他診斷數據。</p><p id="59eda2dc-b38d-4ee7-aec7-f3a1fbb27120" class="">每當您訪問我們的服務或通過或通過移動設備訪問服務時，我們也可能會收集您的瀏覽器發送的信息。</p><h3 id="ddd24904-5cac-4acf-b3c4-e4b70265b6be" class=""><strong>使用應用程序時收集的信息</strong></h3><p id="3a46850e-f574-4dd7-97e3-7e9bc8dc82b1" class="">在使用我們的應用程序時，為了提供我們應用程序的功能，我們可能會在您事先許可的情況下收集：</p><ul id="38b49fb1-8756-44be-9c3f-db271eb39064" class="bulleted-list"><li>有關您所在位置的信息</li></ul><p id="605a50e2-6df3-47a3-b62e-e93bbd551e39" class="">我們使用這些信息來提供我們服務的功能，以改進和定制我們的服務。該信息可能會上傳到公司的服務器和/或服務提供商的服務器，也可能只是存儲在您的設備上。</p><p id="ee5f02fa-164f-4168-9101-b4508ba2c99d" class="">您可以隨時通過您的設備設置啟用或禁用對這些信息的訪問。</p><h2 id="66936f59-41ab-4b2c-9035-a859e2bee0a6" class=""><strong>使用您的個人數據</strong></h2><p id="37f06d96-f93e-4adb-9ef3-a7903d2f871d" class="">本公司可將個人資料用於以下目的：</p><ul id="67576a45-ada9-4d98-9972-32246762a9ec" class="bulleted-list"><li><strong>To provide and maintain our Service</strong>, including to monitor the usage of our Service.</li></ul><ul id="ac157a8d-8ffd-44cd-a4af-f546eadc2636" class="bulleted-list"><li><strong>To manage Your Account:</strong> to manage Your registration as a user of the Service. The Personal Data You provide can give You access to different functionalities of the Service that are available to You as a registered user.</li></ul><ul id="b83e23e4-d4ed-4e67-80e6-7b0345d74bc2" class="bulleted-list"><li><strong>For the performance of a contract:</strong> the development, compliance and undertaking of the purchase contract for the products, items or services You have purchased or of any other contract with Us through the Service.</li></ul><ul id="3718d381-8168-44bd-993b-ce377dc65716" class="bulleted-list"><li><strong>To contact You:</strong> To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application&#x27;s push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including the security updates, when necessary or reasonable for their implementation.</li></ul><ul id="bfa9cae5-9d0a-4fa7-97a7-b6deef2622a5" class="bulleted-list"><li><strong>To provide You</strong> with news, special offers and general information about other goods, services and events which we offer that are similar to those that you have already purchased or enquired about unless You have opted not to receive such information.</li></ul><ul id="a494f436-8074-4b89-8dcb-6379695767a4" class="bulleted-list"><li><strong>To manage Your requests:</strong> To attend and manage Your requests to Us.</li></ul><ul id="0d7da011-92e3-4c81-b450-ef991a196035" class="bulleted-list"><li><strong>For business transfers:</strong> We may use Your information to evaluate or conduct a merger, divestiture, restructuring, reorganization, dissolution, or other sale or transfer of some or all of Our assets, whether as a going concern or as part of bankruptcy, liquidation, or similar proceeding, in which Personal Data held by Us about our Service users is among the assets transferred.</li></ul><ul id="a6deae00-928c-4024-9a13-d8aaebda42f0" class="bulleted-list"><li><strong>For other purposes</strong>: We may use Your information for other purposes, such as data analysis, identifying usage trends, determining the effectiveness of our promotional campaigns and to evaluate and improve our Service, products, services, marketing and your experience.</li></ul><p id="bcb77250-03dd-4d34-9c39-ba7591f44361" class="">We may share Your personal information in the following situations:</p><ul id="d5f28f38-f81d-4d8a-84c9-269730fdd965" class="bulleted-list"><li><strong>With Service Providers:</strong> We may share Your personal information with Service Providers to monitor and analyze the use of our Service, to contact You.</li></ul><ul id="55d2010a-c7a9-40fc-9395-7ccd338035a5" class="bulleted-list"><li><strong>For business transfers:</strong> We may share or transfer Your personal information in connection with, or during negotiations of, any merger, sale of Company assets, financing, or acquisition of all or a portion of Our business to another company.</li></ul><ul id="4b5075c3-126b-419f-be11-4543d0e85e0b" class="bulleted-list"><li><strong>With Affiliates:</strong> We may share Your information with Our affiliates, in which case we will require those affiliates to honor this Privacy Policy. Affiliates include Our parent company and any other subsidiaries, joint venture partners or other companies that We control or that are under common control with Us.</li></ul><ul id="f71478bd-49be-4b46-8735-8e61cf9f09e8" class="bulleted-list"><li><strong>With business partners:</strong> We may share Your information with Our business partners to offer You certain products, services or promotions.</li></ul><ul id="62c020f6-8da6-4177-869a-0bdbd09973f4" class="bulleted-list"><li><strong>With other users:</strong> when You share personal information or otherwise interact in the public areas with other users, such information may be viewed by all users and may be publicly distributed outside.</li></ul><ul id="59caa7f5-ec74-4b40-b6fc-598f00b917f1" class="bulleted-list"><li><strong>With Your consent</strong>: We may disclose Your personal information for any other purpose with Your consent.</li></ul><h2 id="4b893b7e-8bed-4f43-8f65-20549ebebd29" class=""><strong>Retention of Your Personal Data</strong></h2><p id="630546b3-a96d-44ea-8b85-2e124c982259" class="">The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.</p><p id="25a46da0-59c9-4ddc-baaf-1f874585b308" class="">The Company will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of Our Service, or We are legally obligated to retain this data for longer time periods.</p><h2 id="9646e01d-bea9-4a01-bf6e-1b3f1ce28ab0" class=""><strong>Transfer of Your Personal Data</strong></h2><p id="d07a5dbc-1d4b-44e7-8f6c-444926b8af7b" class="">Your information, including Personal Data, is processed at the Company&#x27;s operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of Your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from Your jurisdiction.</p><p id="984ed953-74d5-41d6-8438-48fd93d5738e" class="">Your consent to this Privacy Policy followed by Your submission of such information represents Your agreement to that transfer.</p><p id="ab0ccde6-865d-488e-8236-68b7a6fc067c" class="">The Company will take all steps reasonably necessary to ensure that Your data is treated securely and in accordance with this Privacy Policy and no transfer of Your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of Your data and other personal information.</p><h2 id="36f8b31a-cc88-43d8-848b-7caa16e4245a" class=""><strong>Disclosure of Your Personal Data</strong></h2><h3 id="dfa91826-88af-4b33-af71-85d5dc93686d" class=""><strong>Business Transactions</strong></h3><p id="97afcb27-9b29-4c61-8158-04643d0a06f3" class="">If the Company is involved in a merger, acquisition or asset sale, Your Personal Data may be transferred. We will provide notice before Your Personal Data is transferred and becomes subject to a different Privacy Policy.</p><h3 id="9cba3585-7a4c-43b0-b987-f3d008f44d40" class=""><strong>Law enforcement</strong></h3><p id="0df04e35-ad3b-4f68-94c4-d6e07cf4bbba" class="">Under certain circumstances, the Company may be required to disclose Your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency).</p><h3 id="41a3fdcd-ed55-45d1-826e-36963b6de9a4" class=""><strong>Other legal requirements</strong></h3><p id="9ea18670-a671-44ea-9d9e-978782c4de61" class="">The Company may disclose Your Personal Data in the good faith belief that such action is necessary to:</p><ul id="b2ae3434-38ee-4b0f-8435-9dccbc7d7f0b" class="bulleted-list"><li>Comply with a legal obligation</li></ul><ul id="151bed94-b639-4b48-b482-3e15fa035689" class="bulleted-list"><li>Protect and defend the rights or property of the Company</li></ul><ul id="9c3e3454-a010-49cc-93c4-7e77caa11f1e" class="bulleted-list"><li>Prevent or investigate possible wrongdoing in connection with the Service</li></ul><ul id="a08f2bc1-9cfe-4d9c-8ab8-8ac721acae46" class="bulleted-list"><li>Protect the personal safety of Users of the Service or the public</li></ul><ul id="b50f7796-a7bc-4298-bee6-f1ec61f0c6d8" class="bulleted-list"><li>Protect against legal liability</li></ul><h2 id="08d074bd-d2be-41f3-8bbb-b09e843fdfbb" class=""><strong>Security of Your Personal Data</strong></h2><p id="42b6f784-0fdf-4d92-9cd3-ac06b89c5ecf" class="">The security of Your Personal Data is important to Us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.</p><h1 id="99cb3eb4-51d4-4561-815f-3bc039676cc1" class=""><strong>Children&#x27;s Privacy</strong></h1><p id="27840b7c-1306-4059-900c-35dc5a4ce9b2" class="">Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from anyone under the age of 13. If You are a parent or guardian and You are aware that Your child has provided Us with Personal Data, please contact Us. If We become aware that We have collected Personal Data from anyone under the age of 13 without verification of parental consent, We take steps to remove that information from Our servers.</p><p id="a4bf2249-c740-4ceb-9a6d-b7ccbea3c859" class="">If We need to rely on consent as a legal basis for processing Your information and Your country requires consent from a parent, We may require Your parent&#x27;s consent before We collect and use that information.</p><h1 id="e031aef9-5a22-43e3-a75b-1542b03d31da" class=""><strong>Links to Other Websites</strong></h1><p id="b985f3d0-304a-4c3e-9331-c25a6cb53f27" class="">Our Service may contain links to other websites that are not operated by Us. If You click on a third party link, You will be directed to that third party&#x27;s site. We strongly advise You to review the Privacy Policy of every site You visit.</p><p id="abb19ebb-3a3c-45e1-b7eb-a4395e617de8" class="">We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.</p><h1 id="3f755a21-9326-43e9-9893-a6c520ea7ba8" class=""><strong>Changes to this Privacy Policy</strong></h1><p id="611325d8-e77c-42ce-bd30-adf73d0f0e7a" class="">We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page.</p><p id="c2f05edd-bebd-41eb-9683-35c7e4b5452c" class="">We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming effective and update the &quot;Last updated&quot; date at the top of this Privacy Policy.</p><p id="5e6490a3-f005-4ad3-a885-1f7a7106f3da" class="">You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p><h1 id="c795d292-1903-4ab9-83ec-7a0ed7d72c44" class=""><strong>Contact Us</strong></h1><p id="c2620c0e-4944-44be-8547-f6c4a11c1dc0" class="">If you have any questions about this Privacy Policy, You can contact us:</p><ul id="7b67d404-8379-45f9-821e-ed30b4f20676" class="bulleted-list"><li>By email: service@puffren.com.tw</li></ul><p id="6f0e0127-fe9d-4724-989c-da03eabbabdd" class="">Privacy Policy for 我愛泡芙人</p><p id="e2082144-302a-45b7-bebf-f7bdcccae45d" class="">
+</p></div></article></body></html>

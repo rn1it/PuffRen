@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg_color_yellow"
-        android:padding="76dp"
+        android:padding="60dp"
         tools:context=".ui.login.LoginFragment">
 
         <ImageView
@@ -109,7 +109,6 @@
             android:id="@+id/edit_nickname"
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_marginStart="16dp"
             android:background="@drawable/round_corner_layout"
             android:ems="10"
             android:inputType="textPersonName"
@@ -118,14 +117,13 @@
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/text_title_set_nickname"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/text_title_set_nickname"
+            app:layout_constraintStart_toStartOf="@+id/edit_set_email"
             app:layout_constraintTop_toTopOf="@+id/text_title_set_nickname" />
 
         <EditText
             android:id="@+id/edit_set_password"
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_marginStart="16dp"
             android:background="@drawable/round_corner_layout"
             android:ems="10"
             android:inputType="textPassword"
@@ -134,14 +132,13 @@
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/text_title_set_password"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/text_title_set_password"
+            app:layout_constraintStart_toStartOf="@+id/edit_set_email"
             app:layout_constraintTop_toTopOf="@+id/text_title_set_password" />
 
         <EditText
             android:id="@+id/edit_check_password"
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_marginStart="16dp"
             android:background="@drawable/round_corner_layout"
             android:ems="10"
             android:inputType="textPassword"
@@ -150,14 +147,13 @@
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/text_title_check_password"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/text_title_check_password"
+            app:layout_constraintStart_toStartOf="@+id/edit_set_email"
             app:layout_constraintTop_toTopOf="@+id/text_title_check_password" />
 
         <EditText
             android:id="@+id/edit_invite_code"
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_marginStart="16dp"
             android:background="@drawable/round_corner_layout"
             android:ems="10"
             android:inputType="textPersonName"
@@ -166,7 +162,7 @@
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/text_title_invite_code"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/text_title_invite_code"
+            app:layout_constraintStart_toStartOf="@+id/edit_set_email"
             app:layout_constraintTop_toTopOf="@+id/text_title_invite_code" />
 
         <CheckBox
@@ -174,18 +170,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="我同意「我愛泡芙人」"
+            android:text="@string/privacy_checkbox_text"
             app:layout_constraintBottom_toTopOf="@+id/button_login"
-            app:layout_constraintEnd_toStartOf="@+id/personal_information"
+            app:layout_constraintEnd_toStartOf="@+id/text_privacy"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/personal_information"
+            android:id="@+id/text_privacy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="個資使用條款"
-            android:textSize="12sp"
+            android:text="@string/member_privacy_note"
+            android:textSize="14sp"
             android:textColor="#1e90ff"
             app:layout_constraintBottom_toBottomOf="@+id/checkBox"
             app:layout_constraintEnd_toEndOf="parent"
@@ -206,7 +202,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

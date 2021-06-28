@@ -23,3 +23,6 @@ const val SCANNER_TIMEOUT = 300000L
 
 // Encode
 const val ENCODE_UTF_8 = "UTF-8"
+
+//file
+const val PRIVACY_FILE = "file:///android_asset/privacy.html"

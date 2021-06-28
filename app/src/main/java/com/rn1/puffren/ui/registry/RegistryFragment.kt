@@ -1,12 +1,16 @@
 package com.rn1.puffren.ui.registry
 
+import android.annotation.SuppressLint
+import android.app.Dialog
 import android.os.Bundle
 import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.view.Window
+import android.webkit.WebView
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,15 +23,23 @@ import com.rn1.puffren.databinding.FragmentRegistryBinding
 import com.rn1.puffren.ext.*
 import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.*
+import com.rn1.puffren.util.Util.setTextToToast
 
 class RegistryFragment : Fragment() {
 
     lateinit var binding: FragmentRegistryBinding
-    val viewModel by viewModels<RegistryViewModel> { getVmFactory(RegistryFragmentArgs.fromBundle(requireArguments()).entryFrom) }
+    val viewModel by viewModels<RegistryViewModel> {
+        getVmFactory(
+            RegistryFragmentArgs.fromBundle(
+                requireArguments()
+            ).entryFrom
+        )
+    }
 
     private val loadingDialog by lazy { loadingDialog() }
     private val messageDialog by lazy { messageDialog(getString(R.string.registry_success)) }
 
+    @SuppressLint("InflateParams")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +51,38 @@ class RegistryFragment : Fragment() {
 
         val mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
+        binding.checkBox.setOnCheckedChangeListener { p0, isChecked ->
+            viewModel.isReadUserPrivacy.value = isChecked
+        }
+
+        binding.textPrivacy.setOnClickListener {
+            val view = LayoutInflater
+                .from(requireContext()).inflate(R.layout.dialog_user_privacy, null)
+
+            val webView = view.findViewById<WebView>(R.id.web_view)
+            webView.loadUrl(PRIVACY_FILE)
+
+            val width = (resources.displayMetrics.widthPixels * 0.95).toInt()
+            val height = (resources.displayMetrics.heightPixels * 0.95).toInt()
+            val dialog = Dialog(requireActivity()).apply {
+                requestWindowFeature(Window.FEATURE_NO_TITLE)
+                setContentView(view)
+                setCanceledOnTouchOutside(true)
+                setCancelable(true)
+                window?.apply {
+                    setLayout(width, height)
+                    setBackgroundDrawable(
+                        ContextCompat.getDrawable(
+                            context,
+                            R.drawable.round_corner_border
+                        )
+                    )
+                }
+            }
+            showDialog(dialog)
+        }
+
+
         viewModel.passRegistryCheck.observe(viewLifecycleOwner, Observer {
             it?.let {
                 if (it) {
@@ -49,21 +93,24 @@ class RegistryFragment : Fragment() {
 
         viewModel.invalidInfo.observe(viewLifecycleOwner, Observer {
             it?.let {
-                when(it) {
+                when (it) {
                     INVALID_EMAIL_EMPTY -> {
-                        Toast.makeText(requireContext(), getString(R.string.invalid_email_empty), Toast.LENGTH_SHORT).show()
+                        setTextToToast(getString(R.string.invalid_email_empty))
                     }
                     INVALID_NAME_EMPTY -> {
-                        Toast.makeText(requireContext(), getString(R.string.invalid_nickname_empty), Toast.LENGTH_SHORT).show()
+                        setTextToToast(getString(R.string.invalid_nickname_empty))
                     }
                     INVALID_PASSWORD_EMPTY -> {
-                        Toast.makeText(requireContext(), getString(R.string.invalid_password_empty), Toast.LENGTH_SHORT).show()
+                        setTextToToast(getString(R.string.invalid_password_empty))
                     }
                     INVALID_PASSWORD_CONFIRM_EMPTY -> {
-                        Toast.makeText(requireContext(), getString(R.string.invalid_password_comfirm_empty), Toast.LENGTH_SHORT).show()
+                        setTextToToast(getString(R.string.invalid_password_comfirm_empty))
                     }
                     INVALID_FORMAT_PASSWORD_CONFIRM -> {
-                        Toast.makeText(requireContext(), getString(R.string.password_comfirm_fail), Toast.LENGTH_SHORT).show()
+                        setTextToToast(getString(R.string.password_comfirm_fail))
+                    }
+                    INVALID_NOT_READ_USER_PRIVACY -> {
+                        setTextToToast(getString(R.string.user_privacy_must_read))
                     }
                 }
                 viewModel.cleanInvalidInfo()
@@ -85,7 +132,7 @@ class RegistryFragment : Fragment() {
 
                 showDialog(messageDialog)
                 Handler().postDelayed({
-                    when(viewModel.entryFrom.value!!) {
+                    when (viewModel.entryFrom.value!!) {
                         EntryFrom.FROM_QR_CODE -> {
                             when (UserManager.isPuffren) {
                                 true -> {
@@ -93,7 +140,9 @@ class RegistryFragment : Fragment() {
                                 }
                                 else -> {
                                     findNavController().navigate(
-                                        RegistryFragmentDirections.actionRegistryFragmentToQRCodeFragment(it)
+                                        RegistryFragmentDirections.actionRegistryFragmentToQRCodeFragment(
+                                            it
+                                        )
                                     )
                                 }
                             }

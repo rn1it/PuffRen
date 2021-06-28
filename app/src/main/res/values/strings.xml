@@ -61,6 +61,13 @@
     <string name="member_activity">會員專屬活動</string>
     <string name="lvl1_member">白金泡芙</string>
     <string name="member_info_fill_note">填寫會員資料享有專屬優惠</string>
+    <string name="member_name">會員姓名:</string>
+    <string name="member_city">會員城市:</string>
+    <string name="member_address">會員地址:</string>
+    <string name="member_phone">會員電話:</string>
+    <string name="member_birthday">會員生日:</string>
+    <string name="member_privacy_note">個資使用條款</string>
+    <string name="update_user_success">會員資料更新成功!</string>
 
     <!-- location -->
     <string name="puffren_location">泡芙人位置</string>
@@ -159,17 +166,6 @@
     <string name="win_prize">恭喜中獎</string>
     <string name="lose_prize">可惜沒中QQ</string>
     <string name="lose_prize_note">再接再厲明天會更好</string>
-    <string name="member_name">會員姓名:</string>
-    <string name="member_city">會員城市:</string>
-    <string name="member_address">會員地址:</string>
-    <string name="member_phone">會員電話:</string>
-    <string name="member_birthday">會員生日:</string>
-    <string name="member_privacy_note">我已經閱讀並同意會員權益聲明與隱私權條款</string>
-    <string name="update_user_success">會員資料更新成功!</string>
-
-    <!-- user notification -->
-    <string name="user_privacy">會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明會員權益說明</string>
-    <!-- TODO: Remove or change this placeholder text -->
 
     <!-- food cart -->
     <string name="basic_info">基本資訊</string>
@@ -186,7 +182,6 @@
     <string name="invalid_order_phone_empty">訂購人電話不可為空</string>
     <string name="invalid_order_email_empty">訂購人Email不可為空</string>
     <string name="invalid_order_item_select">請選擇至少一種套餐</string>
-
 
     <!-- QR Code -->
     <string name="enter_total_amount">請輸入結帳金額</string>
@@ -207,5 +202,7 @@
     <string name="not_evaluate_yet">尚未獲得評分</string>
     <string name="logout">登出</string>
     <string name="no_live_event_now">目前沒有進行中的活動喔!</string>
+    <string name="user_privacy_must_read">請仔細閱讀會員權益並打勾</string>
+    <string name="privacy_checkbox_text">我同意「我愛泡芙人」</string>
 
 </resources>

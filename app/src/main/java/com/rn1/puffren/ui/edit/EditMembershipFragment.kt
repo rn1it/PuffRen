@@ -2,8 +2,6 @@ package com.rn1.puffren.ui.edit
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +24,6 @@ import com.rn1.puffren.ext.loadingDialog
 import com.rn1.puffren.ext.showDialog
 import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.INVALID_NAME_EMPTY
-import com.rn1.puffren.util.INVALID_NOT_READ_USER_PRIVACY
 import com.rn1.puffren.util.Logger
 import com.rn1.puffren.util.Util.getDateFormat
 import com.rn1.puffren.util.Util.setTextToToast
@@ -76,31 +73,11 @@ class EditMembershipFragment : Fragment() {
             viewModel.checkInputInfo()
         }
 
-
-        binding.checkReadNotification.setOnCheckedChangeListener { p0, isChecked ->
-            viewModel.isReadUserPrivacy.value = isChecked
-        }
-
-        binding.imageInformation.setOnClickListener {
-            val builder = AlertDialog.Builder(context)
-            builder.setCancelable(true)
-            val addView = LayoutInflater
-                .from(requireContext()).inflate(R.layout.dialog_user_privacy, null)
-            builder.setView(addView)
-            val alertDialog = builder.create()
-            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-            alertDialog.show()
-        }
-
         viewModel.invalidInfo.observe(viewLifecycleOwner, Observer {
             it?.let {
                 when (it) {
                     INVALID_NAME_EMPTY -> {
                         setTextToToast(getString(R.string.invalid_nickname_empty))
-                    }
-                    INVALID_NOT_READ_USER_PRIVACY -> {
-                        setTextToToast("請仔細閱讀會員權益並打勾")
                     }
                 }
                 viewModel.cleanInvalidInfo()

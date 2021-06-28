@@ -29,6 +29,10 @@ class RegistryViewModel(
     val confirmPassword = MutableLiveData<String>()
     val connection = MutableLiveData<String>()
 
+    val isReadUserPrivacy = MutableLiveData<Boolean>().apply {
+        value = false
+    }
+
     private val _passRegistryCheck = MutableLiveData<Boolean>()
     val passRegistryCheck: LiveData<Boolean>
         get() = _passRegistryCheck
@@ -99,6 +103,7 @@ class RegistryViewModel(
             password.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_PASSWORD_EMPTY
             confirmPassword.value.isNullOrEmpty() -> _invalidInfo.value = INVALID_PASSWORD_CONFIRM_EMPTY
             password.value != confirmPassword.value -> _invalidInfo.value = INVALID_FORMAT_PASSWORD_CONFIRM
+            isReadUserPrivacy.value == false ->  _invalidInfo.value = INVALID_NOT_READ_USER_PRIVACY
             else -> {
                 _passRegistryCheck.value = true
             }
