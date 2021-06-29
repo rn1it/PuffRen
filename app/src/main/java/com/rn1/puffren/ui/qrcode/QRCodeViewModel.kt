@@ -1,5 +1,6 @@
 package com.rn1.puffren.ui.qrcode
 
+import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +14,7 @@ import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.Logger
 import com.rn1.puffren.util.UserManager
 import kotlinx.coroutines.launch
+import java.text.DecimalFormat
 
 class QRCodeViewModel(
     val repository: PuffRenRepository,
@@ -31,6 +33,28 @@ class QRCodeViewModel(
     private val _coupons = MutableLiveData<List<Coupon>>()
     val coupons: LiveData<List<Coupon>>
         get() = _coupons
+
+    val countDownTimer = object : CountDownTimer(QR_CODE_EFFECTIVE_TIME, COUNT_DOWN_TIME) {
+        override fun onTick(millisUntilFinished: Long) {
+            val numberFormat = DecimalFormat("00")
+            val min = millisUntilFinished / 60000 % 60
+            val sec = millisUntilFinished / 1000 % 60
+            _time.value = "${numberFormat.format(min)}:${numberFormat.format(sec)}"
+        }
+
+        override fun onFinish() {
+            _time.value = null
+            _timeIsUp.value = true
+        }
+    }
+
+    private val _time = MutableLiveData<String>()
+    val time: LiveData<String>
+        get() = _time
+
+    private val _timeIsUp = MutableLiveData<Boolean>()
+    val timeIsUp: LiveData<Boolean>
+        get() = _timeIsUp
 
     private val _status = MutableLiveData<LoadApiStatus>()
     val status: LiveData<LoadApiStatus>
@@ -54,7 +78,10 @@ class QRCodeViewModel(
 
             _status.value = LoadApiStatus.LOADING
 
-            _coupons.value = when(val result = repository.getCoupon(UserManager.userToken!!, CouponType.ALL.value)) {
+            _coupons.value = when(val result = repository.getCoupon(
+                UserManager.userToken!!,
+                CouponType.ALL.value
+            )) {
                 is DataResult.Success -> {
                     _status.value = LoadApiStatus.DONE
                     result.data
@@ -71,5 +98,13 @@ class QRCodeViewModel(
                 }
             }
         }
+    }
+    fun resetTimeIsUp() {
+        _timeIsUp.value = null
+    }
+
+    companion object {
+        const val QR_CODE_EFFECTIVE_TIME = 180000L
+        const val COUNT_DOWN_TIME = 1000L
     }
 }

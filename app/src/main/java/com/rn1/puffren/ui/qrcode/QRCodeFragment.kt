@@ -41,6 +41,8 @@ class QRCodeFragment : Fragment() {
     ): View {
 
         binding = FragmentQRCodeBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         val input = binding.editEnterCheckoutAmount
 
@@ -66,13 +68,31 @@ class QRCodeFragment : Fragment() {
 
                 //Initialize bitmap
                 val bitmap = create2DCode(jsonString)
-                binding.imageQrcodeOutput.setImageBitmap(bitmap)
+                binding.imageQrcodeOutput.apply {
+                    setImageBitmap(bitmap)
+                    show()
+                }
+
                 hideKeyboard()
+
+                // start count down 3:00 min
+                viewModel.countDownTimer.start()
+                setViewEnable(false)
 
             } catch (e: WriterException) {
                 e.printStackTrace()
             }
         }
+
+        viewModel.timeIsUp.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (it) {
+                    setViewEnable(true)
+                    binding.imageQrcodeOutput.hide()
+                    viewModel.resetTimeIsUp()
+                }
+            }
+        })
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -111,4 +131,28 @@ class QRCodeFragment : Fragment() {
         bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
         return bitmap
     }
+
+    private fun setViewEnable(isEnabled: Boolean) {
+        binding.buttonUseCoupon.isEnabled = isEnabled
+        binding.buttonCreateCode.isEnabled = isEnabled
+        binding.editEnterCheckoutAmount.isEnabled = isEnabled
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewReady()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.countDownTimer.cancel()
+    }
+
+    private fun viewReady() {
+        setViewEnable(true)
+        binding.editEnterCheckoutAmount.setText("")
+        binding.imageQrcodeOutput.hide()
+        binding.textTimer.text = ""
+    }
+
 }

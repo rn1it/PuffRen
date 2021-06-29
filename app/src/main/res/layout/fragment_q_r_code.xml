@@ -4,6 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <variable
+            name="viewModel"
+            type="com.rn1.puffren.ui.qrcode.QRCodeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,11 +25,11 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/round_corner_layout"
             android:ems="10"
-            android:inputType="number"
-            android:text=""
             android:hint="@string/enter_total_amount"
-            android:textAlignment="textStart"
+            android:inputType="number"
             android:paddingHorizontal="8dp"
+            android:text=""
+            android:textAlignment="textStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -105,12 +109,23 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="64dp"
+            android:layout_marginBottom="16dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/text_timer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_total_title" />
+
+        <TextView
+            android:id="@+id/text_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.time}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="1213213" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
