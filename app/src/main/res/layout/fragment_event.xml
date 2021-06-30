@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.rn1.puffren.ui.activity.ActivityViewModel" />
+            type="com.rn1.puffren.ui.event.EventViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
         android:background="@color/bg_color_yellow"
         android:paddingHorizontal="16dp"
         android:paddingTop="16dp"
-        tools:context=".ui.activity.ActivityFragment">
+        tools:context=".ui.event.EventFragment">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view"

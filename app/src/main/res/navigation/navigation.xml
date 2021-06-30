@@ -181,10 +181,10 @@
         tools:layout="@layout/fragment_food_car" />
 
     <fragment
-        android:id="@+id/activityFragment"
-        android:name="com.rn1.puffren.ui.activity.ActivityFragment"
-        android:label="ActivityFragment"
-        tools:layout="@layout/fragment_activity" />
+        android:id="@+id/eventFragment"
+        android:name="com.rn1.puffren.ui.event.EventFragment"
+        android:label="EventFragment"
+        tools:layout="@layout/fragment_event" />
 
     <fragment
         android:id="@+id/foodCartContentFragment"
@@ -276,7 +276,7 @@
 
     <action
         android:id="@+id/action_global_activityFragment"
-        app:destination="@id/activityFragment" />
+        app:destination="@id/eventFragment" />
 
     <action
         android:id="@+id/action_global_foodCartContentFragment"

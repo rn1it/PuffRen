@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.editMembershipFragment -> CurrentFragmentType.EDITMEMBERSHIP
                 R.id.editPasswordFragment -> CurrentFragmentType.EDITPASSWORD
                 R.id.achievementTypeFragment -> CurrentFragmentType.ACHIEVEMENT
-                R.id.activityFragment -> CurrentFragmentType.ACTIVITY
+                R.id.eventFragment -> CurrentFragmentType.EVENT
                 R.id.foodCarFragment -> CurrentFragmentType.FOODCART
                 R.id.reportFragment -> CurrentFragmentType.REPORT
                 R.id.foodCartContentFragment -> CurrentFragmentType.FOODCARTORDER

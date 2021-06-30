@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rn1.puffren.MainViewModel
 import com.rn1.puffren.data.source.PuffRenRepository
-import com.rn1.puffren.ui.activity.ActivityViewModel
+import com.rn1.puffren.ui.event.EventViewModel
 import com.rn1.puffren.ui.car.FoodCartViewModel
 import com.rn1.puffren.ui.coupon.CouponViewModel
 import com.rn1.puffren.ui.edit.EditMembershipViewModel
@@ -12,9 +12,7 @@ import com.rn1.puffren.ui.history.HistoryViewModel
 import com.rn1.puffren.ui.history.item.ReportItemViewModel
 import com.rn1.puffren.ui.home.HomeViewModel
 import com.rn1.puffren.ui.location.LocationViewModel
-import com.rn1.puffren.ui.login.LoginViewModel
 import com.rn1.puffren.ui.performance.PerformanceViewModel
-import com.rn1.puffren.ui.registry.RegistryViewModel
 import com.rn1.puffren.ui.report.ReportViewModel
 
 @Suppress("UNCHECKED_CAST")
@@ -52,8 +50,8 @@ class ViewModelFactory constructor(
                 isAssignableFrom(PerformanceViewModel::class.java) ->
                     PerformanceViewModel(repository)
 
-                isAssignableFrom(ActivityViewModel::class.java) ->
-                    ActivityViewModel(repository)
+                isAssignableFrom(EventViewModel::class.java) ->
+                    EventViewModel(repository)
 
                 isAssignableFrom(FoodCartViewModel::class.java) ->
                     FoodCartViewModel(repository)

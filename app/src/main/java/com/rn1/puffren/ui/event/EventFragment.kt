@@ -1,4 +1,4 @@
-package com.rn1.puffren.ui.activity
+package com.rn1.puffren.ui.event
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -13,7 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.rn1.puffren.R
 import com.rn1.puffren.data.Prize
-import com.rn1.puffren.databinding.FragmentActivityBinding
+import com.rn1.puffren.databinding.FragmentEventBinding
 import com.rn1.puffren.ext.*
 import com.rn1.puffren.network.LoadApiStatus
 import com.rn1.puffren.util.Logger
@@ -21,10 +21,10 @@ import dev.skymansandy.scratchcardlayout.listener.ScratchListener
 import dev.skymansandy.scratchcardlayout.ui.ScratchCardLayout
 import dev.skymansandy.scratchcardlayout.util.ScratchCardUtils
 
-class ActivityFragment : Fragment(), ScratchListener {
+class EventFragment : Fragment(), ScratchListener {
 
-    lateinit var binding: FragmentActivityBinding
-    private val viewModel by viewModels<ActivityViewModel> { getVmFactory() }
+    lateinit var binding: FragmentEventBinding
+    private val viewModel by viewModels<EventViewModel> { getVmFactory() }
     private lateinit var scratchCardView: View
     private var isWinPrize: Boolean = false
     private lateinit var prize: Prize
@@ -37,7 +37,7 @@ class ActivityFragment : Fragment(), ScratchListener {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentActivityBinding.inflate(inflater, container, false)
+        binding = FragmentEventBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 

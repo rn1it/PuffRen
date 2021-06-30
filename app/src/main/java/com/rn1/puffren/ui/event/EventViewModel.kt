@@ -1,4 +1,4 @@
-package com.rn1.puffren.ui.activity
+package com.rn1.puffren.ui.event
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +12,7 @@ import com.rn1.puffren.util.Logger
 import com.rn1.puffren.util.UserManager
 import kotlinx.coroutines.launch
 
-class ActivityViewModel(
+class EventViewModel(
     val repository: PuffRenRepository
 ) : ViewModel() {
 
