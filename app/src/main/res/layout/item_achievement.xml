@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="achievement"
             type="com.rn1.puffren.data.Achievement" />
@@ -13,8 +14,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:padding="16dp"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:padding="16dp">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:achievement_image="@{achievement.type}"
+            app:layout_constraintBottom_toBottomOf="@+id/text_date"
+            app:layout_constraintEnd_toEndOf="@id/guide_line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/achievement_foot_print" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_line"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3" />
 
         <TextView
             android:id="@+id/text_title"
@@ -24,7 +43,7 @@
             android:textColor="@color/black_000000"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guide_line"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="我愛泡芙人" />
 
@@ -36,7 +55,7 @@
             android:text="@{achievement.subtitle}"
             android:textColor="@color/black_000000"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guide_line"
             app:layout_constraintTop_toBottomOf="@id/text_title"
             tools:text="活動期間內累計消費達指定金額即可獲得獎勵" />
 
@@ -47,7 +66,7 @@
             android:layout_marginTop="8dp"
             android:text="@string/activity_period"
             android:textColor="@color/black_000000"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guide_line"
             app:layout_constraintTop_toBottomOf="@id/text_sub_title"
             tools:text="活動日期:" />
 
@@ -55,12 +74,10 @@
             android:id="@+id/text_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:textColor="@color/black_000000"
-            app:layout_constraintBottom_toBottomOf="@id/title_date"
-            app:layout_constraintStart_toEndOf="@id/title_date"
-            app:layout_constraintTop_toTopOf="@id/title_date"
-            tools:text="2021-05-25至2021-06-30" />
+            app:layout_constraintStart_toStartOf="@+id/guide_line"
+            app:layout_constraintTop_toBottomOf="@+id/title_date"
+            tools:text="2021-05-25 至 2021-06-30" />
 
         <TextView
             android:id="@+id/title_progress"
@@ -107,4 +124,5 @@
             app:layout_constraintTop_toBottomOf="@+id/title_progress" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

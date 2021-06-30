@@ -7,6 +7,7 @@ data class Achievement(
     val id: String? = null,
     val title: String? = null,
     val subtitle: String? = null,
+    val type: Int? = null, // use to match image
     val goal: Int? = null,
     @Json(name = "start_date")
     val startDate: String? = null,

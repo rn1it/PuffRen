@@ -142,3 +142,18 @@ fun bindPerformanceLevel(imageView: ImageView, level: String?) {
         }
     }
 }
+
+/**
+ * Displays achievement image by type
+ */
+@BindingAdapter("achievement_image")
+fun bindAchievementImage(imageView: ImageView, type: Int?) {
+    type?.let {
+        when (type) {
+            0 -> imageView.setImageResource(R.drawable.achievement_total)
+            1 -> imageView.setImageResource(R.drawable.achievement_love_puffren)
+            2 -> imageView.setImageResource(R.drawable.achievement_foot_print)
+            else -> imageView.hide()
+        }
+    }
+}
