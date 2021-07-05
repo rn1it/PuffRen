@@ -1,6 +1,5 @@
 package com.rn1.puffren.ui.location
 
-import android.app.Dialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -23,6 +22,7 @@ import com.google.android.material.tabs.TabLayout
 import com.rn1.puffren.PuffRenApplication
 import com.rn1.puffren.R
 import com.rn1.puffren.data.Day
+import com.rn1.puffren.data.PartnerInfo
 import com.rn1.puffren.databinding.FragmentLocationBinding
 import com.rn1.puffren.ext.dismissDialog
 import com.rn1.puffren.ext.getVmFactory
@@ -105,10 +105,7 @@ class LocationFragment : Fragment() {
                                     .position(latLng)
                                     .title(partner.openLocation)
                                     .snippet(
-                                        PuffRenApplication.instance.getString(
-                                            R.string.puffren_level,
-                                            partner.level ?: getString(R.string.no_level)
-                                        )
+                                        setMapDialogMessage(partner)
                                     )
                                     .icon(
                                         BitmapDescriptorFactory.fromBitmap(
@@ -150,6 +147,24 @@ class LocationFragment : Fragment() {
     private fun removeAllMarkers() {
         for (maker in makers) {
             maker.remove()
+        }
+    }
+
+    private fun setMapDialogMessage(partner: PartnerInfo): String {
+
+        return when(partner.openStatus) {
+            0 -> {
+                "預計營業時間: ${partner.expectedOpenTime} ${PuffRenApplication.instance.getString(
+                    R.string.puffren_level,
+                    partner.level ?: getString(R.string.no_level)
+                )}"
+            }
+            else -> {
+                PuffRenApplication.instance.getString(
+                    R.string.puffren_level,
+                    partner.level ?: getString(R.string.no_level)
+                )
+            }
         }
     }
 }

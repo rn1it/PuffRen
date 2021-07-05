@@ -74,7 +74,7 @@
     <string name="where_are_puffrens">泡芙人在哪裡</string>
     <string name="puffrens_tomorrow">明天哪裡有泡芙人</string>
     <string name="puffren_level">泡芙人等級: %s</string>
-    <string name="no_level">未分級</string>
+    <string name="no_level">尚未獲得評分</string>
 
     <!-- cart -->
     <string name="item_selected">選購的商品</string>
