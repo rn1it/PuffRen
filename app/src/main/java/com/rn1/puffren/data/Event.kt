@@ -14,7 +14,7 @@ data class Event(
     val type: Int? = null,
     val description: String? = null,
     @Json(name = "total_prize_left")
-    val totalPrizeLeft: String? = null,
+    val totalPrizeLeft: Int? = null,
     @Json(name = "start_date")
     val startDate: String? = null,
     @Json(name = "end_date")
@@ -25,5 +25,8 @@ data class Prize(
     @Json(name = "prize_coupon_id")
     val prizeCouponId: String? = null,
     @Json(name = "prize_coupon_title")
-    val prizeCouponTitle: String? = null
+    val prizeCouponTitle: String? = null,
+    @Json(name = "totlaPrizeLeft")
+    val totalPrizeLeft: Int = 0,
+    val message: String? = null
 )

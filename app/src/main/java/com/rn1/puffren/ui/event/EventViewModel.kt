@@ -37,6 +37,7 @@ class EventViewModel(
         Logger.i("[${this::class.simpleName}]${this}")
         Logger.i("------------------------------------")
 
+        getEventInfo()
     }
 
     fun getEventInfo() {
@@ -90,5 +91,9 @@ class EventViewModel(
                 }
             }
         }
+    }
+
+    fun getPrizeDone() {
+        _prize.value = null
     }
 }
